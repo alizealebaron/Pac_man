@@ -1,0 +1,62 @@
+{
+  "highscore_filename": "highscores.json",
+  "level": [
+    {
+      "name": "map1",
+      "width": 10,
+      "height": 10
+    },
+    {
+      "name": "map2",
+      "width": 11,
+      "height": 11
+    },
+    {
+      "name": "map3",
+      "width": 12,
+      "height": 12
+    },
+    {
+      "name": "map4",
+      "width": 13,
+      "height": 13
+    },
+    {
+      "name": "map5",
+      "width": 14,
+      "height": 14
+    },
+    {
+      "name": "map6",
+      "width": 15,
+      "height": 15
+    },
+    {
+      "name": "map7",
+      "width": 16,
+      "height": 16
+    },
+    {
+      "name": "map8",
+      "width": 17,
+      "height": 17
+    },
+    {
+      "name": "map9",
+      "width": 18,
+      "height": 18
+    },
+    {
+      "name": "map10",
+      "width": 19,
+      "height": 19
+    }
+  ],
+  "lives": 3,
+  "pacgum": 42,
+  "points_per_pacgum": 10,
+  "points_per_super_pacgum": 50,
+  "points_per_ghost": 200,
+  "seed": 42,
+  "level_max_time": 90
+}
