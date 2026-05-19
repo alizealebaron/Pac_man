@@ -219,3 +219,5 @@ __marimo__/
 
 test*
 debug*
+.vscode
+note.txt

@@ -1,29 +1,24 @@
 # ************************************************************************* #
 #                                                                           #
 #                                                      :::      ::::::::    #
-#  pac-man.py                                        :+:      :+:    :+:    #
+#  parser.py                                         :+:      :+:    :+:    #
 #                                                  +:+ +:+         +:+      #
 #  By: alebaron, rruiz                           +#+  +:+       +#+         #
 #                                              +#+#+#+#+#+   +#+            #
-#  Created: 2026/05/18 16:14:42 by alebaron        #+#    #+#               #
-#  Updated: 2026/05/19 14:31:48 by rruiz           ###   ########.fr        #
+#  Created: 2026/05/19 09:22:52 by rruiz           #+#    #+#               #
+#  Updated: 2026/05/19 10:05:37 by rruiz           ###   ########.fr        #
 #                                                                           #
 # ************************************************************************* #
 
 import argparse
-import sys
-from src.parsing.arg_parser import check_argument
-from src.parsing.config_loader import ConfigLoader
 
-def main() -> None:
-    try:
-        arg: argparse.Namespace = check_argument()
+def check_argument() -> argparse.Namespace:
+    parse = argparse.ArgumentParser()
+    parse.add_argument(
+        'config_file',
+        type=str,
+        help='Path to the configuration file'
+    )
+    arg: argparse.Namespace = parse.parse_args()
 
-        config = ConfigLoader.load_config(arg.config_file)
-        print(config)
-    except Exception as e:
-        print(f'Unexpected error: {e}', file=sys.stderr)
-
-
-if __name__ == '__main__':
-    main()
+    return arg
