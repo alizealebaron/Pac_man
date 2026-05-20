@@ -6,30 +6,29 @@
 #  By: alebaron, rruiz                           +#+  +:+       +#+         #
 #                                              +#+#+#+#+#+   +#+            #
 #  Created: 2026/05/19 10:07:49 by rruiz           #+#    #+#               #
-#  Updated: 2026/05/20 09:34:51 by rruiz           ###   ########.fr        #
+#  Updated: 2026/05/20 16:31:10 by rruiz           ###   ########.fr        #
 #                                                                           #
 # ************************************************************************* #
 
 import json
 from typing import Any
 import sys
-from pydantic import ValidationError
 from src.models.configmodel import ConfigModel
 
 class ConfigLoader:
     default_config = {
         'highscore_filename': 'highscores.json',
         'level': [
-            {'name': 'map1', 'width': 10, 'height': 10},
-            {'name': 'map2', 'width': 11, 'height': 11},
-            {'name': 'map3', 'width': 12, 'height': 12},
-            {'name': 'map4', 'width': 13, 'height': 13},
-            {'name': 'map5', 'width': 14, 'height': 14},
-            {'name': 'map6', 'width': 15, 'height': 15},
-            {'name': 'map7', 'width': 16, 'height': 16},
-            {'name': 'map8', 'width': 17, 'height': 17},
-            {'name': 'map9', 'width': 18, 'height': 18},
-            {'name': 'map10', 'width': 19, 'height': 19}
+            {'id': 1, 'width': 10, 'height': 10},
+            {'id': 2, 'width': 11, 'height': 11},
+            {'id': 3, 'width': 12, 'height': 12},
+            {'id': 4, 'width': 13, 'height': 13},
+            {'id': 5, 'width': 14, 'height': 14},
+            {'id': 6, 'width': 15, 'height': 15},
+            {'id': 7, 'width': 16, 'height': 16},
+            {'id': 8, 'width': 17, 'height': 17},
+            {'id': 9, 'width': 18, 'height': 18},
+            {'id': 10, 'width': 19, 'height': 19}
         ],
         'lives': 3,
         'pacgum': 42,
@@ -40,25 +39,17 @@ class ConfigLoader:
         'level_max_time': 90
         }
 
-
     @staticmethod
     def load_config(config_file_path: str | None) -> ConfigModel:
-        config: dict[str, Any] = {}
- 
-        if config_file_path:
-            config = ConfigLoader._clean_config(config_file_path)
+        if not config_file_path:
+            return ConfigModel.build_config(ConfigLoader.default_config)
+
+        config = ConfigLoader._clean_config(config_file_path)
 
         if not config:
-            config = ConfigLoader.default_config
+            return ConfigModel.build_config(ConfigLoader.default_config)
 
-        try:
-            return ConfigModel(**config)
-        except ValidationError as e:
-            print(f'Warning: config validation error: {e}'
-                  '; using default configuration', file=sys.stderr)
-            return ConfigModel(**ConfigLoader.default_config)
-
-
+        return ConfigModel.build_config(config)
 
     @staticmethod
     def _clean_config(config_file_path: str) -> dict[str, Any]:
@@ -72,7 +63,15 @@ class ConfigLoader:
 
         clean_lines = []
         for line in config.splitlines():
-            no_comment = line.split('#')[0]
+            match line:
+                case str(x) if '#' in x:
+                    no_comment = line.split('#')[0]
+                case str(x) if '//' in x:
+                    no_comment = line.split('//')[0]
+                case str(x) if '/' in x:
+                    no_comment = line.split('/')[0]
+                case _:
+                    no_comment = line
             clean_lines.append(no_comment)
 
         clean_config = '\n'.join(clean_lines)

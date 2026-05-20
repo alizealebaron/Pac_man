@@ -6,22 +6,29 @@
 #  By: alebaron, rruiz                           +#+  +:+       +#+         #
 #                                              +#+#+#+#+#+   +#+            #
 #  Created: 2026/05/19 11:08:47 by rruiz           #+#    #+#               #
-#  Updated: 2026/05/19 14:25:03 by rruiz           ###   ########.fr        #
+#  Updated: 2026/05/20 16:06:16 by rruiz           ###   ########.fr        #
 #                                                                           #
 # ************************************************************************* #
 
-from pydantic import BaseModel, Field
-from typing import Optional
+from pydantic import BaseModel, Field, ValidationError
+from typing import Optional, Any, Self
+import sys
+
+mandatory_keys = ['highscore_filename', 'level', 'lives', 'pacgum',
+                  'points_per_pacgum', 'points_per_super_pacgum',
+                  'points_per_ghost', 'seed', 'level_max_time']
+
+optional_keys = []
 
 class LevelConfig(BaseModel):
-    name: str = Field(min_length=1, default='map')
+    id: int = Field(ge=1)
     width: int = Field(ge=1, le=500, default=10)
     height: int = Field(ge=1, le=500, default=10)
 
 
 class ConfigModel(BaseModel):
     highscore_filename: Optional[str] = Field(default="highscores.json", min_length=1)
-    level: list[LevelConfig] = Field(min_length=1)
+    level: list[LevelConfig] = Field(min_length=1, default_factory=list)
     lives: int = Field(ge=1, le=1000, default=3)
     pacgum: int = Field(ge=1, le=1000, default=42)
     points_per_pacgum: int = Field(ge=1, le=1000, default=10)
@@ -29,3 +36,38 @@ class ConfigModel(BaseModel):
     points_per_ghost: int = Field(ge=1, le=1000, default=100)
     seed: int = Field(ge=0, default=42)
     level_max_time: int = Field(ge=1, le=3600, default=90)
+
+    @classmethod
+    def build_config(cls, config: dict[str, Any]) -> Self:
+        clean: dict[str, Any] = {}
+
+        for field_name, field_info in cls.model_fields.items():
+            data = config.get(field_name)
+
+            if not data and field_name in mandatory_keys:
+                if field_name != 'level':
+                    print(
+                        f"Warning: invalid value for '{field_name}': {data}"
+                        f"; using default ({field_info.default})",
+                        file=sys.stderr
+                    )
+                else:
+                    print(
+                        f"Warning: invalid value for '{field_name}': {data}"
+                        f"; using default value",
+                        file=sys.stderr
+                    )
+                continue
+
+        try:
+            cls.model_validate({field_name: data})
+            clean[field_name] = data
+        except ValidationError:
+                default = field_info.default
+                print(
+                    f"Warning: invalid value for '{field_name}': {data}"
+                    f"; using default ({default})",
+                    file=sys.stderr
+                )
+
+        return cls(**clean)
