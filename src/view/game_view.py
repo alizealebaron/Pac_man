@@ -1,12 +1,12 @@
 # ************************************************************************* #
 #                                                                           #
 #                                                      :::      ::::::::    #
-#  level.py                                          :+:      :+:    :+:    #
+#  game_view.py                                      :+:      :+:    :+:    #
 #                                                  +:+ +:+         +:+      #
 #  By: alebaron, rruiz                           +#+  +:+       +#+         #
 #                                              +#+#+#+#+#+   +#+            #
-#  Created: 2026/05/19 14:39:15 by alebaron        #+#    #+#               #
-#  Updated: 2026/05/20 09:52:10 by alebaron        ###   ########.fr        #
+#  Created: 2026/05/20 13:11:07 by alebaron        #+#    #+#               #
+#  Updated: 2026/05/20 13:17:36 by alebaron        ###   ########.fr        #
 #                                                                           #
 # ************************************************************************* #
 
@@ -15,21 +15,42 @@
 # +-------------------------------------------------------------------------+
 
 
-from src.mazegenerator.mazegenerator import MazeGenerator
+import arcade
+from src.view.gameover_view import GameoverView
 
 
 # +-------------------------------------------------------------------------+
 # |                                 Classe                                  |
 # +-------------------------------------------------------------------------+
 
-class Level():
+class GameView(arcade.View):
 
     # +---------------------------------------------------------------------+
     # |                                Init                                 |
     # +---------------------------------------------------------------------+
 
-    def __init__(self, num_level: int, width: int, height: int):
+    def __init__(self):
+        """ Initializer """
+        # Call the parent class initializer
+        super().__init__()
 
-        self.level = num_level
-        self.maze = MazeGenerator((width, height), seed=num_level)
-        self.maze._add_42_to_maze()
+        # Don't show the mouse cursor
+        self.window.set_mouse_visible(False)
+
+        arcade.set_background_color(arcade.color.AMAZON)
+
+    # +---------------------------------------------------------------------+
+    # |                               Methods                               |
+    # +---------------------------------------------------------------------+
+
+    def on_draw(self):
+        """ Draw everything """
+        self.clear()
+        arcade.draw_text("Game view", self.window.width / 2, self.window.height / 2,
+                         arcade.color.WHITE, font_size=50, anchor_x="center")
+
+    def on_update(self, delta_time):
+        """ Movement and game logic """
+
+        view = GameoverView()
+        self.window.show_view(view)

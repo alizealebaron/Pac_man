@@ -1,12 +1,12 @@
 # ************************************************************************* #
 #                                                                           #
 #                                                      :::      ::::::::    #
-#  level.py                                          :+:      :+:    :+:    #
+#  gameover_view.py                                  :+:      :+:    :+:    #
 #                                                  +:+ +:+         +:+      #
 #  By: alebaron, rruiz                           +#+  +:+       +#+         #
 #                                              +#+#+#+#+#+   +#+            #
-#  Created: 2026/05/19 14:39:15 by alebaron        #+#    #+#               #
-#  Updated: 2026/05/20 09:52:10 by alebaron        ###   ########.fr        #
+#  Created: 2026/05/20 13:03:16 by alebaron        #+#    #+#               #
+#  Updated: 2026/05/20 13:58:13 by alebaron        ###   ########.fr        #
 #                                                                           #
 # ************************************************************************* #
 
@@ -15,21 +15,29 @@
 # +-------------------------------------------------------------------------+
 
 
-from src.mazegenerator.mazegenerator import MazeGenerator
+import arcade
 
 
 # +-------------------------------------------------------------------------+
 # |                                 Classe                                  |
 # +-------------------------------------------------------------------------+
 
-class Level():
+class GameoverView(arcade.View):
 
     # +---------------------------------------------------------------------+
     # |                                Init                                 |
     # +---------------------------------------------------------------------+
 
-    def __init__(self, num_level: int, width: int, height: int):
+    def __init__(self):
+        super().__init__()
 
-        self.level = num_level
-        self.maze = MazeGenerator((width, height), seed=num_level)
-        self.maze._add_42_to_maze()
+    def on_show_view(self):
+        """ This is run once when we switch to this view """
+        arcade.set_background_color(arcade.color.DARK_BLUE_GRAY)
+
+    def on_draw(self):
+        """ Render the screen. """
+        # Clear the screen
+        self.clear()
+        arcade.draw_text("Game over !", self.window.width / 2, self.window.height / 2,
+                         arcade.color.WHITE, font_size=50, anchor_x="center")
