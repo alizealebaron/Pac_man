@@ -6,11 +6,12 @@
 #  By: alebaron, rruiz                           +#+  +:+       +#+         #
 #                                              +#+#+#+#+#+   +#+            #
 #  Created: 2026/05/19 09:22:52 by rruiz           #+#    #+#               #
-#  Updated: 2026/05/20 09:21:29 by rruiz           ###   ########.fr        #
+#  Updated: 2026/05/20 16:50:06 by rruiz           ###   ########.fr        #
 #                                                                           #
 # ************************************************************************* #
 
 import argparse
+
 
 def check_argument() -> argparse.Namespace:
     parse = argparse.ArgumentParser()
