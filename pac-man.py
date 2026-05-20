@@ -6,7 +6,7 @@
 #  By: alebaron, rruiz                           +#+  +:+       +#+         #
 #                                              +#+#+#+#+#+   +#+            #
 #  Created: 2026/05/18 16:14:42 by alebaron        #+#    #+#               #
-#  Updated: 2026/05/20 16:12:29 by rruiz           ###   ########.fr        #
+#  Updated: 2026/05/20 16:49:09 by rruiz           ###   ########.fr        #
 #                                                                           #
 # ************************************************************************* #
 
@@ -15,6 +15,8 @@ import sys
 from src.parsing.arg_parser import check_argument
 from src.parsing.config_loader import ConfigLoader
 from src.models.configmodel import ConfigModel
+
+
 def main() -> None:
     try:
         arg: argparse.Namespace = check_argument()

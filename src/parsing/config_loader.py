@@ -6,7 +6,7 @@
 #  By: alebaron, rruiz                           +#+  +:+       +#+         #
 #                                              +#+#+#+#+#+   +#+            #
 #  Created: 2026/05/19 10:07:49 by rruiz           #+#    #+#               #
-#  Updated: 2026/05/20 16:31:10 by rruiz           ###   ########.fr        #
+#  Updated: 2026/05/20 16:50:12 by rruiz           ###   ########.fr        #
 #                                                                           #
 # ************************************************************************* #
 
@@ -14,6 +14,7 @@ import json
 from typing import Any
 import sys
 from src.models.configmodel import ConfigModel
+
 
 class ConfigLoader:
     default_config = {

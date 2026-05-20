@@ -6,7 +6,7 @@
 #  By: alebaron, rruiz                           +#+  +:+       +#+         #
 #                                              +#+#+#+#+#+   +#+            #
 #  Created: 2026/05/19 11:08:47 by rruiz           #+#    #+#               #
-#  Updated: 2026/05/20 16:06:16 by rruiz           ###   ########.fr        #
+#  Updated: 2026/05/20 16:50:45 by rruiz           ###   ########.fr        #
 #                                                                           #
 # ************************************************************************* #
 
@@ -14,11 +14,12 @@ from pydantic import BaseModel, Field, ValidationError
 from typing import Optional, Any, Self
 import sys
 
-mandatory_keys = ['highscore_filename', 'level', 'lives', 'pacgum',
-                  'points_per_pacgum', 'points_per_super_pacgum',
-                  'points_per_ghost', 'seed', 'level_max_time']
+mandatory_keys: list[str] = ['highscore_filename', 'level', 'lives', 'pacgum',
+                             'points_per_pacgum', 'points_per_super_pacgum',
+                             'points_per_ghost', 'seed', 'level_max_time']
 
-optional_keys = []
+optional_keys: list[str] = []
+
 
 class LevelConfig(BaseModel):
     id: int = Field(ge=1)
@@ -27,7 +28,8 @@ class LevelConfig(BaseModel):
 
 
 class ConfigModel(BaseModel):
-    highscore_filename: Optional[str] = Field(default="highscores.json", min_length=1)
+    highscore_filename: Optional[str] = Field(default="highscores.json",
+                                              min_length=1)
     level: list[LevelConfig] = Field(min_length=1, default_factory=list)
     lives: int = Field(ge=1, le=1000, default=3)
     pacgum: int = Field(ge=1, le=1000, default=42)
@@ -63,11 +65,11 @@ class ConfigModel(BaseModel):
             cls.model_validate({field_name: data})
             clean[field_name] = data
         except ValidationError:
-                default = field_info.default
-                print(
-                    f"Warning: invalid value for '{field_name}': {data}"
-                    f"; using default ({default})",
-                    file=sys.stderr
-                )
+            default = field_info.default
+            print(
+                f"Warning: invalid value for '{field_name}': {data}"
+                f"; using default ({default})",
+                file=sys.stderr
+            )
 
         return cls(**clean)
