@@ -1,12 +1,12 @@
 # ************************************************************************* #
 #                                                                           #
 #                                                      :::      ::::::::    #
-#  parser.py                                         :+:      :+:    :+:    #
+#  arg_parser.py                                     :+:      :+:    :+:    #
 #                                                  +:+ +:+         +:+      #
 #  By: alebaron, rruiz                           +#+  +:+       +#+         #
 #                                              +#+#+#+#+#+   +#+            #
 #  Created: 2026/05/19 09:22:52 by rruiz           #+#    #+#               #
-#  Updated: 2026/05/19 10:05:37 by rruiz           ###   ########.fr        #
+#  Updated: 2026/05/20 09:21:29 by rruiz           ###   ########.fr        #
 #                                                                           #
 # ************************************************************************* #
 
@@ -17,7 +17,9 @@ def check_argument() -> argparse.Namespace:
     parse.add_argument(
         'config_file',
         type=str,
-        help='Path to the configuration file'
+        help='Path to the configuration file',
+        nargs='?',
+        default=None
     )
     arg: argparse.Namespace = parse.parse_args()
 
