@@ -6,7 +6,7 @@
 #  By: alebaron, rruiz                           +#+  +:+       +#+         #
 #                                              +#+#+#+#+#+   +#+            #
 #  Created: 2026/05/18 16:14:42 by alebaron        #+#    #+#               #
-#  Updated: 2026/05/20 16:59:14 by alebaron        ###   ########.fr        #
+#  Updated: 2026/05/20 21:27:15 by alebaron        ###   ########.fr        #
 #                                                                           #
 # ************************************************************************* #
 
@@ -40,6 +40,7 @@ SCREEN_TITLE = "Pacmon Mystery Dungeon"
 
 
 def main() -> None:
+
     try:
         arg: argparse.Namespace = check_argument()
         config: ConfigModel = ConfigLoader.load_config(arg.config_file)

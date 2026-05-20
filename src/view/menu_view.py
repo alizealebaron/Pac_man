@@ -6,7 +6,7 @@
 #  By: alebaron, rruiz                           +#+  +:+       +#+         #
 #                                              +#+#+#+#+#+   +#+            #
 #  Created: 2026/05/20 10:28:01 by alebaron        #+#    #+#               #
-#  Updated: 2026/05/20 21:11:26 by alebaron        ###   ########.fr        #
+#  Updated: 2026/05/20 21:55:11 by alebaron        ###   ########.fr        #
 #                                                                           #
 # ************************************************************************* #
 
@@ -44,21 +44,21 @@ class MenuView(arcade.View):
         self.background = arcade.load_texture(BACKGROUND_PATH)
 
         # Récupération de la largeur et hauteur de la fenêtre
-        largeur = self.window.width
-        hauteur = self.window.height
+        self.largeur = self.window.width
+        self.hauteur = self.window.height
 
         # Calcul des dimensions proportionnelles des boutons
-        self.btn_width = largeur * 0.20
-        self.btn_height = hauteur * 0.17
+        self.btn_width = self.largeur * 0.20
+        self.btn_height = self.hauteur * 0.17
 
         # Calcul des positions (en % de l'écran)
-        col_gauche = largeur * 0.35
-        col_droite = largeur * 0.65
-        col_centre = largeur * 0.50
+        col_gauche = self.largeur * 0.35
+        col_droite = self.largeur * 0.65
+        col_centre = self.largeur * 0.50
 
-        ligne_haut = hauteur * 0.75
-        ligne_milieu = hauteur * 0.48
-        ligne_bas = hauteur * 0.20
+        ligne_haut = self.hauteur * 0.75
+        ligne_milieu = self.hauteur * 0.48
+        ligne_bas = self.hauteur * 0.20
 
         # Initialisation de la box à boutons
         self.boutons = {
@@ -124,6 +124,7 @@ class MenuView(arcade.View):
     def on_draw(self):
         self.clear()
 
+        # Affichage du fond d'écran
         arcade.draw_texture_rect(
             texture=self.background,
             rect=arcade.XYWH(
@@ -134,12 +135,43 @@ class MenuView(arcade.View):
             )
         )
 
+        # Affichage des boutons du menu
         for nom, data in self.boutons.items():
             x, y = data["pos"]
             arcade.draw_texture_rect(
                 texture=data["texture"],
                 rect=arcade.XYWH(x, y, self.btn_width, self.btn_height)
             )
+
+        # Affichage du joueur et de son nom
+
+        sprite = arcade.load_texture("assets/sprite/test_face.png")
+        sprite_size = 75
+
+        arcade.draw_texture_rect(
+            texture=sprite,
+            rect=arcade.XYWH((sprite_size / 2) + 10,
+                             (self.hauteur - (sprite_size / 2) - 10),
+                             sprite_size,
+                             sprite_size)
+        )
+
+        sprite_frame = arcade.load_texture("assets/sprite/face_frame.png")
+        arcade.draw_texture_rect(
+            texture=sprite_frame,
+            rect=arcade.XYWH((sprite_size / 2) + 10,
+                             (self.hauteur - (sprite_size / 2) - 10),
+                             sprite_size + 9,
+                             sprite_size + 9)
+        )
+
+        player_name = arcade.Text("Anonyme_544895",
+                                  sprite_size + 25,
+                                  (self.hauteur - (sprite_size / 2) - 20),
+                                  color=arcade.color.BLACK,
+                                  font_size=20,
+                                  font_name="Comic Sans MS")
+        player_name.draw()
 
     def on_mouse_press(self, x, y, button, modifiers):
         # La détection s'adapte aussi aux dimensions proportionnelles
