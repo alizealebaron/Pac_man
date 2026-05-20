@@ -6,7 +6,7 @@
 #  By: alebaron, rruiz                           +#+  +:+       +#+         #
 #                                              +#+#+#+#+#+   +#+            #
 #  Created: 2026/05/20 10:28:01 by alebaron        #+#    #+#               #
-#  Updated: 2026/05/20 17:32:05 by alebaron        ###   ########.fr        #
+#  Updated: 2026/05/20 21:11:26 by alebaron        ###   ########.fr        #
 #                                                                           #
 # ************************************************************************* #
 
@@ -78,7 +78,7 @@ class MenuView(arcade.View):
                 "action": self.open_settings
             },
             "scoreboard": {
-                "texture": arcade.load_texture(BTN_PATH + "scoreboard.png"),
+                "texture": arcade.load_texture(BTN_PATH + "score.png"),
                 "pos": (col_gauche, ligne_milieu),
                 "action": self.open_score
             },
@@ -88,6 +88,10 @@ class MenuView(arcade.View):
                 "action": self.end_game
             }
         }
+
+        # Menu music
+        self.music = arcade.Sound("assets/music/mainMenu_theme.mp3")
+        self.music.play(volume=1, loop=True)
 
     # +---------------------------------------------------------------------+
     # |                            Btn Methods                              |
