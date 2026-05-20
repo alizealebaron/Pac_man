@@ -1,12 +1,12 @@
 # ************************************************************************* #
 #                                                                           #
 #                                                      :::      ::::::::    #
-#  level.py                                          :+:      :+:    :+:    #
+#  main_window.py                                    :+:      :+:    :+:    #
 #                                                  +:+ +:+         +:+      #
 #  By: alebaron, rruiz                           +#+  +:+       +#+         #
 #                                              +#+#+#+#+#+   +#+            #
-#  Created: 2026/05/19 14:39:15 by alebaron        #+#    #+#               #
-#  Updated: 2026/05/20 09:52:10 by alebaron        ###   ########.fr        #
+#  Created: 2026/05/20 14:35:28 by alebaron        #+#    #+#               #
+#  Updated: 2026/05/20 14:37:53 by alebaron        ###   ########.fr        #
 #                                                                           #
 # ************************************************************************* #
 
@@ -15,21 +15,19 @@
 # +-------------------------------------------------------------------------+
 
 
-from src.mazegenerator.mazegenerator import MazeGenerator
+import arcade
 
 
 # +-------------------------------------------------------------------------+
 # |                                 Classe                                  |
 # +-------------------------------------------------------------------------+
 
-class Level():
+class MainWindow(arcade.Window):
 
     # +---------------------------------------------------------------------+
     # |                                Init                                 |
     # +---------------------------------------------------------------------+
 
-    def __init__(self, num_level: int, width: int, height: int):
+    def __init__(self, title: str, fullscreen: bool):
 
-        self.level = num_level
-        self.maze = MazeGenerator((width, height), seed=num_level)
-        self.maze._add_42_to_maze()
+        super().__init__(title=title, fullscreen=fullscreen)
