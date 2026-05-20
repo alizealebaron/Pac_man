@@ -6,7 +6,7 @@
 #  By: alebaron, rruiz                           +#+  +:+       +#+         #
 #                                              +#+#+#+#+#+   +#+            #
 #  Created: 2026/05/18 16:14:42 by alebaron        #+#    #+#               #
-#  Updated: 2026/05/19 14:31:48 by rruiz           ###   ########.fr        #
+#  Updated: 2026/05/20 09:35:54 by rruiz           ###   ########.fr        #
 #                                                                           #
 # ************************************************************************* #
 
@@ -20,7 +20,6 @@ def main() -> None:
         arg: argparse.Namespace = check_argument()
 
         config = ConfigLoader.load_config(arg.config_file)
-        print(config)
     except Exception as e:
         print(f'Unexpected error: {e}', file=sys.stderr)
 
