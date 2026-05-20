@@ -6,7 +6,7 @@
 #  By: alebaron, rruiz                           +#+  +:+       +#+         #
 #                                              +#+#+#+#+#+   +#+            #
 #  Created: 2026/05/20 10:28:01 by alebaron        #+#    #+#               #
-#  Updated: 2026/05/20 16:20:01 by alebaron        ###   ########.fr        #
+#  Updated: 2026/05/20 17:32:05 by alebaron        ###   ########.fr        #
 #                                                                           #
 # ************************************************************************* #
 
@@ -43,35 +43,70 @@ class MenuView(arcade.View):
         # Initialisation du background
         self.background = arcade.load_texture(BACKGROUND_PATH)
 
+        # Récupération de la largeur et hauteur de la fenêtre
+        largeur = self.window.width
+        hauteur = self.window.height
+
+        # Calcul des dimensions proportionnelles des boutons
+        self.btn_width = largeur * 0.20
+        self.btn_height = hauteur * 0.17
+
+        # Calcul des positions (en % de l'écran)
+        col_gauche = largeur * 0.35
+        col_droite = largeur * 0.65
+        col_centre = largeur * 0.50
+
+        ligne_haut = hauteur * 0.75
+        ligne_milieu = hauteur * 0.48
+        ligne_bas = hauteur * 0.20
+
         # Initialisation de la box à boutons
         self.boutons = {
-            "start": {
+            "new_game": {
                 "texture": arcade.load_texture(BTN_PATH + "start.png"),
-                "pos": (800, 800),
-                "action": self.demarrer_jeu
+                "pos": (col_gauche, ligne_haut),
+                "action": self.start_game
             },
             "quizz": {
                 "texture": arcade.load_texture(BTN_PATH + "quizz.png"),
-                "pos": (500, 500),
-                "action": None
+                "pos": (col_droite, ligne_haut),
+                "action": self.open_quizz
             },
             "settings": {
                 "texture": arcade.load_texture(BTN_PATH + "settings.png"),
-                "pos": (500, 500),
-                "action": None
+                "pos": (col_droite, ligne_milieu),
+                "action": self.open_settings
+            },
+            "scoreboard": {
+                "texture": arcade.load_texture(BTN_PATH + "scoreboard.png"),
+                "pos": (col_gauche, ligne_milieu),
+                "action": self.open_score
             },
             "exit": {
                 "texture": arcade.load_texture(BTN_PATH + "end.png"),
-                "pos": (500, 500),
-                "action": self.quitter_jeu
+                "pos": (col_centre, ligne_bas),
+                "action": self.end_game
             }
         }
 
-    def demarrer_jeu(self):
+    # +---------------------------------------------------------------------+
+    # |                            Btn Methods                              |
+    # +---------------------------------------------------------------------+
+
+    def start_game(self):
         print("Lancement du jeu...")
         self.window.show_view(GameView())
 
-    def quitter_jeu(self):
+    def open_quizz(self):
+        print("Ouverture du quizz...")
+
+    def open_settings(self):
+        print("Ouverture des settings...")
+
+    def open_score(self):
+        print("Ouverture du scoreboards...")
+
+    def end_game(self):
         arcade.exit()
 
     # +---------------------------------------------------------------------+
@@ -96,15 +131,19 @@ class MenuView(arcade.View):
         )
 
         for nom, data in self.boutons.items():
-            # On dessine chaque bouton dynamiquement
+            x, y = data["pos"]
             arcade.draw_texture_rect(
                 texture=data["texture"],
-                rect=arcade.XYWH(data["pos"][0], data["pos"][1], 400, 250)
+                rect=arcade.XYWH(x, y, self.btn_width, self.btn_height)
             )
 
     def on_mouse_press(self, x, y, button, modifiers):
+        # La détection s'adapte aussi aux dimensions proportionnelles
         for nom, data in self.boutons.items():
             bx, by = data["pos"]
-            # Vérification simple de collision (ici pour un bouton de 200x50)
-            if bx - 200 < x < bx + 200 and by - 125 < y < by + 125:
+            
+            if (bx - self.btn_width / 2 < x < bx + self.btn_width / 2 and 
+                by - self.btn_height / 2 < y < by + self.btn_height / 2):
+                
                 data["action"]()
+                break
