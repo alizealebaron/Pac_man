@@ -6,7 +6,7 @@
 #  By: alebaron, rruiz                           +#+  +:+       +#+         #
 #                                              +#+#+#+#+#+   +#+            #
 #  Created: 2026/05/20 10:28:01 by alebaron        #+#    #+#               #
-#  Updated: 2026/05/21 11:42:48 by alebaron        ###   ########.fr        #
+#  Updated: 2026/05/21 11:44:52 by alebaron        ###   ########.fr        #
 #                                                                           #
 # ************************************************************************* #
 
@@ -93,7 +93,6 @@ class MenuView(arcade.View):
         self.music = arcade.Sound("assets/music/mainMenu_theme.mp3")
         self.music.play(volume=1, loop=True)
 
-        print(self.window.scoreboard)
 
     # +---------------------------------------------------------------------+
     # |                            Btn Methods                              |
