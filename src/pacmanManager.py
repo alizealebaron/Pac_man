@@ -1,12 +1,12 @@
 # ************************************************************************* #
 #                                                                           #
 #                                                      :::      ::::::::    #
-#  pac-man.py                                        :+:      :+:    :+:    #
+#  pacmanManager.py                                  :+:      :+:    :+:    #
 #                                                  +:+ +:+         +:+      #
 #  By: alebaron, rruiz                           +#+  +:+       +#+         #
 #                                              +#+#+#+#+#+   +#+            #
-#  Created: 2026/05/18 16:14:42 by alebaron        #+#    #+#               #
-#  Updated: 2026/05/21 13:16:34 by alebaron        ###   ########.fr        #
+#  Created: 2026/05/21 13:04:41 by alebaron        #+#    #+#               #
+#  Updated: 2026/05/21 13:09:31 by alebaron        ###   ########.fr        #
 #                                                                           #
 # ************************************************************************* #
 
@@ -14,45 +14,37 @@
 # |                               Importation                               |
 # +-------------------------------------------------------------------------+
 
-import arcade
 import argparse
-import sys
-from src.parsing.arg_parser import check_argument
-from src.view.main_window import MainWindow
-from src.pacmanManager import PacmanManager
+from src.parsing.config_loader import ConfigLoader
+from src.models.configmodel import ConfigModel
+from src.score.score_file import retrieve_score_from_json
+from src.models.playerModel import PlayerModel
 
 # +-------------------------------------------------------------------------+
 # |                                  CONST                                  |
 # +-------------------------------------------------------------------------+
 
 
-SCREEN_WIDTH = 800
-SCREEN_HEIGHT = 600
-SCREEN_TITLE = "Pacmon Mystery Dungeon"
+SCORE_FILE = "data/score.json"
+
 
 # +-------------------------------------------------------------------------+
-# |                                  Main                                   |
+# |                                 Classe                                  |
 # +-------------------------------------------------------------------------+
 
+class PacmanManager():
 
-def main() -> None:
+    # +---------------------------------------------------------------------+
+    # |                                Init                                 |
+    # +---------------------------------------------------------------------+
 
-    try:
+    def __init__(self, arg: argparse.Namespace):
+
         # Récupération de la config
-        arg: argparse.Namespace = check_argument()
+        self.config: ConfigModel = ConfigLoader.load_config(arg.config_file)
 
-        # Création du manager
-        manager = PacmanManager(arg)
+        # Récupération du scoreboard
+        self.scoreboard = retrieve_score_from_json(SCORE_FILE)
 
-        # Affichage de la fenêtre de début de jeu
-
-        window = MainWindow(title=SCREEN_TITLE, fullscreen=True,
-                            manager=manager)
-        arcade.run()
-
-    except Exception as e:
-        print(f'Unexpected error: {e}', file=sys.stderr)
-
-
-if __name__ == '__main__':
-    main()
+        # Génération aléatoire du joueur
+        self.player = PlayerModel()
