@@ -6,7 +6,7 @@
 #  By: alebaron, rruiz                           +#+  +:+       +#+         #
 #                                              +#+#+#+#+#+   +#+            #
 #  Created: 2026/05/20 10:28:01 by alebaron        #+#    #+#               #
-#  Updated: 2026/05/21 11:44:52 by alebaron        ###   ########.fr        #
+#  Updated: 2026/05/21 13:21:07 by alebaron        ###   ########.fr        #
 #                                                                           #
 # ************************************************************************* #
 
@@ -15,7 +15,6 @@
 # +-------------------------------------------------------------------------+
 
 import arcade
-import arcade.gui
 from src.view.game_view import GameView
 
 # +-------------------------------------------------------------------------+
@@ -93,7 +92,6 @@ class MenuView(arcade.View):
         self.music = arcade.Sound("assets/music/mainMenu_theme.mp3")
         self.music.play(volume=1, loop=True)
 
-
     # +---------------------------------------------------------------------+
     # |                            Btn Methods                              |
     # +---------------------------------------------------------------------+
@@ -146,7 +144,9 @@ class MenuView(arcade.View):
 
         # Affichage du joueur et de son nom
 
-        sprite = arcade.load_texture("assets/sprite/test_face.png")
+        pokemon = self.window.manager.player.pokemon
+        sprite = arcade.load_texture(f"assets/sprite/pokemon/{pokemon}"
+                                     "/portraits/Normal.png")
         sprite_size = 75
 
         arcade.draw_texture_rect(
@@ -166,7 +166,7 @@ class MenuView(arcade.View):
                              sprite_size + 9)
         )
 
-        player_name = arcade.Text("Anonyme_544895",
+        player_name = arcade.Text(self.window.manager.player.name,
                                   sprite_size + 25,
                                   (self.hauteur - (sprite_size / 2) - 20),
                                   color=arcade.color.BLACK,
