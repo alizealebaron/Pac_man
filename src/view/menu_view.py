@@ -6,7 +6,7 @@
 #  By: alebaron, rruiz                           +#+  +:+       +#+         #
 #                                              +#+#+#+#+#+   +#+            #
 #  Created: 2026/05/20 10:28:01 by alebaron        #+#    #+#               #
-#  Updated: 2026/05/20 16:20:01 by alebaron        ###   ########.fr        #
+#  Updated: 2026/05/20 21:55:11 by alebaron        ###   ########.fr        #
 #                                                                           #
 # ************************************************************************* #
 
@@ -43,35 +43,74 @@ class MenuView(arcade.View):
         # Initialisation du background
         self.background = arcade.load_texture(BACKGROUND_PATH)
 
+        # Récupération de la largeur et hauteur de la fenêtre
+        self.largeur = self.window.width
+        self.hauteur = self.window.height
+
+        # Calcul des dimensions proportionnelles des boutons
+        self.btn_width = self.largeur * 0.20
+        self.btn_height = self.hauteur * 0.17
+
+        # Calcul des positions (en % de l'écran)
+        col_gauche = self.largeur * 0.35
+        col_droite = self.largeur * 0.65
+        col_centre = self.largeur * 0.50
+
+        ligne_haut = self.hauteur * 0.75
+        ligne_milieu = self.hauteur * 0.48
+        ligne_bas = self.hauteur * 0.20
+
         # Initialisation de la box à boutons
         self.boutons = {
-            "start": {
+            "new_game": {
                 "texture": arcade.load_texture(BTN_PATH + "start.png"),
-                "pos": (800, 800),
-                "action": self.demarrer_jeu
+                "pos": (col_gauche, ligne_haut),
+                "action": self.start_game
             },
             "quizz": {
                 "texture": arcade.load_texture(BTN_PATH + "quizz.png"),
-                "pos": (500, 500),
-                "action": None
+                "pos": (col_droite, ligne_haut),
+                "action": self.open_quizz
             },
             "settings": {
                 "texture": arcade.load_texture(BTN_PATH + "settings.png"),
-                "pos": (500, 500),
-                "action": None
+                "pos": (col_droite, ligne_milieu),
+                "action": self.open_settings
+            },
+            "scoreboard": {
+                "texture": arcade.load_texture(BTN_PATH + "score.png"),
+                "pos": (col_gauche, ligne_milieu),
+                "action": self.open_score
             },
             "exit": {
                 "texture": arcade.load_texture(BTN_PATH + "end.png"),
-                "pos": (500, 500),
-                "action": self.quitter_jeu
+                "pos": (col_centre, ligne_bas),
+                "action": self.end_game
             }
         }
 
-    def demarrer_jeu(self):
+        # Menu music
+        self.music = arcade.Sound("assets/music/mainMenu_theme.mp3")
+        self.music.play(volume=1, loop=True)
+
+    # +---------------------------------------------------------------------+
+    # |                            Btn Methods                              |
+    # +---------------------------------------------------------------------+
+
+    def start_game(self):
         print("Lancement du jeu...")
         self.window.show_view(GameView())
 
-    def quitter_jeu(self):
+    def open_quizz(self):
+        print("Ouverture du quizz...")
+
+    def open_settings(self):
+        print("Ouverture des settings...")
+
+    def open_score(self):
+        print("Ouverture du scoreboards...")
+
+    def end_game(self):
         arcade.exit()
 
     # +---------------------------------------------------------------------+
@@ -85,6 +124,7 @@ class MenuView(arcade.View):
     def on_draw(self):
         self.clear()
 
+        # Affichage du fond d'écran
         arcade.draw_texture_rect(
             texture=self.background,
             rect=arcade.XYWH(
@@ -95,16 +135,51 @@ class MenuView(arcade.View):
             )
         )
 
+        # Affichage des boutons du menu
         for nom, data in self.boutons.items():
-            # On dessine chaque bouton dynamiquement
+            x, y = data["pos"]
             arcade.draw_texture_rect(
                 texture=data["texture"],
-                rect=arcade.XYWH(data["pos"][0], data["pos"][1], 400, 250)
+                rect=arcade.XYWH(x, y, self.btn_width, self.btn_height)
             )
 
+        # Affichage du joueur et de son nom
+
+        sprite = arcade.load_texture("assets/sprite/test_face.png")
+        sprite_size = 75
+
+        arcade.draw_texture_rect(
+            texture=sprite,
+            rect=arcade.XYWH((sprite_size / 2) + 10,
+                             (self.hauteur - (sprite_size / 2) - 10),
+                             sprite_size,
+                             sprite_size)
+        )
+
+        sprite_frame = arcade.load_texture("assets/sprite/face_frame.png")
+        arcade.draw_texture_rect(
+            texture=sprite_frame,
+            rect=arcade.XYWH((sprite_size / 2) + 10,
+                             (self.hauteur - (sprite_size / 2) - 10),
+                             sprite_size + 9,
+                             sprite_size + 9)
+        )
+
+        player_name = arcade.Text("Anonyme_544895",
+                                  sprite_size + 25,
+                                  (self.hauteur - (sprite_size / 2) - 20),
+                                  color=arcade.color.BLACK,
+                                  font_size=20,
+                                  font_name="Comic Sans MS")
+        player_name.draw()
+
     def on_mouse_press(self, x, y, button, modifiers):
+        # La détection s'adapte aussi aux dimensions proportionnelles
         for nom, data in self.boutons.items():
             bx, by = data["pos"]
-            # Vérification simple de collision (ici pour un bouton de 200x50)
-            if bx - 200 < x < bx + 200 and by - 125 < y < by + 125:
+            
+            if (bx - self.btn_width / 2 < x < bx + self.btn_width / 2 and 
+                by - self.btn_height / 2 < y < by + self.btn_height / 2):
+                
                 data["action"]()
+                break
