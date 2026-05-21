@@ -6,7 +6,7 @@
 #  By: alebaron, rruiz                           +#+  +:+       +#+         #
 #                                              +#+#+#+#+#+   +#+            #
 #  Created: 2026/05/20 10:28:01 by alebaron        #+#    #+#               #
-#  Updated: 2026/05/21 15:00:34 by alebaron        ###   ########.fr        #
+#  Updated: 2026/05/21 15:48:44 by alebaron        ###   ########.fr        #
 #                                                                           #
 # ************************************************************************* #
 
@@ -197,30 +197,6 @@ class MenuView(arcade.View):
                                   font_name="Comic Sans MS")
         player_name.draw()
 
-    # def _draw_little_scoreboard(self):
-
-    #     ord_score: list[Score] = self.window.manager.scoreboard
-    #     ord_score = sorted(ord_score, key=lambda player: player.score,
-    #                        reverse=True)
-
-    #     rank_size = 40
-    #     rank_frame = arcade.load_texture("assets/rank/rank_1_64.png")
-    #     arcade.draw_texture_rect(
-    #         texture=rank_frame,
-    #         rect=arcade.XYWH(20 + (rank_size / 2),
-    #                          100,
-    #                          rank_size,
-    #                          rank_size)
-    #     )
-
-    #     player_name = arcade.Text(f"{ord_score[0].name} "
-    #                               f"({ord_score[0].score})",
-    #                               rank_size + 30,
-    #                               94,
-    #                               color=arcade.color.BLACK,
-    #                               font_size=14)
-    #     player_name.draw()
-
     def _draw_little_scoreboard(self):
 
         # Tri des 3 meilleurs
@@ -256,6 +232,12 @@ class MenuView(arcade.View):
             arcade.draw_texture_rect(
                 texture=profile_tex,
                 rect=arcade.XYWH(start_x + icon_size + 25, current_y, icon_size, icon_size)
+            )
+
+            sprite_frame = arcade.load_texture("assets/sprite/face_frame.png")
+            arcade.draw_texture_rect(
+                texture=sprite_frame,
+                rect=arcade.XYWH(start_x + icon_size + 25, current_y, icon_size + 5, icon_size + 5)
             )
 
             # Nom + Score

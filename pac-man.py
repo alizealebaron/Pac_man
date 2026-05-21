@@ -6,7 +6,7 @@
 #  By: alebaron, rruiz                           +#+  +:+       +#+         #
 #                                              +#+#+#+#+#+   +#+            #
 #  Created: 2026/05/18 16:14:42 by alebaron        #+#    #+#               #
-#  Updated: 2026/05/21 13:41:34 by alebaron        ###   ########.fr        #
+#  Updated: 2026/05/21 16:34:28 by alebaron        ###   ########.fr        #
 #                                                                           #
 # ************************************************************************* #
 
@@ -20,6 +20,7 @@ import sys
 from src.parsing.arg_parser import check_argument
 from src.view.main_window import MainWindow
 from src.pacmanManager import PacmanManager
+from src.models.scoreModel import Score
 
 # +-------------------------------------------------------------------------+
 # |                                  CONST                                  |
