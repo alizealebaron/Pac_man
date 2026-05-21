@@ -6,7 +6,7 @@
 #  By: alebaron, rruiz                           +#+  +:+       +#+         #
 #                                              +#+#+#+#+#+   +#+            #
 #  Created: 2026/05/18 16:14:42 by alebaron        #+#    #+#               #
-#  Updated: 2026/05/20 21:27:15 by alebaron        ###   ########.fr        #
+#  Updated: 2026/05/21 11:43:12 by alebaron        ###   ########.fr        #
 #                                                                           #
 # ************************************************************************* #
 
@@ -20,9 +20,10 @@ import argparse
 import sys
 from src.parsing.arg_parser import check_argument
 from src.parsing.config_loader import ConfigLoader
+from src.view.main_window import MainWindow
 from src.view.menu_view import MenuView
-from src.view.gameover_view import GameoverView
 from src.models.configmodel import ConfigModel
+from src.score.score_file import retrieve_score_from_json
 
 # +-------------------------------------------------------------------------+
 # |                                  CONST                                  |
@@ -32,7 +33,7 @@ from src.models.configmodel import ConfigModel
 SCREEN_WIDTH = 800
 SCREEN_HEIGHT = 600
 SCREEN_TITLE = "Pacmon Mystery Dungeon"
-
+SCORE_FILE = "data/score.json"
 
 # +-------------------------------------------------------------------------+
 # |                                  Main                                   |
@@ -42,14 +43,17 @@ SCREEN_TITLE = "Pacmon Mystery Dungeon"
 def main() -> None:
 
     try:
+        # Récupération de la config
         arg: argparse.Namespace = check_argument()
         config: ConfigModel = ConfigLoader.load_config(arg.config_file)
 
+        # Récupération du scoreboard
+        scoreboard = retrieve_score_from_json(SCORE_FILE)
+
         # Affichage de la fenêtre de début de jeu
 
-        window = arcade.Window(title=SCREEN_TITLE, fullscreen=True)
-        menu_view = MenuView()
-        window.show_view(menu_view)
+        window = MainWindow(title=SCREEN_TITLE, fullscreen=True,
+                            score=scoreboard, config=config)
         arcade.run()
 
     except Exception as e:
