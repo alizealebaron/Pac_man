@@ -6,7 +6,7 @@
 #  By: alebaron, rruiz                           +#+  +:+       +#+         #
 #                                              +#+#+#+#+#+   +#+            #
 #  Created: 2026/05/19 11:08:47 by rruiz           #+#    #+#               #
-#  Updated: 2026/05/21 10:40:06 by rruiz           ###   ########.fr        #
+#  Updated: 2026/05/21 10:44:32 by rruiz           ###   ########.fr        #
 #                                                                           #
 # ************************************************************************* #
 
@@ -16,7 +16,7 @@ import sys
 
 mandatory_keys: list[str] = ['highscore_filename', 'level', 'lives', 'pacgum',
                              'points_per_pacgum', 'points_per_super_pacgum',
-                             'points_per_ghost', 'seed', 'level_max_time']
+                             'points_per_ghost', 'level_max_time']
 
 optional_keys: list[str] = []
 
