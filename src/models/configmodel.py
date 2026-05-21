@@ -6,7 +6,7 @@
 #  By: alebaron, rruiz                           +#+  +:+       +#+         #
 #                                              +#+#+#+#+#+   +#+            #
 #  Created: 2026/05/19 11:08:47 by rruiz           #+#    #+#               #
-#  Updated: 2026/05/20 16:50:45 by rruiz           ###   ########.fr        #
+#  Updated: 2026/05/21 10:40:06 by rruiz           ###   ########.fr        #
 #                                                                           #
 # ************************************************************************* #
 
@@ -56,9 +56,7 @@ class ConfigModel(BaseModel):
                 else:
                     print(
                         f"Warning: invalid value for '{field_name}': {data}"
-                        f"; using default value",
-                        file=sys.stderr
-                    )
+                        f"; using default value",file=sys.stderr)
                 continue
 
         try:
@@ -68,8 +66,6 @@ class ConfigModel(BaseModel):
             default = field_info.default
             print(
                 f"Warning: invalid value for '{field_name}': {data}"
-                f"; using default ({default})",
-                file=sys.stderr
-            )
+                f"; using default ({default})",file=sys.stderr)
 
         return cls(**clean)
