@@ -3,10 +3,10 @@
 #                                                      :::      ::::::::    #
 #  pac-man.py                                        :+:      :+:    :+:    #
 #                                                  +:+ +:+         +:+      #
-#  By: alebaron, rruiz                           +#+  +:+       +#+         #
+#  By: rruiz <rruiz@student.42.fr>               +#+  +:+       +#+         #
 #                                              +#+#+#+#+#+   +#+            #
 #  Created: 2026/05/18 16:14:42 by alebaron        #+#    #+#               #
-#  Updated: 2026/05/21 16:34:28 by alebaron        ###   ########.fr        #
+#  Updated: 2026/05/22 15:35:03 by rruiz           ###   ########.fr        #
 #                                                                           #
 # ************************************************************************* #
 
@@ -20,7 +20,6 @@ import sys
 from src.parsing.arg_parser import check_argument
 from src.view.main_window import MainWindow
 from src.pacmanManager import PacmanManager
-from src.models.scoreModel import Score
 
 # +-------------------------------------------------------------------------+
 # |                                  CONST                                  |
@@ -39,6 +38,8 @@ SCREEN_TITLE = "Pacmon Mystery Dungeon"
 def main() -> None:
 
     try:
+        sys.setrecursionlimit(2000)
+
         # Récupération de la config
         arg: argparse.Namespace = check_argument()
 
@@ -49,6 +50,9 @@ def main() -> None:
 
         _ = MainWindow(title=SCREEN_TITLE, fullscreen=True, manager=manager)
         arcade.run()
+
+    except KeyboardInterrupt:
+        print('Program interrupt by user.', file=sys.stderr)
 
     except Exception as e:
         print(f'Unexpected error: {e}', file=sys.stderr)
