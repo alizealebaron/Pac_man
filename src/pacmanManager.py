@@ -3,10 +3,10 @@
 #                                                      :::      ::::::::    #
 #  pacmanManager.py                                  :+:      :+:    :+:    #
 #                                                  +:+ +:+         +:+      #
-#  By: alebaron, rruiz                           +#+  +:+       +#+         #
+#  By: rruiz <rruiz@student.42.fr>               +#+  +:+       +#+         #
 #                                              +#+#+#+#+#+   +#+            #
 #  Created: 2026/05/21 13:04:41 by alebaron        #+#    #+#               #
-#  Updated: 2026/05/21 16:10:26 by alebaron        ###   ########.fr        #
+#  Updated: 2026/05/22 12:04:10 by rruiz           ###   ########.fr        #
 #                                                                           #
 # ************************************************************************* #
 
@@ -17,9 +17,10 @@
 import argparse
 import json
 from src.parsing.config_loader import ConfigLoader
-from src.models.configmodel import ConfigModel
+from src.models.configmodel import ConfigModel, LevelConfig
 from src.models.scoreModel import Score
 from src.models.playerModel import PlayerModel
+from src.models.levelModel import Level
 
 # +-------------------------------------------------------------------------+
 # |                                  CONST                                  |
@@ -43,6 +44,9 @@ class PacmanManager():
 
         # Récupération de la config
         self.config: ConfigModel = ConfigLoader.load_config(arg.config_file)
+
+        # Generation des maps et stockage dans une liste
+        self.level: list[Level] = self.create_maps(self.config.level)
 
         # Récupération du scoreboard
         self.scoreboard = self.retrieve_score_from_json()
@@ -75,3 +79,10 @@ class PacmanManager():
 
         with open(SCORE_FILE, "w") as f:
             json.dump(dict_data, f, indent=2)
+
+
+    def create_maps(self, level: list[LevelConfig]) -> list[Level]:
+        level_list: list[Level] = []
+        for map in level:
+            level_list.append(Level(map.id, map.width, map.height))
+        return level_list

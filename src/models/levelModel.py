@@ -1,12 +1,12 @@
 # ************************************************************************* #
 #                                                                           #
 #                                                      :::      ::::::::    #
-#  level.py                                          :+:      :+:    :+:    #
+#  levelModel.py                                     :+:      :+:    :+:    #
 #                                                  +:+ +:+         +:+      #
-#  By: alebaron, rruiz                           +#+  +:+       +#+         #
+#  By: rruiz <rruiz@student.42.fr>               +#+  +:+       +#+         #
 #                                              +#+#+#+#+#+   +#+            #
 #  Created: 2026/05/19 14:39:15 by alebaron        #+#    #+#               #
-#  Updated: 2026/05/20 09:52:10 by alebaron        ###   ########.fr        #
+#  Updated: 2026/05/22 09:51:17 by rruiz           ###   ########.fr        #
 #                                                                           #
 # ************************************************************************* #
 
@@ -32,4 +32,3 @@ class Level():
 
         self.level = num_level
         self.maze = MazeGenerator((width, height), seed=num_level)
-        self.maze._add_42_to_maze()
