@@ -6,7 +6,7 @@
 #  By: rruiz <rruiz@student.42.fr>               +#+  +:+       +#+         #
 #                                              +#+#+#+#+#+   +#+            #
 #  Created: 2026/05/20 10:28:01 by alebaron        #+#    #+#               #
-#  Updated: 2026/05/22 14:46:52 by rruiz           ###   ########.fr        #
+#  Updated: 2026/05/22 15:43:31 by rruiz           ###   ########.fr        #
 #                                                                           #
 # ************************************************************************* #
 
@@ -148,7 +148,31 @@ class MenuView(arcade.View):
         self._draw_player()
 
         # Affichage de l'encadré en bas à gauche
+
+        sprite = arcade.load_texture(f"assets/menu/leaderboard.png")
+        sprite_height = 220
+        sprite_width = 400
+
+        arcade.draw_texture_rect(
+            texture=sprite,
+            rect=arcade.XYWH((sprite_width / 2) + 10,
+                             (sprite_height / 2) + 15,
+                             sprite_width,
+                             sprite_height)
+        )
+
         self._draw_little_scoreboard()
+
+        # Affichage de l'encadré en bas à droite
+        sprite = arcade.load_texture(f"assets/menu/keybinds.png")
+
+        arcade.draw_texture_rect(
+            texture=sprite,
+            rect=arcade.XYWH(self.width - (sprite_width / 2) - 20,
+                             (sprite_height / 2) + 20,
+                             sprite_width,
+                             sprite_height)
+        )
 
     def on_mouse_press(self, x, y, button, modifiers):
         # La détection s'adapte aussi aux dimensions proportionnelles
@@ -205,14 +229,10 @@ class MenuView(arcade.View):
                         reverse=True)[:3]
 
         # Configuration des positions
-        start_x = 20
+        start_x = 30
         start_y = 140
         line_height = 45
         icon_size = 32
-
-        # Titre
-        arcade.draw_text("LEADERBOARD", start_x, start_y + 30,
-                         arcade.color.BLACK, font_size=16, bold=True)
 
         # Joueurs présents au top 3
         for i, player in enumerate(scores):
