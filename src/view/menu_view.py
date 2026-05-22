@@ -3,10 +3,10 @@
 #                                                      :::      ::::::::    #
 #  menu_view.py                                      :+:      :+:    :+:    #
 #                                                  +:+ +:+         +:+      #
-#  By: alebaron, rruiz                           +#+  +:+       +#+         #
+#  By: rruiz <rruiz@student.42.fr>               +#+  +:+       +#+         #
 #                                              +#+#+#+#+#+   +#+            #
 #  Created: 2026/05/20 10:28:01 by alebaron        #+#    #+#               #
-#  Updated: 2026/05/21 11:44:52 by alebaron        ###   ########.fr        #
+#  Updated: 2026/05/21 13:33:36 by rruiz           ###   ########.fr        #
 #                                                                           #
 # ************************************************************************* #
 
@@ -146,7 +146,7 @@ class MenuView(arcade.View):
 
         # Affichage du joueur et de son nom
 
-        sprite = arcade.load_texture("assets/sprite/test_face.png")
+        sprite = arcade.load_texture("assets/sprite/face_frame.png")
         sprite_size = 75
 
         arcade.draw_texture_rect(

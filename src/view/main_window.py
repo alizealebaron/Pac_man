@@ -3,10 +3,10 @@
 #                                                      :::      ::::::::    #
 #  main_window.py                                    :+:      :+:    :+:    #
 #                                                  +:+ +:+         +:+      #
-#  By: alebaron, rruiz                           +#+  +:+       +#+         #
+#  By: rruiz <rruiz@student.42.fr>               +#+  +:+       +#+         #
 #                                              +#+#+#+#+#+   +#+            #
 #  Created: 2026/05/20 14:35:28 by alebaron        #+#    #+#               #
-#  Updated: 2026/05/21 13:10:24 by alebaron        ###   ########.fr        #
+#  Updated: 2026/05/21 14:38:03 by rruiz           ###   ########.fr        #
 #                                                                           #
 # ************************************************************************* #
 
@@ -35,7 +35,7 @@ class MainWindow(arcade.Window):
     def __init__(self, title: str, fullscreen: bool, manager: PacmanManager):
 
         super().__init__(title=title, fullscreen=fullscreen)
-        self.pacman = manager
+        self.manager = manager
 
         # Démarrer le jeu
         start_view = MenuView()
