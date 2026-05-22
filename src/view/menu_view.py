@@ -6,7 +6,11 @@
 #  By: rruiz <rruiz@student.42.fr>               +#+  +:+       +#+         #
 #                                              +#+#+#+#+#+   +#+            #
 #  Created: 2026/05/20 10:28:01 by alebaron        #+#    #+#               #
+<<<<<<< HEAD
 #  Updated: 2026/05/21 13:33:36 by rruiz           ###   ########.fr        #
+=======
+#  Updated: 2026/05/21 15:48:44 by alebaron        ###   ########.fr        #
+>>>>>>> dev
 #                                                                           #
 # ************************************************************************* #
 
@@ -15,8 +19,8 @@
 # +-------------------------------------------------------------------------+
 
 import arcade
-import arcade.gui
 from src.view.game_view import GameView
+from src.models.scoreModel import Score
 
 # +-------------------------------------------------------------------------+
 # |                                 CONST                                   |
@@ -40,10 +44,10 @@ class MenuView(arcade.View):
 
         super().__init__()
 
-        # Initialisation du background
+        # Initialisation du background
         self.background = arcade.load_texture(BACKGROUND_PATH)
 
-        # Récupération de la largeur et hauteur de la fenêtre
+        # Récupération de la largeur et hauteur de la fenêtre
         self.largeur = self.window.width
         self.hauteur = self.window.height
 
@@ -93,7 +97,6 @@ class MenuView(arcade.View):
         self.music = arcade.Sound("assets/music/mainMenu_theme.mp3")
         self.music.play(volume=1, loop=True)
 
-
     # +---------------------------------------------------------------------+
     # |                            Btn Methods                              |
     # +---------------------------------------------------------------------+
@@ -115,7 +118,7 @@ class MenuView(arcade.View):
         arcade.exit()
 
     # +---------------------------------------------------------------------+
-    # |                               Methods                               |
+    # |                            View Methods                             |
     # +---------------------------------------------------------------------+
 
     def on_show_view(self):
@@ -123,6 +126,7 @@ class MenuView(arcade.View):
         arcade.set_background_color(arcade.color.DARK_BLUE_GRAY)
 
     def on_draw(self):
+
         self.clear()
 
         # Affichage du fond d'écran
@@ -144,9 +148,36 @@ class MenuView(arcade.View):
                 rect=arcade.XYWH(x, y, self.btn_width, self.btn_height)
             )
 
-        # Affichage du joueur et de son nom
+        # Affichage de l'encadré en haut à gauche
+        self._draw_player()
 
+<<<<<<< HEAD
         sprite = arcade.load_texture("assets/sprite/face_frame.png")
+=======
+        # Affichage de l'encadré en bas à gauche
+        self._draw_little_scoreboard()
+
+    def on_mouse_press(self, x, y, button, modifiers):
+        # La détection s'adapte aussi aux dimensions proportionnelles
+        for nom, data in self.boutons.items():
+            bx, by = data["pos"]
+
+            if (bx - self.btn_width / 2 < x < bx + self.btn_width / 2 and
+                by - self.btn_height / 2 < y < by + self.btn_height / 2):
+
+                data["action"]()
+                break
+
+    # +---------------------------------------------------------------------+
+    # |                           Custom Methods                            |
+    # +---------------------------------------------------------------------+
+
+    def _draw_player(self):
+
+        pokemon = self.window.manager.player.pokemon
+        sprite = arcade.load_texture(f"assets/sprite/pokemon/{pokemon}"
+                                     "/portraits/Normal.png")
+>>>>>>> dev
         sprite_size = 75
 
         arcade.draw_texture_rect(
@@ -166,7 +197,7 @@ class MenuView(arcade.View):
                              sprite_size + 9)
         )
 
-        player_name = arcade.Text("Anonyme_544895",
+        player_name = arcade.Text(self.window.manager.player.name,
                                   sprite_size + 25,
                                   (self.hauteur - (sprite_size / 2) - 20),
                                   color=arcade.color.BLACK,
@@ -174,13 +205,87 @@ class MenuView(arcade.View):
                                   font_name="Comic Sans MS")
         player_name.draw()
 
-    def on_mouse_press(self, x, y, button, modifiers):
-        # La détection s'adapte aussi aux dimensions proportionnelles
-        for nom, data in self.boutons.items():
-            bx, by = data["pos"]
-            
-            if (bx - self.btn_width / 2 < x < bx + self.btn_width / 2 and 
-                by - self.btn_height / 2 < y < by + self.btn_height / 2):
-                
-                data["action"]()
-                break
+    def _draw_little_scoreboard(self):
+
+        # Tri des 3 meilleurs
+        scores = sorted(self.window.manager.scoreboard,
+                        key=lambda p: p.score,
+                        reverse=True)[:3]
+
+        # Configuration des positions
+        start_x = 20
+        start_y = 140
+        line_height = 45
+        icon_size = 32
+
+        # Titre
+        arcade.draw_text("LEADERBOARD", start_x, start_y + 30,
+                         arcade.color.BLACK, font_size=16, bold=True)
+
+        # Joueurs présents au top 3
+        for i, player in enumerate(scores):
+
+            current_y = start_y - (i * line_height)
+
+            # Image de rang
+            rank_tex = arcade.load_texture(f"assets/rank/rank_{i+1}_64.png")
+            arcade.draw_texture_rect(
+                texture=rank_tex,
+                rect=arcade.XYWH(start_x + (icon_size / 2), current_y, icon_size, icon_size)
+            )
+
+            # Image du pokémon
+            pokemon = player.pokemon
+            profile_tex = arcade.load_texture(f"assets/sprite/pokemon/{pokemon}/portraits/Normal.png") 
+            arcade.draw_texture_rect(
+                texture=profile_tex,
+                rect=arcade.XYWH(start_x + icon_size + 25, current_y, icon_size, icon_size)
+            )
+
+            sprite_frame = arcade.load_texture("assets/sprite/face_frame.png")
+            arcade.draw_texture_rect(
+                texture=sprite_frame,
+                rect=arcade.XYWH(start_x + icon_size + 25, current_y, icon_size + 5, icon_size + 5)
+            )
+
+            # Nom + Score
+            text_content = f"{player.name} ({player.score})"
+            arcade.draw_text(
+                text_content,
+                start_x + (icon_size * 2) + 20,
+                current_y - 5,
+                color=arcade.color.BLACK,
+                font_size=14
+            )
+
+        i = len(scores)
+
+        while (i < 3):
+
+            current_y = start_y - (i * line_height)
+
+            # Image de rang
+            rank_tex = arcade.load_texture("assets/rank/rank_0.png")
+            arcade.draw_texture_rect(
+                texture=rank_tex,
+                rect=arcade.XYWH(start_x + (icon_size / 2), current_y, icon_size, icon_size)
+            )
+
+            # Image du pokémon
+            profile_tex = arcade.load_texture(f"assets/sprite/undefined/Normal.png") 
+            arcade.draw_texture_rect(
+                texture=profile_tex,
+                rect=arcade.XYWH(start_x + icon_size + 25, current_y, icon_size, icon_size)
+            )
+
+            # Nom + Score
+            text_content = f"..."
+            arcade.draw_text(
+                text_content,
+                start_x + (icon_size * 2) + 20,
+                current_y - 5,
+                color=arcade.color.BLACK,
+                font_size=14
+            )
+
+            i += 1

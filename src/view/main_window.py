@@ -6,7 +6,7 @@
 #  By: rruiz <rruiz@student.42.fr>               +#+  +:+       +#+         #
 #                                              +#+#+#+#+#+   +#+            #
 #  Created: 2026/05/20 14:35:28 by alebaron        #+#    #+#               #
-#  Updated: 2026/05/21 14:38:03 by rruiz           ###   ########.fr        #
+#  Updated: 2026/05/22 10:07:29 by rruiz           ###   ########.fr        #
 #                                                                           #
 # ************************************************************************* #
 
@@ -16,8 +16,6 @@
 
 
 import arcade
-from src.models.scoreModel import Score
-from src.models.configmodel import ConfigModel
 from src.view.menu_view import MenuView
 from src.pacmanManager import PacmanManager
 
