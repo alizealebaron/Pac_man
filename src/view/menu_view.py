@@ -6,11 +6,7 @@
 #  By: rruiz <rruiz@student.42.fr>               +#+  +:+       +#+         #
 #                                              +#+#+#+#+#+   +#+            #
 #  Created: 2026/05/20 10:28:01 by alebaron        #+#    #+#               #
-<<<<<<< HEAD
-#  Updated: 2026/05/21 13:33:36 by rruiz           ###   ########.fr        #
-=======
-#  Updated: 2026/05/21 15:48:44 by alebaron        ###   ########.fr        #
->>>>>>> dev
+#  Updated: 2026/05/22 10:14:10 by rruiz           ###   ########.fr        #
 #                                                                           #
 # ************************************************************************* #
 
@@ -151,9 +147,6 @@ class MenuView(arcade.View):
         # Affichage de l'encadré en haut à gauche
         self._draw_player()
 
-<<<<<<< HEAD
-        sprite = arcade.load_texture("assets/sprite/face_frame.png")
-=======
         # Affichage de l'encadré en bas à gauche
         self._draw_little_scoreboard()
 
@@ -177,7 +170,6 @@ class MenuView(arcade.View):
         pokemon = self.window.manager.player.pokemon
         sprite = arcade.load_texture(f"assets/sprite/pokemon/{pokemon}"
                                      "/portraits/Normal.png")
->>>>>>> dev
         sprite_size = 75
 
         arcade.draw_texture_rect(
