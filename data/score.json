@@ -28,5 +28,25 @@
     "name": "Test",
     "score": 1500,
     "pokemon": "Axew"
+  },
+  {
+    "name": "Heretikk",
+    "score": 6400,
+    "pokemon": "Wingull"
+  },
+  {
+    "name": "LadyGuilty",
+    "score": 7812,
+    "pokemon": "Eevee"
+  },
+  {
+    "name": "Ana",
+    "score": 4578,
+    "pokemon": "Chimchar"
+  },
+  {
+    "name": "Alizéa",
+    "score": 1,
+    "pokemon": "Ducklett"
   }
 ]
