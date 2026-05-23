@@ -6,7 +6,7 @@
 #  By: rruiz <rruiz@student.42.fr>               +#+  +:+       +#+         #
 #                                              +#+#+#+#+#+   +#+            #
 #  Created: 2026/05/20 13:11:07 by alebaron        #+#    #+#               #
-#  Updated: 2026/05/23 10:30:25 by rruiz           ###   ########.fr        #
+#  Updated: 2026/05/23 14:16:59 by rruiz           ###   ########.fr        #
 #                                                                           #
 # ************************************************************************* #
 
@@ -53,9 +53,11 @@ class GameView(arcade.View):
         arcade.set_background_color(arcade.color.BLACK)
 
         self.manager = manager
-        hexa_maze = self.manager.level[0].maze.maze
-        self.maze_sprites: arcade.SpriteList = self._maze_to_draw(hexa_maze) 
-        self.pacgums_sprites: arcade.SpriteList = self.put_pacgum(hexa_maze)
+        self.maze_sprites: arcade.SpriteList = self._maze_to_draw(self.manager.level[0].maze.maze) 
+        self.pacgums_sprites: arcade.SpriteList = self._put_pacgum(self.manager.level[0].maze.maze)
+
+        self._player_original_pos(self.manager.level[0].maze.maze)
+        print(self.manager.player.x, self.manager.player.y)
 
     # +---------------------------------------------------------------------+
     # |                               Methods                               |
@@ -69,6 +71,7 @@ class GameView(arcade.View):
 
     def on_update(self, delta_time):
         """ Movement and game logic """
+        self._player_move()
 
     def _maze_to_draw(self, maze: list[list[int]]) -> arcade.SpriteList:
         sprites = arcade.SpriteList()
@@ -97,9 +100,9 @@ class GameView(arcade.View):
             wall_maze.append(line_maze)
 
         nb_columns = len(rev_maze[0])
-        maze_width_size = nb_columns * 32
+        maze_width_size = nb_columns * 64
         nb_lines = len(rev_maze)
-        maze_height_size = nb_lines * 32
+        maze_height_size = nb_lines * 64
 
         if self.window.width / maze_width_size > self.window.height / maze_height_size:
             self.scale = self.window.height / maze_height_size * 0.95
@@ -111,8 +114,8 @@ class GameView(arcade.View):
         for line in wall_maze:
             for cell in line:
                 for wall_path, x, y in cell:
-                    center_x = (x - 0.5) * 32 * self.scale + self.offset_x
-                    center_y = (y - 0.5) * 32 * self.scale + self.offset_y
+                    center_x = (x - 0.5) * 64 * self.scale + self.offset_x
+                    center_y = (y - 0.5) * 64 * self.scale + self.offset_y
                     sprite = arcade.Sprite(wall_path, center_x=center_x, center_y=center_y, scale=self.scale)
                     sprites.append(sprite)
 
@@ -125,7 +128,7 @@ class GameView(arcade.View):
         
         return rev_maze
 
-    def put_pacgum(self, maze: list[list[int]]) -> arcade.sprite_list:
+    def _put_pacgum(self, maze: list[list[int]]) -> arcade.sprite_list:
         sprites = arcade.SpriteList()
         rev_maze = self._rev_maze(maze)
  
@@ -141,8 +144,8 @@ class GameView(arcade.View):
 
         for y in range(1, nb_lines + 1):
             for x in range(1, nb_columns + 1):
-                center_x = (x - 0.5) * 32 * self.scale + self.offset_x
-                center_y = (y - 0.5) * 32 * self.scale + self.offset_y
+                center_x = (x - 0.5) * 64 * self.scale + self.offset_x
+                center_y = (y - 0.5) * 64 * self.scale + self.offset_y
                 curr_coord = (x, y)
                 if rev_maze[y - 1][x - 1] == 15 or (x, y) == center:
                     continue
@@ -153,3 +156,49 @@ class GameView(arcade.View):
                 sprites.append(sprite)
 
         return sprites
+
+    def _player_original_pos(self, maze: list[list[int]]):
+        rev_maze = self._rev_maze(maze)
+
+        nb_columns = len(rev_maze[0])
+        nb_lines = len(rev_maze)
+
+        self.manager.player.x = (nb_columns ) // 2 if nb_columns % 2 == 0 else (nb_columns + 1) // 2
+        self.manager.player.y = (nb_lines) // 2 + 1 if nb_lines % 2 == 0 else (nb_lines + 1) // 2
+
+    def on_key_press(self, symbol, modifiers):
+        if symbol == arcade.key.W:
+            self.manager.player.direction = "up"
+        elif symbol == arcade.key.A:
+            self.manager.player.direction = "left"
+        elif symbol == arcade.key.S:
+            self.manager.player.direction = "down"
+        elif symbol == arcade.key.D:
+            self.manager.player.direction = "right"
+
+    def _player_move(self):
+        maze = self.manager.level[0].maze.maze
+        rev_maze = self._rev_maze(maze)
+        player = self.manager.player
+
+        new_x = player.x
+        new_y = player.y
+
+        match player.direction:
+            case "up":
+                new_y += 1
+            case "down":
+                new_y -= 1
+            case "left":
+                new_x -= 1
+            case "right":
+                new_x += 1
+
+        nb_columns = len(rev_maze[0])
+        nb_lines = len(rev_maze)
+
+        if 1 <= new_x <= nb_columns:
+            player.x = new_x
+
+        if 1 <= new_y <= nb_lines:
+            player.y = new_y
