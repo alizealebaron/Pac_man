@@ -6,7 +6,7 @@
 #  By: rruiz <rruiz@student.42.fr>               +#+  +:+       +#+         #
 #                                              +#+#+#+#+#+   +#+            #
 #  Created: 2026/05/21 12:46:42 by alebaron        #+#    #+#               #
-#  Updated: 2026/05/23 14:18:26 by rruiz           ###   ########.fr        #
+#  Updated: 2026/05/23 16:16:37 by rruiz           ###   ########.fr        #
 #                                                                           #
 # ************************************************************************* #
 
@@ -43,6 +43,7 @@ class PlayerModel():
         self.x = 0
         self.y = 0
         self.direction = None
+        self.next_direction = None
         self.sprite = arcade.Sprite('assets/sprite/petit_fantom.png')
 
     # +---------------------------------------------------------------------+

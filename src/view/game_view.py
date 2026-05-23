@@ -6,7 +6,7 @@
 #  By: rruiz <rruiz@student.42.fr>               +#+  +:+       +#+         #
 #                                              +#+#+#+#+#+   +#+            #
 #  Created: 2026/05/20 13:11:07 by alebaron        #+#    #+#               #
-#  Updated: 2026/05/23 14:16:59 by rruiz           ###   ########.fr        #
+#  Updated: 2026/05/23 16:23:42 by rruiz           ###   ########.fr        #
 #                                                                           #
 # ************************************************************************* #
 
@@ -57,7 +57,13 @@ class GameView(arcade.View):
         self.pacgums_sprites: arcade.SpriteList = self._put_pacgum(self.manager.level[0].maze.maze)
 
         self._player_original_pos(self.manager.level[0].maze.maze)
-        print(self.manager.player.x, self.manager.player.y)
+        self.player_sprite = arcade.Sprite('assets/sprite/petit_fantom.png', center_x=self.manager.player.x, center_y=self.manager.player.y, scale=self.scale)
+        self.player_sprites = arcade.SpriteList()
+        self.player_sprites.append(self.player_sprite)
+
+        self.move_timer = 0
+        self.sprite_x = (self.manager.player.x - 0.5) * 64 * self.scale + self.offset_x
+        self.sprite_y = (self.manager.player.y - 0.5) * 64 * self.scale + self.offset_y
 
     # +---------------------------------------------------------------------+
     # |                               Methods                               |
@@ -68,10 +74,28 @@ class GameView(arcade.View):
         self.clear()
         self.maze_sprites.draw()
         self.pacgums_sprites.draw()
+        self.player_sprites.draw()
 
     def on_update(self, delta_time):
         """ Movement and game logic """
-        self._player_move()
+        target_x = (self.manager.player.x - 0.5) * 64 * self.scale + self.offset_x
+        target_y = (self.manager.player.y - 0.5) * 64 * self.scale + self.offset_y
+
+        arrived = abs(target_x - self.sprite_x) < 1 and abs(target_y - self.sprite_y) < 1
+
+        if arrived:
+            self.manager.player.direction = self.manager.player.next_direction
+
+        self.move_timer += delta_time
+        if self.move_timer > 0.1 and arrived:
+            self._player_move()
+            self.move_timer = 0
+
+        speed = 10
+        self.sprite_x += (target_x - self.sprite_x) * speed * delta_time
+        self.sprite_y += (target_y - self.sprite_y) * speed * delta_time
+        self.player_sprite.center_x = self.sprite_x
+        self.player_sprite.center_y = self.sprite_y
 
     def _maze_to_draw(self, maze: list[list[int]]) -> arcade.SpriteList:
         sprites = arcade.SpriteList()
@@ -167,14 +191,25 @@ class GameView(arcade.View):
         self.manager.player.y = (nb_lines) // 2 + 1 if nb_lines % 2 == 0 else (nb_lines + 1) // 2
 
     def on_key_press(self, symbol, modifiers):
-        if symbol == arcade.key.W:
-            self.manager.player.direction = "up"
-        elif symbol == arcade.key.A:
-            self.manager.player.direction = "left"
-        elif symbol == arcade.key.S:
-            self.manager.player.direction = "down"
-        elif symbol == arcade.key.D:
-            self.manager.player.direction = "right"
+        match symbol:
+            case arcade.key.UP:
+                self.manager.player.next_direction = "up"
+            case arcade.key.LEFT:
+                self.manager.player.next_direction = "left"
+            case arcade.key.DOWN:
+                self.manager.player.next_direction = "down"
+            case arcade.key.RIGHT:
+                self.manager.player.next_direction = "right"
+
+        match symbol:
+            case arcade.key.W:
+                self.manager.player.next_direction = "up"
+            case arcade.key.A:
+                self.manager.player.next_direction = "left"
+            case arcade.key.S:
+                self.manager.player.next_direction = "down"
+            case arcade.key.D:
+                self.manager.player.next_direction = "right"
 
     def _player_move(self):
         maze = self.manager.level[0].maze.maze
@@ -186,13 +221,17 @@ class GameView(arcade.View):
 
         match player.direction:
             case "up":
-                new_y += 1
-            case "down":
-                new_y -= 1
-            case "left":
-                new_x -= 1
+                if not (rev_maze[new_y - 1][new_x - 1] & 1):
+                    new_y += 1
             case "right":
-                new_x += 1
+                if not (rev_maze[new_y - 1][new_x - 1] & 2):
+                    new_x += 1
+            case "down":
+                if not (rev_maze[new_y - 1][new_x - 1] & 4):
+                    new_y -= 1
+            case "left":
+                if not rev_maze[new_y - 1][new_x - 1] & 8:
+                    new_x -= 1
 
         nb_columns = len(rev_maze[0])
         nb_lines = len(rev_maze)
