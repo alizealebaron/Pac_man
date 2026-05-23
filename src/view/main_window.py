@@ -3,10 +3,10 @@
 #                                                      :::      ::::::::    #
 #  main_window.py                                    :+:      :+:    :+:    #
 #                                                  +:+ +:+         +:+      #
-#  By: rruiz <rruiz@student.42.fr>               +#+  +:+       +#+         #
+#  By: alebaron, rruiz                           +#+  +:+       +#+         #
 #                                              +#+#+#+#+#+   +#+            #
 #  Created: 2026/05/20 14:35:28 by alebaron        #+#    #+#               #
-#  Updated: 2026/05/22 10:07:29 by rruiz           ###   ########.fr        #
+#  Updated: 2026/05/23 11:50:29 by alebaron        ###   ########.fr        #
 #                                                                           #
 # ************************************************************************* #
 
@@ -36,5 +36,5 @@ class MainWindow(arcade.Window):
         self.manager = manager
 
         # Démarrer le jeu
-        start_view = MenuView()
-        self.show_view(start_view)
+        self.start_view = MenuView()
+        self.show_view(self.start_view)
