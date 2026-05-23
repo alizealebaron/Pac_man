@@ -3,10 +3,10 @@
 #                                                      :::      ::::::::    #
 #  configmodel.py                                    :+:      :+:    :+:    #
 #                                                  +:+ +:+         +:+      #
-#  By: alebaron, rruiz                           +#+  +:+       +#+         #
+#  By: rruiz <rruiz@student.42.fr>               +#+  +:+       +#+         #
 #                                              +#+#+#+#+#+   +#+            #
 #  Created: 2026/05/19 11:08:47 by rruiz           #+#    #+#               #
-#  Updated: 2026/05/21 10:44:32 by rruiz           ###   ########.fr        #
+#  Updated: 2026/05/22 14:46:12 by rruiz           ###   ########.fr        #
 #                                                                           #
 # ************************************************************************* #
 
@@ -36,7 +36,6 @@ class ConfigModel(BaseModel):
     points_per_pacgum: int = Field(ge=1, le=1000, default=10)
     points_per_super_pacgum: int = Field(ge=1, le=1000, default=50)
     points_per_ghost: int = Field(ge=1, le=1000, default=100)
-    seed: int = Field(ge=0, default=42)
     level_max_time: int = Field(ge=1, le=3600, default=90)
 
     @classmethod
@@ -59,13 +58,13 @@ class ConfigModel(BaseModel):
                         f"; using default value",file=sys.stderr)
                 continue
 
-        try:
-            cls.model_validate({field_name: data})
-            clean[field_name] = data
-        except ValidationError:
-            default = field_info.default
-            print(
-                f"Warning: invalid value for '{field_name}': {data}"
-                f"; using default ({default})",file=sys.stderr)
+            try:
+                cls.model_validate({field_name: data})
+                clean[field_name] = data
+            except ValidationError:
+                default = field_info.default
+                print(
+                    f"Warning: invalid value for '{field_name}': {data}"
+                    f"; using default ({default})",file=sys.stderr)
 
         return cls(**clean)

@@ -3,10 +3,10 @@
 #                                                      :::      ::::::::    #
 #  game_view.py                                      :+:      :+:    :+:    #
 #                                                  +:+ +:+         +:+      #
-#  By: alebaron, rruiz                           +#+  +:+       +#+         #
+#  By: rruiz <rruiz@student.42.fr>               +#+  +:+       +#+         #
 #                                              +#+#+#+#+#+   +#+            #
 #  Created: 2026/05/20 13:11:07 by alebaron        #+#    #+#               #
-#  Updated: 2026/05/20 13:17:36 by alebaron        ###   ########.fr        #
+#  Updated: 2026/05/22 15:30:28 by rruiz           ###   ########.fr        #
 #                                                                           #
 # ************************************************************************* #
 
@@ -17,7 +17,14 @@
 
 import arcade
 from src.view.gameover_view import GameoverView
+from src.pacmanManager import PacmanManager
 
+
+square_wall = 'assets/sprite/wall/A.png'
+east_wall = 'assets/sprite/wall/E.png'
+north_wall = 'assets/sprite/wall/N.png'
+west_wall = 'assets/sprite/wall/O.png'
+south_wall = 'assets/sprite/wall/S.png'
 
 # +-------------------------------------------------------------------------+
 # |                                 Classe                                  |
@@ -29,7 +36,7 @@ class GameView(arcade.View):
     # |                                Init                                 |
     # +---------------------------------------------------------------------+
 
-    def __init__(self):
+    def __init__(self, manager: PacmanManager):
         """ Initializer """
         # Call the parent class initializer
         super().__init__()
@@ -37,7 +44,11 @@ class GameView(arcade.View):
         # Don't show the mouse cursor
         self.window.set_mouse_visible(False)
 
-        arcade.set_background_color(arcade.color.AMAZON)
+        arcade.set_background_color(arcade.color.BLACK)
+
+        self.manager = manager
+        hexa_maze = self.manager.level[0].maze.maze
+        self.maze_sprites: arcade.SpriteList = self._maze_to_draw(hexa_maze)
 
     # +---------------------------------------------------------------------+
     # |                               Methods                               |
@@ -46,11 +57,62 @@ class GameView(arcade.View):
     def on_draw(self):
         """ Draw everything """
         self.clear()
-        arcade.draw_text("Game view", self.window.width / 2, self.window.height / 2,
-                         arcade.color.WHITE, font_size=50, anchor_x="center")
+        self.maze_sprites.draw()
 
     def on_update(self, delta_time):
         """ Movement and game logic """
 
-        view = GameoverView()
-        self.window.show_view(view)
+    def _maze_to_draw(self, maze) -> arcade.SpriteList:
+        sprites = arcade.SpriteList()
+
+        rev_maze: list[list[int]] = self._rev_maze(maze)
+        wall_maze = []
+        y = 0
+        for line in rev_maze:
+            y += 1
+            x = 0
+            line_maze = []
+            for value in line:
+                x += 1
+                wall = []
+                if value & 1:
+                    wall.append((north_wall, x, y))
+                if value & 2:
+                    wall.append((east_wall, x, y))
+                if value & 4:
+                    wall.append((south_wall, x, y))
+                if value & 8:
+                    wall.append((west_wall, x, y))
+                if len(wall) == 4:
+                    wall = [(square_wall, x, y)]
+                line_maze.append(wall)
+            wall_maze.append(line_maze)
+
+        nb_columns = len(rev_maze[0])
+        maze_width_size = nb_columns * 32
+        nb_lines = len(rev_maze)
+        maze_height_size = nb_lines * 32
+
+        if self.window.width / maze_width_size > self.window.height / maze_height_size:
+            scale = self.window.height / maze_height_size * 0.95
+        else:
+            scale = self.window.width / maze_width_size * 0.95
+        offset_x  = (self.window.width - maze_width_size * scale) / 2
+        offset_y = (self.window.height - maze_height_size * scale) / 2
+
+        for line in wall_maze:
+            for cell in line:
+                for wall_path, x, y in cell:
+                    center_x = x * 32 * scale + offset_x
+                    center_y = y * 32 * scale + offset_y
+                    sprite = arcade.Sprite(wall_path, center_x=center_x, center_y=center_y, scale=scale)
+                    sprites.append(sprite)
+
+        return sprites
+
+    def _rev_maze(self, maze: list[list[int]]) -> list[list[int]]:
+        rev_maze: list[list[int]] = []
+        for i in range(len(maze) - 1, -1, -1):
+            rev_maze.append(maze[i])
+        
+        return rev_maze

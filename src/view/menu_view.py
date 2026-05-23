@@ -6,7 +6,7 @@
 #  By: alebaron, rruiz                           +#+  +:+       +#+         #
 #                                              +#+#+#+#+#+   +#+            #
 #  Created: 2026/05/20 10:28:01 by alebaron        #+#    #+#               #
-#  Updated: 2026/05/23 10:36:43 by alebaron        ###   ########.fr        #
+#  Updated: 2026/05/23 10:47:27 by alebaron        ###   ########.fr        #
 #                                                                           #
 # ************************************************************************* #
 
@@ -99,7 +99,7 @@ class MenuView(arcade.View):
 
     def start_game(self):
         print("Lancement du jeu...")
-        self.window.show_view(GameView())
+        self.window.show_view(GameView(self.window.manager))
 
     def open_quizz(self):
         print("Ouverture du quizz...")
