@@ -6,7 +6,7 @@
 #  By: alebaron, rruiz                           +#+  +:+       +#+         #
 #                                              +#+#+#+#+#+   +#+            #
 #  Created: 2026/05/23 13:56:54 by alebaron        #+#    #+#               #
-#  Updated: 2026/05/23 14:05:18 by alebaron        ###   ########.fr        #
+#  Updated: 2026/05/23 21:37:37 by alebaron        ###   ########.fr        #
 #                                                                           #
 # ************************************************************************* #
 
@@ -81,6 +81,19 @@ class SettingsView(arcade.View):
                              width,
                              height)
         )
+
+        # Affichage du fond du scoreboard
+        score_sprite = arcade.load_texture("assets/menu/settings.png")
+        height = 1000
+        width = 1400
+        arcade.draw_texture_rect(texture=score_sprite,
+                                 rect=arcade.XYWH(
+                                 x=self.window.width / 2 + 20,
+                                 y=self.window.height / 2,
+                                 width=width,
+                                 height=height
+                                )
+                            )
 
     def on_mouse_press(self, x, y, _, __):
 
