@@ -6,7 +6,7 @@
 #  By: alebaron, rruiz                           +#+  +:+       +#+         #
 #                                              +#+#+#+#+#+   +#+            #
 #  Created: 2026/05/20 10:28:01 by alebaron        #+#    #+#               #
-#  Updated: 2026/05/23 13:59:38 by alebaron        ###   ########.fr        #
+#  Updated: 2026/05/23 15:56:54 by alebaron        ###   ########.fr        #
 #                                                                           #
 # ************************************************************************* #
 
@@ -275,13 +275,12 @@ class MenuView(arcade.View):
 
             # Nom + Score
             text_content = f"{player.name} ({player.score})"
-            arcade.draw_text(
-                text_content,
-                start_x + (icon_size * 2) + 20,
-                current_y - 5,
-                color=arcade.color.BLACK,
-                font_size=14
-            )
+            player_name = arcade.Text(text_content,
+                                      start_x + (icon_size * 2) + 20,
+                                      current_y - 5,
+                                      color=arcade.color.BLACK,
+                                      font_size=14)
+            player_name.draw()
 
         i = len(scores)
 
@@ -304,13 +303,12 @@ class MenuView(arcade.View):
             )
 
             # Nom + Score
-            text_content = f"..."
-            arcade.draw_text(
-                text_content,
-                start_x + (icon_size * 2) + 20,
-                current_y - 5,
-                color=arcade.color.BLACK,
-                font_size=14
-            )
+            text_content = "..."
+            player_name = arcade.Text(text_content,
+                                      start_x + (icon_size * 2) + 20,
+                                      current_y - 5,
+                                      color=arcade.color.BLACK,
+                                      font_size=14)
+            player_name.draw()
 
             i += 1

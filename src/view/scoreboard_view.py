@@ -6,7 +6,7 @@
 #  By: alebaron, rruiz                           +#+  +:+       +#+         #
 #                                              +#+#+#+#+#+   +#+            #
 #  Created: 2026/05/23 10:58:55 by alebaron        #+#    #+#               #
-#  Updated: 2026/05/23 13:58:15 by alebaron        ###   ########.fr        #
+#  Updated: 2026/05/23 15:57:42 by alebaron        ###   ########.fr        #
 #                                                                           #
 # ************************************************************************* #
 
@@ -143,10 +143,9 @@ class ScoreboardView(arcade.View):
 
             # Nom + Score
             text_content = f"{player.name} ({player.score})"
-            arcade.draw_text(
-                text_content,
-                start_x + (icon_size * 2) + 30,
-                current_y - 8,
-                color=arcade.color.BLACK,
-                font_size=16
-            )
+            player_name = arcade.Text(text_content,
+                                      start_x + (icon_size * 2) + 30,
+                                      current_y - 8,
+                                      color=arcade.color.BLACK,
+                                      font_size=16)
+            player_name.draw()
