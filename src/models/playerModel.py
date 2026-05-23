@@ -3,10 +3,10 @@
 #                                                      :::      ::::::::    #
 #  playerModel.py                                    :+:      :+:    :+:    #
 #                                                  +:+ +:+         +:+      #
-#  By: alebaron, rruiz                           +#+  +:+       +#+         #
+#  By: rruiz <rruiz@student.42.fr>               +#+  +:+       +#+         #
 #                                              +#+#+#+#+#+   +#+            #
 #  Created: 2026/05/21 12:46:42 by alebaron        #+#    #+#               #
-#  Updated: 2026/05/24 19:58:31 by alebaron        ###   ########.fr        #
+#  Updated: 2026/05/27 14:50:02 by rruiz           ###   ########.fr        #
 #                                                                           #
 # ************************************************************************* #
 
@@ -44,6 +44,7 @@ class PlayerModel():
         self.x = 0
         self.y = 0
         self.direction = None
+        self.next_direction = None
         self.sprite = arcade.Sprite('assets/sprite/petit_fantom.png')
         self.nb_life = config.lives
         self.score = 0
