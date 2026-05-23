@@ -6,7 +6,7 @@
 #  By: alebaron, rruiz                           +#+  +:+       +#+         #
 #                                              +#+#+#+#+#+   +#+            #
 #  Created: 2026/05/20 10:28:01 by alebaron        #+#    #+#               #
-#  Updated: 2026/05/22 15:06:03 by alebaron        ###   ########.fr        #
+#  Updated: 2026/05/23 10:36:43 by alebaron        ###   ########.fr        #
 #                                                                           #
 # ************************************************************************* #
 
@@ -91,7 +91,7 @@ class MenuView(arcade.View):
 
         # Menu music
         self.music = arcade.Sound("assets/music/mainMenu_theme.mp3")
-        self.music.play(volume=1, loop=True)
+        self.music_player = self.music.play(volume=1, loop=True)
 
     # +---------------------------------------------------------------------+
     # |                            Btn Methods                              |
@@ -184,6 +184,12 @@ class MenuView(arcade.View):
 
                 data["action"]()
                 break
+
+        if (x > 1670 and x < 1720 and y > 110 and y < 155):
+            self.music.stop(self.music_player)
+            self.music = arcade.Sound("assets/music/easter_egg.mp3",
+                                      streaming=True)
+            self.music_player = self.music.play(volume=1, loop=True)
 
     # +---------------------------------------------------------------------+
     # |                           Custom Methods                            |
