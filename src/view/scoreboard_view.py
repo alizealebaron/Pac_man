@@ -6,7 +6,7 @@
 #  By: alebaron, rruiz                           +#+  +:+       +#+         #
 #                                              +#+#+#+#+#+   +#+            #
 #  Created: 2026/05/23 10:58:55 by alebaron        #+#    #+#               #
-#  Updated: 2026/05/23 13:49:28 by alebaron        ###   ########.fr        #
+#  Updated: 2026/05/23 13:51:20 by alebaron        ###   ########.fr        #
 #                                                                           #
 # ************************************************************************* #
 
@@ -87,7 +87,6 @@ class ScoreboardView(arcade.View):
 
     def on_mouse_press(self, x, y, _, __):
 
-        print(f"{x},{y}")
         # Bouton retour
         if (x > 2 and x < 95 and y > 995 and y < 1080):
             self.music.stop(self.music_player)
