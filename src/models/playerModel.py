@@ -3,10 +3,10 @@
 #                                                      :::      ::::::::    #
 #  playerModel.py                                    :+:      :+:    :+:    #
 #                                                  +:+ +:+         +:+      #
-#  By: alebaron, rruiz                           +#+  +:+       +#+         #
+#  By: rruiz <rruiz@student.42.fr>               +#+  +:+       +#+         #
 #                                              +#+#+#+#+#+   +#+            #
 #  Created: 2026/05/21 12:46:42 by alebaron        #+#    #+#               #
-#  Updated: 2026/05/21 13:15:46 by alebaron        ###   ########.fr        #
+#  Updated: 2026/05/23 14:18:26 by rruiz           ###   ########.fr        #
 #                                                                           #
 # ************************************************************************* #
 
@@ -17,6 +17,7 @@
 
 import os
 import random
+import arcade
 
 
 # +-------------------------------------------------------------------------+
@@ -39,6 +40,10 @@ class PlayerModel():
 
         self.pokemon = self._get_random_pokemon()
         self.name = self._get_random_name()
+        self.x = 0
+        self.y = 0
+        self.direction = None
+        self.sprite = arcade.Sprite('assets/sprite/petit_fantom.png')
 
     # +---------------------------------------------------------------------+
     # |                              Methods                                |
