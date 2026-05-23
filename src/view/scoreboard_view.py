@@ -6,7 +6,7 @@
 #  By: alebaron, rruiz                           +#+  +:+       +#+         #
 #                                              +#+#+#+#+#+   +#+            #
 #  Created: 2026/05/23 10:58:55 by alebaron        #+#    #+#               #
-#  Updated: 2026/05/23 15:57:42 by alebaron        ###   ########.fr        #
+#  Updated: 2026/05/23 21:30:27 by alebaron        ###   ########.fr        #
 #                                                                           #
 # ************************************************************************* #
 
@@ -82,6 +82,19 @@ class ScoreboardView(arcade.View):
                              height)
         )
 
+        # Affichage du fond du scoreboard
+        score_sprite = arcade.load_texture("assets/menu/scoreboard.png")
+        height = 1000
+        width = 1400
+        arcade.draw_texture_rect(texture=score_sprite,
+                                 rect=arcade.XYWH(
+                                 x=self.window.width / 2 + 20,
+                                 y=self.window.height / 2,
+                                 width=width,
+                                 height=height
+                                )
+                            )  
+
         # Affichage des scores
         self.draw_big_scoreboard()
 
@@ -101,18 +114,22 @@ class ScoreboardView(arcade.View):
         # Tri des 3 meilleurs
         scores = sorted(self.lst_score,
                         key=lambda p: p.score,
-                        reverse=True)[:12]
+                        reverse=True)[:30]
 
         # Configuration des positions
-        start_x = self.window.height / 2
-        start_y = (self.window.width / 2) - 80
+        start_x = 450
+        start_y = (self.window.width / 2) - 150
         line_height = 70
         icon_size = 50
 
         # Joueurs présents au top 3
         for i, player in enumerate(scores):
 
-            current_y = start_y - (i * line_height)
+            if (i % 10 == 0 and i != 0):
+                start_x += 400
+                start_y = (self.window.width / 2) - 150
+
+            current_y = start_y - ((i % 10) * line_height)
 
             # Image de rang
             if (i < 12):
