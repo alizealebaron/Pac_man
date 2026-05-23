@@ -6,7 +6,7 @@
 #  By: alebaron, rruiz                           +#+  +:+       +#+         #
 #                                              +#+#+#+#+#+   +#+            #
 #  Created: 2026/05/20 10:28:01 by alebaron        #+#    #+#               #
-#  Updated: 2026/05/23 12:13:33 by alebaron        ###   ########.fr        #
+#  Updated: 2026/05/23 13:59:38 by alebaron        ###   ########.fr        #
 #                                                                           #
 # ************************************************************************* #
 
@@ -17,7 +17,7 @@
 import arcade
 from src.view.game_view import GameView
 from src.view.scoreboard_view import ScoreboardView
-from src.models.scoreModel import Score
+from src.view.settings_view import SettingsView
 
 # +-------------------------------------------------------------------------+
 # |                                 CONST                                   |
@@ -26,6 +26,7 @@ from src.models.scoreModel import Score
 
 BACKGROUND_PATH = "assets/background/menu_background.jpg"
 BTN_PATH = "assets/button/"
+MUSIC_PATH = "assets/music/mainMenu_theme.mp3"
 
 
 # +-------------------------------------------------------------------------+
@@ -107,6 +108,7 @@ class MenuView(arcade.View):
 
     def open_settings(self):
         print("Ouverture des settings...")
+        self.window.show_view(SettingsView(self.window))
 
     def open_score(self):
         print("Ouverture du scoreboards...")
@@ -122,7 +124,7 @@ class MenuView(arcade.View):
     def on_show_view(self):
         """Appelé quand la vue change"""
         if not (self.music_player and self.music_player.playing):
-            self.music = arcade.Sound("assets/music/mainMenu_theme.mp3",
+            self.music = arcade.Sound(MUSIC_PATH,
                                       streaming=True)
             self.music_player = self.music.play(volume=1, loop=True)
 
