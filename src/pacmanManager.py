@@ -3,10 +3,10 @@
 #                                                      :::      ::::::::    #
 #  pacmanManager.py                                  :+:      :+:    :+:    #
 #                                                  +:+ +:+         +:+      #
-#  By: rruiz <rruiz@student.42.fr>               +#+  +:+       +#+         #
+#  By: alebaron, rruiz                           +#+  +:+       +#+         #
 #                                              +#+#+#+#+#+   +#+            #
 #  Created: 2026/05/21 13:04:41 by alebaron        #+#    #+#               #
-#  Updated: 2026/05/22 12:04:10 by rruiz           ###   ########.fr        #
+#  Updated: 2026/05/23 10:15:48 by alebaron        ###   ########.fr        #
 #                                                                           #
 # ************************************************************************* #
 
@@ -45,14 +45,15 @@ class PacmanManager():
         # Récupération de la config
         self.config: ConfigModel = ConfigLoader.load_config(arg.config_file)
 
+        # Génération aléatoire du joueur
+        self.player = PlayerModel()
+
         # Generation des maps et stockage dans une liste
         self.level: list[Level] = self.create_maps(self.config.level)
 
         # Récupération du scoreboard
         self.scoreboard = self.retrieve_score_from_json()
 
-        # Génération aléatoire du joueur
-        self.player = PlayerModel()
 
     # +---------------------------------------------------------------------+
     # |                            JSON Methods                             |
