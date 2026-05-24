@@ -6,7 +6,7 @@
 #  By: alebaron, rruiz                           +#+  +:+       +#+         #
 #                                              +#+#+#+#+#+   +#+            #
 #  Created: 2026/05/23 10:58:55 by alebaron        #+#    #+#               #
-#  Updated: 2026/05/23 21:30:27 by alebaron        ###   ########.fr        #
+#  Updated: 2026/05/24 23:53:24 by alebaron        ###   ########.fr        #
 #                                                                           #
 # ************************************************************************* #
 
@@ -164,5 +164,6 @@ class ScoreboardView(arcade.View):
                                       start_x + (icon_size * 2) + 30,
                                       current_y - 8,
                                       color=arcade.color.BLACK,
-                                      font_size=16)
+                                      font_size=12,
+                                      font_name="FOT-Humming Pro")
             player_name.draw()

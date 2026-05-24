@@ -6,7 +6,7 @@
 #  By: alebaron, rruiz                           +#+  +:+       +#+         #
 #                                              +#+#+#+#+#+   +#+            #
 #  Created: 2026/05/20 10:28:01 by alebaron        #+#    #+#               #
-#  Updated: 2026/05/23 15:56:54 by alebaron        ###   ########.fr        #
+#  Updated: 2026/05/24 23:52:12 by alebaron        ###   ########.fr        #
 #                                                                           #
 # ************************************************************************* #
 
@@ -28,6 +28,9 @@ BACKGROUND_PATH = "assets/background/menu_background.jpg"
 BTN_PATH = "assets/button/"
 MUSIC_PATH = "assets/music/mainMenu_theme.mp3"
 
+MAIN_FONT_PATH = "assets/font/main_font.ttf"
+TEXT_FONT_PATH = "assets/font/text_font.otf"
+
 
 # +-------------------------------------------------------------------------+
 # |                                 Classe                                  |
@@ -45,6 +48,10 @@ class MenuView(arcade.View):
 
         # Initialisation du background
         self.background = arcade.load_texture(BACKGROUND_PATH)
+
+        # Initialisation des fonts
+        arcade.load_font(MAIN_FONT_PATH)
+        arcade.load_font(TEXT_FONT_PATH)
 
         # Récupération de la largeur et hauteur de la fenêtre
         self.largeur = self.window.width
@@ -231,7 +238,7 @@ class MenuView(arcade.View):
                                   (self.hauteur - (sprite_size / 2) - 20),
                                   color=arcade.color.BLACK,
                                   font_size=20,
-                                  font_name="Comic Sans MS")
+                                  font_name="FOT-UDKakugoC80 Pro")
         player_name.draw()
 
     def _draw_little_scoreboard(self):
@@ -279,7 +286,8 @@ class MenuView(arcade.View):
                                       start_x + (icon_size * 2) + 20,
                                       current_y - 5,
                                       color=arcade.color.BLACK,
-                                      font_size=14)
+                                      font_size=11,
+                                      font_name="FOT-Humming Pro")
             player_name.draw()
 
         i = len(scores)
@@ -308,7 +316,8 @@ class MenuView(arcade.View):
                                       start_x + (icon_size * 2) + 20,
                                       current_y - 5,
                                       color=arcade.color.BLACK,
-                                      font_size=14)
+                                      font_size=11,
+                                      font_name="FOT-Humming Pro")
             player_name.draw()
 
             i += 1
