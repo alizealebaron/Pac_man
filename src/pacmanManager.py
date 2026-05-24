@@ -6,7 +6,7 @@
 #  By: alebaron, rruiz                           +#+  +:+       +#+         #
 #                                              +#+#+#+#+#+   +#+            #
 #  Created: 2026/05/21 13:04:41 by alebaron        #+#    #+#               #
-#  Updated: 2026/05/23 10:15:48 by alebaron        ###   ########.fr        #
+#  Updated: 2026/05/24 19:57:53 by alebaron        ###   ########.fr        #
 #                                                                           #
 # ************************************************************************* #
 
@@ -46,7 +46,7 @@ class PacmanManager():
         self.config: ConfigModel = ConfigLoader.load_config(arg.config_file)
 
         # Génération aléatoire du joueur
-        self.player = PlayerModel()
+        self.player = PlayerModel(self.config)
 
         # Generation des maps et stockage dans une liste
         self.level: list[Level] = self.create_maps(self.config.level)

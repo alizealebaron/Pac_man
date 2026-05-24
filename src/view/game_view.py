@@ -3,10 +3,10 @@
 #                                                      :::      ::::::::    #
 #  game_view.py                                      :+:      :+:    :+:    #
 #                                                  +:+ +:+         +:+      #
-#  By: rruiz <rruiz@student.42.fr>               +#+  +:+       +#+         #
+#  By: alebaron, rruiz                           +#+  +:+       +#+         #
 #                                              +#+#+#+#+#+   +#+            #
 #  Created: 2026/05/20 13:11:07 by alebaron        #+#    #+#               #
-#  Updated: 2026/05/23 14:16:59 by rruiz           ###   ########.fr        #
+#  Updated: 2026/05/24 20:05:20 by alebaron        ###   ########.fr        #
 #                                                                           #
 # ************************************************************************* #
 
@@ -32,6 +32,9 @@ south_wall = 'assets/sprite/wall/S.png'
 pacgum = 'assets/sprite/collectible/pacgum.png'
 super_pacgum = 'assets/sprite/collectible/super_pacgum.png'
 
+BACKGROUND_PATH = "assets/background/game_background.png"
+MUSIC_PATH = "assets/music/game_theme.mp3"
+
 # +-------------------------------------------------------------------------+
 # |                                 Classe                                  |
 # +-------------------------------------------------------------------------+
@@ -46,6 +49,10 @@ class GameView(arcade.View):
         """ Initializer """
         # Call the parent class initializer
         super().__init__()
+        
+        # Récupération de la hauteur et de la largeur
+        self.largeur = self.window.width
+        self.hauteur = self.window.height
 
         # Don't show the mouse cursor
         self.window.set_mouse_visible(False)
@@ -59,6 +66,9 @@ class GameView(arcade.View):
         self._player_original_pos(self.manager.level[0].maze.maze)
         print(self.manager.player.x, self.manager.player.y)
 
+        # Music
+        self.music_player = None
+
     # +---------------------------------------------------------------------+
     # |                               Methods                               |
     # +---------------------------------------------------------------------+
@@ -66,12 +76,26 @@ class GameView(arcade.View):
     def on_draw(self):
         """ Draw everything """
         self.clear()
+
+        # Affichage du background
+        self.draw_background()
+
         self.maze_sprites.draw()
         self.pacgums_sprites.draw()
+
+        # Affichage de l'UHD
+        self.draw_UHD()
 
     def on_update(self, delta_time):
         """ Movement and game logic """
         self._player_move()
+
+    def on_show_view(self):
+        """Appelé quand la vue change"""
+        if not (self.music_player and self.music_player.playing):
+            self.music = arcade.Sound(MUSIC_PATH,
+                                      streaming=True)
+            self.music_player = self.music.play(volume=1, loop=True)
 
     def _maze_to_draw(self, maze: list[list[int]]) -> arcade.SpriteList:
         sprites = arcade.SpriteList()
@@ -202,3 +226,61 @@ class GameView(arcade.View):
 
         if 1 <= new_y <= nb_lines:
             player.y = new_y
+
+    # +---------------------------------------------------------------------+
+    # |                            Draw Methods                             |
+    # +---------------------------------------------------------------------+
+
+    def draw_background(self):
+
+        background = arcade.load_texture(BACKGROUND_PATH)
+        arcade.draw_texture_rect(
+            texture=background,
+            rect=arcade.XYWH(
+                self.window.width / 2,
+                self.window.height / 2,
+                self.window.width,
+                self.window.height
+            )
+        )
+
+    def draw_UHD(self):
+
+        pokemon = self.manager.player.pokemon
+        sprite = arcade.load_texture(f"assets/sprite/pokemon/{pokemon}"
+                                     "/portraits/Normal.png")
+        sprite_size = 75
+
+        arcade.draw_texture_rect(
+            texture=sprite,
+            rect=arcade.XYWH((sprite_size / 2) + 10,
+                             (self.hauteur - (sprite_size / 2) - 10),
+                             sprite_size,
+                             sprite_size)
+        )
+
+        sprite_frame = arcade.load_texture("assets/sprite/face_frame.png")
+        arcade.draw_texture_rect(
+            texture=sprite_frame,
+            rect=arcade.XYWH((sprite_size / 2) + 10,
+                             (self.hauteur - (sprite_size / 2) - 10),
+                             sprite_size + 9,
+                             sprite_size + 9)
+        )
+
+        
+        player_life = arcade.Text(f"Live(s): {self.manager.player.nb_life}",
+                                  sprite_size + 25,
+                                  (self.hauteur - (sprite_size / 2) - 5),
+                                  color=arcade.color.BLACK,
+                                  font_size=15,
+                                  font_name="Comic Sans MS")
+        player_life.draw()
+
+        player_life = arcade.Text(f"Score: {self.manager.player.score}",
+                                  sprite_size + 25,
+                                  (self.hauteur - (sprite_size / 2) - 35),
+                                  color=arcade.color.BLACK,
+                                  font_size=15,
+                                  font_name="Comic Sans MS")
+        player_life.draw()
