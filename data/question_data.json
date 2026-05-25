@@ -1,0 +1,1352 @@
+{
+    "caracteres": [
+    "Hardi.e", "Docile", "Jovial.e", "Malin.e", "Naïf.ve", 
+    "Timide", "Pressé.e", "Malpoli.e", "Calme", "Relax", "Solo", "Bizarre", "Brave"
+    ],
+    "questions": {
+        "q1": {
+            "texte": "Y a-t-il beaucoup de choses que vous rêvez de faire ?",
+            "reponses": [
+                {
+                "texte": "Oui.",
+                "scores": {
+                    "Hardi.e": 1,
+                    "Malin.e": 2,
+                    "Calme": -1
+                }
+                },
+                {
+                "texte": "Non.",
+                "scores": {
+                    "Bizarre": 2,
+                    "Malpoli.e": 1
+                }
+                }
+            ]
+        },
+        "q2": {
+            "texte": "Êtes-vous quelqu'un d'enjoué ?",
+            "reponses": [
+                {
+                "reponse": "Oui.",
+                "scores": {
+                    "Jovial.e": 2,
+                    "Naïf.ve": 1
+                }
+                },
+                {
+                "reponse": "Non.",
+                "scores": {
+                    "Bizarre": 1,
+                    "Malpoli.e": 1
+                }
+                }
+            ]
+        },
+        "q3": {
+            "texte": "Êtes-vous souvent en retard ?",
+            "reponses": [
+                {
+                "reponse": "Oui.",
+                "scores": {
+                    "Malpoli.e": 2,
+                    "Relax": 1
+                }
+                },
+                {
+                "reponse": "Non.",
+                "scores": {
+                    "Hardi.e": 2,
+                    "Pressé.e": 1
+                }
+                }
+            ]
+        },
+        "q4": {
+            "texte": "Accordez-vous énormément d'importance à vos passions ?",
+            "reponses": [
+                {
+                "reponse": "Oui.",
+                "scores": {
+                    "Docile": 1,
+                    "Hardi.e": 2
+                }
+                },
+                {
+                "reponse": "Non.",
+                "scores": {
+                    "Bizarre": 2
+                }
+                }
+            ]
+        },
+        "q5": {
+            "texte": "Êtes-vous capable de remercier quelqu'un avec sincérité ?",
+            "reponses": [
+                {
+                "reponse": "Oui.",
+                "scores": {
+                    "Calme": 1,
+                    "Docile": 2,
+                    "Bizarre": -1
+                }
+                },
+                {
+                "reponse": "Non.",
+                "scores": {
+                    "Bizarre": 1,
+                    "Malpoli.e": 2
+                }
+                }
+            ]
+        },
+        "q6": {
+            "texte": "Rêvez-vous parfois d'une vie paisible et sans rebondissements ?",
+            "reponses": [
+                {
+                "reponse": "Oui.",
+                "scores": {
+                    "Calme": 1,
+                    "Naïf.ve": 1
+                }
+                },
+                {
+                "reponse": "Non.",
+                "scores": {
+                    "Malin.e": 2
+                }
+                }
+            ]
+        },
+        "q7": {
+            "texte": "Vous arrive-t-il de vous endormir n'importe où ?",
+            "reponses": [
+                {
+                "reponse": "Oui.",
+                "scores": {
+                    "Calme": 1,
+                    "Relax": 2
+                }
+                },
+                {
+                "reponse": "Non.",
+                "scores": {
+                    "Hardi.e": 2
+                }
+                }
+            ]
+        },
+        "q8": {
+            "texte": "Cela vous embête-t-il de quitter la salle de classe en dernier en fin de journée ?",
+            "reponses": [
+                {
+                "reponse": "Oui.",
+                "scores": {
+                    "Solo": 2,
+                    "Timide": 1
+                }
+                },
+                {
+                "reponse": "Non.",
+                "scores": {
+                    "Brave": 1,
+                    "Solo": 2
+                }
+                }
+            ]
+        },
+        "q9": {
+            "texte": "Aimez-vous faire des farces ?",
+            "reponses": [
+                {
+                "reponse": "Oui.",
+                "scores": {
+                    "Malin.e": 2
+                }
+                },
+                {
+                "reponse": "Non.",
+                "scores": {
+                    "Docile": 1,
+                    "Malpoli.e": 1
+                }
+                }
+            ]
+        },
+        "q10": {
+            "texte": "Avez-vous tendance à imaginer des choses pour vous amuser ?",
+            "reponses": [
+                {
+                "reponse": "Oui.",
+                "scores": {
+                    "Relax": 2,
+                    "Jovial.e": 1
+                }
+                },
+                {
+                "reponse": "Non.",
+                "scores": {
+                    "Docile": 2,
+                    "Solo": 1
+                }
+                }
+            ]
+        },
+        "q11": {
+            "texte": "Bâillez-vous souvent ?",
+            "reponses": [
+                {
+                "reponse": "Oui.",
+                "scores": {
+                    "Calme": 2,
+                    "Relax": 1
+                }
+                },
+                {
+                "reponse": "Non.",
+                "scores": {
+                    "Hardi.e": 1,
+                    "Pressé.e": 2,
+                    "Relax": -1
+                }
+                }
+            ]
+        },
+        "q12": {
+            "texte": "Vous reproche-t-on souvent d'avoir des réactions puériles ?",
+            "reponses": [
+                {
+                "reponse": "Oui.",
+                "scores": {
+                    "Relax": 2
+                }
+                },
+                {
+                "reponse": "Non.",
+                "scores": {
+                    "Calme": 2
+                }
+                }
+            ]
+        },
+        "q13": {
+            "texte": "Vous dit-on souvent de faire attention à ce que vous dites ?",
+            "reponses": [
+                {
+                "reponse": "Oui.",
+                "scores": {
+                    "Malin.e": 1,
+                    "Malpoli.e": 2
+                }
+                },
+                {
+                "reponse": "Non.",
+                "scores": {
+                    "Calme": 2,
+                    "Malpoli.e": 1
+                }
+                }
+            ]
+        },
+        "q14": {
+            "texte": "Vous sentez-vous triste dans il n'y a personne avec vous ?",
+            "reponses": [
+                {
+                "reponse": "Oui.",
+                "scores": {
+                    "Relax": 2
+                }
+                },
+                {
+                "reponse": "Non.",
+                "scores": {
+                    "Solo": 2,
+                    "Brave": 1,
+                    "Timide": 1
+                }
+                }
+            ]
+        },
+        "q15": {
+            "texte": "Aimez-vous vous battre ?",
+            "reponses": [
+                {
+                "reponse": "Oui.",
+                "scores": {
+                    "Malin.e": 1,
+                    "Timide": 2
+                }
+                },
+                {
+                "reponse": "Non.",
+                "scores": {
+                    "Calme": 2,
+                    "Solo": 1
+                }
+                }
+            ]
+        },
+        "q16": {
+            "texte": "Vous considérez-vous parfois comme quelqu'un d'ennuyeux et de timoré ?",
+            "reponses": [
+                {
+                "reponse": "Oui.",
+                "scores": {
+                    "Calme": 2,
+                    "Solo": 1
+                }
+                },
+                {
+                "reponse": "Non.",
+                "scores": {
+                    "Hardi.e": 2,
+                    "Solo": 1
+                }
+                }
+            ]
+        },
+        "q17": {
+            "texte": "Vous arrive-t-il de perdre toute motivation ?",
+            "reponses": [
+                {
+                "reponse": "Oui.",
+                "scores": {
+                    "Bizarre": 2
+                }
+                },
+                {
+                "reponse": "Non.",
+                "scores": {
+                    "Hardi.e": 2
+                }
+                }
+            ]
+        },
+        "q18": {
+            "texte": "Avez-vous tendance à rire souvent ?",
+            "reponses": [
+                {
+                "reponse": "Oui.",
+                "scores": {
+                    "Docile": 2,
+                    "Naïf.ve": 1
+                }
+                },
+                {
+                "reponse": "Non.",
+                "scores": {
+                    "Bizarre": 2,
+                    "Timide": 1
+                }
+                }
+            ]
+        },
+        "q19": {
+            "texte": "Vous considérez-vous comme quelqu'un de cool ?",
+            "reponses": [
+                {
+                "reponse": "Oui.",
+                "scores": {
+                    "Malpoli.e": 2,
+                    "Bizarre": 1
+                }
+                },
+                {
+                "reponse": "Non.",
+                "scores": {
+                    "Relax": 2
+                }
+                }
+            ]
+        },
+        "q20": {
+            "texte": "Avez-vous déjà tendu un piège à quelqu'un ?",
+            "reponses": [
+                {
+                "reponse": "Oui.",
+                "scores": {
+                    "Solo": 1,
+                    "Malin.e": 2
+                }
+                },
+                {
+                "reponse": "Non.",
+                "scores": {
+                    "Calme": 2,
+                    "Timide": 1
+                }
+                }
+            ]
+        },
+        "q21": {
+            "texte": "Aimez-vous les festivals ?",
+            "reponses": [
+                {
+                "reponse": "Oui.",
+                "scores": {
+                    "Jovial.e": 2
+                }
+                },
+                {
+                "reponse": "Non.",
+                "scores": {
+                    "Bizarre": 1,
+                    "Malpoli.e": 1
+                }
+                }
+            ]
+        },
+        "q22": {
+            "texte": "En vacances, vous préférez…",
+            "reponses": [
+                {
+                "reponse": "La solitude.",
+                "scores": {
+                    "Solo": 2,
+                    "Timide": 1
+                }
+                },
+                {
+                "reponse": "Être en groupe.",
+                "scores": {
+                    "Jovial.e": 2,
+                    "Hardi.e": 1
+                }
+                }
+            ]
+        },
+        "q23": {
+            "texte": "On dit que vous êtes quelqu'un d'insolite. Comment le prenez-vous ?",
+            "reponses": [
+                {
+                "reponse": "Comme un compliment !",
+                "scores": {
+                    "Naïf.ve": 1,
+                    "Solo": 1
+                }
+                },
+                {
+                "reponse": "Mal…",
+                "scores": {
+                    "Malpoli.e": 2,
+                    "Pressé.e": 1
+                }
+                }
+            ]
+        },
+        "q24": {
+            "texte": "Vous entendez un cri de l'autre côté de la porte. Comment réagissez-vous ?",
+            "reponses": [
+                {
+                "reponse": "Je cours ouvrir la porte.",
+                "scores": {
+                    "Brave": 2,
+                    "Hardi.e": 1
+                }
+                },
+                {
+                "reponse": "Je cri aussi.",
+                "scores": {
+                    "Naïf.ve": 2,
+                    "Brave": -1
+                }
+                }
+            ]
+        },
+        "q25": {
+            "texte": "Quand vous allez vous coucher, laissez-vous la lumière allumée ?",
+            "reponses": [
+                {
+                "reponse": "Oui.",
+                "scores": {
+                    "Solo": 2,
+                    "Timide": 1
+                }
+                },
+                {
+                "reponse": "Non.",
+                "scores": {
+                    "Calme": 2
+                }
+                }
+            ]
+        },
+        "q26": {
+            "texte": "Vous ne vous laissez pas décourager par les difficultés. Vrai ou faux ?",
+            "reponses": [
+                {
+                "reponse": "Vrai.",
+                "scores": {
+                    "Hardi.e": 2
+                }
+                },
+                {
+                "reponse": "Faux.",
+                "scores": {
+                    "Bizarre": 2,
+                    "Malpoli.e": 2
+                }
+                }
+            ]
+        },
+        "q27": {
+            "texte": "On vous donne le choix entre deux cadeaux. Lequel choisissez-vous ?",
+            "reponses": [
+                {
+                "reponse": "Le gros. (gourmand va)",
+                "scores": {
+                    "Docile": 2,
+                    "Naïf.ve": 1
+                }
+                },
+                {
+                "reponse": "Le petit. (victime va)",
+                "scores": {
+                    "Calme": 1,
+                    "Timide": 2
+                }
+                }
+            ]
+        },
+        "q28": {
+            "texte": "Vous lâchez un pet dans votre chambre. Que faites-vous ?",
+            "reponses": [
+                {
+                "reponse": "J'ouvre vite la fenêtre.",
+                "scores": {
+                    "Docile": 2,
+                    "Pressé.e": 1
+                }
+                },
+                {
+                "reponse": "Je renifle pour voir ce que ça sent.",
+                "scores": {
+                    "Naïf.ve": 2,
+                    "Relax": 1
+                }
+                }
+            ]
+        },
+        "q29": {
+            "texte": "Vous décidez de faire du saut à l'élastique pour la première fois. Par précaution, vous faites d'abord un test avec une poupée… Mais l'élastique lâche ! Sautez-vous malgré tout ?",
+            "reponses": [
+                {
+                "reponse": "Oui. (Bizarre)",
+                "scores": {
+                    "Brave": 3,
+                    "Malin.e": 1,
+                    "Bizarre": 3
+                }
+                },
+                {
+                "reponse": "Non.",
+                "scores": {
+                    "Docile": 2,
+                    "Timide": 1
+                }
+                }
+            ]
+        },
+        "q30": {
+            "texte": "Un inconnu s'adresse à vous dans une langue étrangère. Vous ne comprenez absolument rien à ce qu'il dit. Comment réagissez-vous ?",
+            "reponses": [
+                {
+                "reponse": "Vous répondez : « Ha ha ! Tout à fait ! »",
+                "scores": {
+                    "Jovial.e": 3
+                }
+                },
+                {
+                "reponse": "Vous lui demandez de répéter.",
+                "scores": {
+                    "Hardi.e": 2
+                }
+                },
+                {
+                "reponse": "Vous partez en courant, vite et loin.",
+                "scores": {
+                    "Timide": 3,
+                    "Brave": -1
+                }
+                }
+            ]
+        },
+        "q31": {
+            "texte": "Une main sort des toilettes ! Que faites-vous ?",
+            "reponses": [
+                {
+                "reponse": "Je m'enfuis en hurlant.",
+                "scores": {
+                    "Timide": 2
+                }
+                },
+                {
+                "reponse": "Je referme la lunette sans dire un mot.",
+                "scores": {
+                    "Hardi.e": 1,
+                    "Calme": 1
+                }
+                },
+                {
+                "reponse": "Je la serre.",
+                "scores": {
+                    "Brave": 2,
+                    "Malin.e": 1,
+                    "Naïf.ve": 1
+                }
+                }
+            ]
+        },
+        "q32": {
+            "texte": "Un ami vous rapporte un objet que vous aviez oublié. Vous le remerciez…",
+            "reponses": [
+                {
+                "reponse": "Normalement.",
+                "scores": {
+                    "Docile": 2
+                }
+                },
+                {
+                "reponse": "En blaguant.",
+                "scores": {
+                    "Naïf.ve": 1,
+                    "Solo": 1
+                }
+                },
+                {
+                "reponse": "Avec désinvolture.",
+                "scores": {
+                    "Malpoli.e": 3
+                }
+                }
+            ]
+        },
+        "q33": {
+            "texte": "Vous avez un contrôle à préparer. Comment vous y prenez-vous ?",
+            "reponses": [
+                {
+                "reponse": "Je révise à fond.",
+                "scores": {
+                    "Calme": 2,
+                    "Docile": 1
+                }
+                },
+                {
+                "reponse": "Je m'y mets à la dernière minute.",
+                "scores": {
+                    "Relax": 2
+                }
+                },
+                {
+                "reponse": "Je m'amuse au lieu de réviser.",
+                "scores": {
+                    "Malin.e": 2
+                }
+                }
+            ]
+        },
+        "q34": {
+            "texte": "Oseriez-vous entrer dans une maison hantée ?",
+            "reponses": [
+                {
+                "reponse": "Sans aucun problème !",
+                "scores": {
+                    "Brave": 3
+                }
+                },
+                {
+                "reponse": "Euh…non…",
+                "scores": {
+                    "Timide": 1
+                }
+                },
+                {
+                "reponse": "Oui, avec quelqu'un.",
+                "scores": {
+                    "Malpoli.e": 2
+                }
+                }
+            ]
+        },
+        "q35": {
+            "texte": "Aimez-vous les mauvais jeux de mots ?",
+            "reponses": [
+                {
+                "reponse": "J'adore ça !",
+                "scores": {
+                    "Malin.e": 1,
+                    "Naïf.ve": 2
+                }
+                },
+                {
+                "reponse": "Parfois, oui",
+                "scores": {
+                    "Jovial.e": 3
+                }
+                },
+                {
+                "reponse": "Pitié, tout mais pas ça. ",
+                "scores": {
+                    "Malpoli.e": 2
+                }
+                }
+            ]
+        },
+        "q36": {
+            "texte": "Comment répondez-vous à un message ?",
+            "reponses": [
+                {
+                "reponse": "Je réponds immédiatement.",
+                "scores": {
+                    "Hardi.e": 2,
+                    "Pressé.e": 1
+                }
+                },
+                {
+                "reponse": "Parfois je réponds, parfois non.",
+                "scores": {
+                    "Bizarre": 2
+                }
+                },
+                {
+                "reponse": "Je ne réponds pas, c'est trop fatigant.",
+                "scores": {
+                    "Malpoli.e": 2
+                }
+                }
+            ]
+        },
+        "q37": {
+            "texte": "Vous êtes à la plage et le temps est superbe. Comment vous sentez-vous ?",
+            "reponses": [
+                {
+                "reponse": "Super bien !",
+                "scores": {
+                    "Jovial.e": 2
+                }
+                },
+                {
+                "reponse": "Bien, je me repose...",
+                "scores": {
+                    "Relax": 2
+                }
+                },
+                {
+                "reponse": "J'ai envie de rentré",
+                "scores": {
+                    "Pressé.e": 2,
+                    "Timide": 1
+                }
+                }
+            ]
+        },
+        "q38": {
+            "texte": "C'est le week-end, mais personne ne veut jouer avec vous… Que faites-vous ?",
+            "reponses": [
+                {
+                "reponse": "Je pars en excursion.",
+                "scores": {
+                    "Solo": 2,
+                    "Brave": 1
+                }
+                },
+                {
+                "reponse": "Je paresse.",
+                "scores": {
+                    "Calme": 1,
+                    "Relax": 2
+                }
+                },
+                {
+                "reponse": "Je boude dans un coin.",
+                "scores": {
+                    "Solo": 2,
+                    "Timide": 1
+                }
+                }
+            ]
+        },
+        "q39": {
+            "texte": "Les vacances d'été commencent ! Où aimeriez-vous aller ?",
+            "reponses": [
+                {
+                "reponse": "A la plage",
+                "scores": {
+                    "Jovial.e": 2
+                }
+                },
+                {
+                "reponse": "A la montagne",
+                "scores": {
+                    "Solo": 2
+                }
+                },
+                {
+                "reponse": "Ça m'est égal.",
+                "scores": {
+                    "Relax": 2,
+                    "Bizarre": 1
+                }
+                }
+            ]
+        },
+        "q40": {
+            "texte": "La route se divise en deux chemins. On vous dit que celui de droite mène à un trésor. Quel chemin prenez-vous ?",
+            "reponses": [
+                {
+                "reponse": "Celui de droite, sans hésiter ! ",
+                "scores": {
+                    "Docile": 2,
+                    "Naïf.ve": 1
+                }
+                },
+                {
+                "reponse": "C'est un piège ! Je vais à gauche.",
+                "scores": {
+                    "Malpoli.e": 2
+                }
+                },
+                {
+                "reponse": "Je suis mon instinct.",
+                "scores": {
+                    "Solo": 1,
+                    "Bizarre": 2
+                }
+                }
+            ]
+        },
+        "q41": {
+            "texte": "Je le dépose au commissariat.",
+            "reponses": [
+                {
+                "reponse": "Celui de droite, sans hésiter !",
+                "scores": {
+                    "Docile": 2
+                }
+                },
+                {
+                "reponse": "Je me réjouis !",
+                "scores": {
+                    "Naïf.ve": 2,
+                    "Malpoli.e": 1
+                }
+                },
+                {
+                "reponse": "Je vérifie qu'il n'y a personne autour…",
+                "scores": {
+                    "Malin.e": 2
+                }
+                }
+            ]
+        },
+        "q42": {
+            "texte": "On vous enferme par erreur dans une pièce plongée dans le noir ! Que faites-vous ?",
+            "reponses": [
+                {
+                "reponse": "J'enfonce la porte.",
+                "scores": {
+                    "Brave": 2
+                }
+                },
+                {
+                "reponse": "Je pleure.",
+                "scores": {
+                    "Timide": 2
+                }
+                },
+                {
+                "reponse": "J'en profite pour faire un peu de ménage.",
+                "scores": {
+                    "Malin.e": 2,
+                    "Bizarre": 1
+                }
+                }
+            ]
+        },
+        "q43": {
+            "texte": "Vous découvrez un coffre au trésor ! Que faites-vous ?",
+            "reponses": [
+                {
+                "reponse": "Je l'ouvre immédiatement !",
+                "scores": {
+                    "Brave": 1,
+                    "Pressé.e": 1
+                }
+                },
+                {
+                "reponse": "Rien... c'est un piège.",
+                "scores": {
+                    "Timide": 2
+                }
+                },
+                {
+                "reponse": "Rien, il est sûrement vide...",
+                "scores": {
+                    "Malpoli.e": 2
+                }
+                }
+            ]
+        },
+        "q44": {
+            "texte": "Vous recevez un cadeau ! Mais vous ignorez ce qu'il y a dedans. Cela pique votre curiosité…",
+            "reponses": [
+                {
+                "reponse": "Je l'ouvre sur-le-champ.",
+                "scores": {
+                    "Pressé.e": 2
+                }
+                },
+                {
+                "reponse": "Je l'ouvre plus tard.",
+                "scores": {
+                    "Calme": 2
+                }
+                },
+                {
+                "reponse": "Je demande à quelqu'un de me l'ouvrir.",
+                "scores": {
+                    "Timide": 1
+                }
+                }
+            ]
+        },
+        "q45": {
+            "texte": "Vous gagnez à la loterie ! Youpi ! Que faites-vous de l'argent ?",
+            "reponses": [
+                {
+                "reponse": "Je le dépense.",
+                "scores": {
+                    "Pressé.e": 1,
+                    "Jovial.e": 2
+                }
+                },
+                {
+                "reponse": "Je le mets de côté.",
+                "scores": {
+                    "Calme": 2
+                }
+                },
+                {
+                "reponse": "J'en fais don.",
+                "scores": {
+                    "Bizarre": 1,
+                    "Brave": 3
+                }
+                },
+                {
+                "reponse": "Je l'investi.",
+                "scores": {
+                    "Malin.e": 2
+                }
+                }
+            ]
+        },
+        "q46": {
+            "texte": "Un chef d'État se tient devant vous. Comment lui parlez-vous ?",
+            "reponses": [
+                {
+                "reponse": "Calmement.",
+                "scores": {
+                    "Hardi.e": 2
+                }
+                },
+                {
+                "reponse": "Nerveusement.",
+                "scores": {
+                    "Docile": 2,
+                    "Timide": 1
+                }
+                },
+                {
+                "reponse": "Comme à un ami.",
+                "scores": {
+                    "Malpoli.e": 2
+                }
+                }
+            ]
+        },
+        "q47": {
+            "texte": "L'ami à qui vous aviez donné rendez-vous est en retard. Que faites-vous ?",
+            "reponses": [
+                {
+                "reponse": "Je m'énerve.",
+                "scores": {
+                    "Docile": 1,
+                    "Pressé.e": 2
+                }
+                },
+                {
+                "reponse": "J'attends.",
+                "scores": {
+                    "Relax": 2
+                }
+                },
+                {
+                "reponse": "En colère, je pars.",
+                "scores": {
+                    "Pressé.e": 3
+                }
+                }
+            ]
+        },
+        "q48": {
+            "texte": "Un importun embête votre amie. Que faites-vous ?",
+            "reponses": [
+                {
+                "reponse": "Je lui demande d'arrêter, sinon...",
+                "scores": {
+                    "Brave": 3
+                }
+                },
+                {
+                "reponse": "Je le menace de loin.",
+                "scores": {
+                    "Timide": 2
+                }
+                },
+                {
+                "reponse": "Je lui joue un mauvais tour dans son dos.",
+                "scores": {
+                    "Malin.e": 2
+                }
+                }
+            ]
+        },
+        "q49": {
+            "texte": "Un voyou s'en prend à quelqu'un dans une rue animée du centre-ville ! Que faites-vous ?",
+            "reponses": [
+                {
+                "reponse": "J'interviens sans hésiter.",
+                "scores": {
+                    "Brave": 3
+                }
+                },
+                {
+                "reponse": "J'ai peur, mais j'interviens.",
+                "scores": {
+                    "Brave": 2,
+                    "Hardi.e": 2
+                }
+                },
+                {
+                "reponse": "J'appelle la police.",
+                "scores": {
+                    "Docile": 1,
+                    "Relax": 1,
+                    "Timide": 1
+                }
+                },
+                {
+                "reponse": "La peur me paralyse.",
+                "scores": {
+                    "Timide": 2
+                }
+                }
+            ]
+        },
+        "q50": {
+            "texte": "Une personne vous plaît bien, mais impossible de l'aborder. Que faites-vous ?",
+            "reponses": [
+                {
+                "reponse": "Je lui déclare ma flamme.",
+                "scores": {
+                    "Brave": 3,
+                    "Hardi.e": 1
+                }
+                },
+                {
+                "reponse": "J'essaie de mettre mes qualités en avant.",
+                "scores": {
+                    "Bizarre": 2
+                }
+                },
+                {
+                "reponse": "Je lui joue un tour.",
+                "scores": {
+                    "Malin.e": 2
+                }
+                },
+                {
+                "reponse": "Je l'admire de loin.",
+                "scores": {
+                    "Timide": 2
+                }
+                }
+            ]
+        },
+        "q51": {
+            "texte": "Votre ordinateur ne s'allume pas. Que faites-vous ?",
+            "reponses": [
+                {
+                "reponse": "Vous essayez de l'allumer à nouveau",
+                "scores": {
+                    "Relax": 2
+                }
+                },
+                {
+                "reponse": "Vous débranchez rebranchez le câble d'alimentation",
+                "scores": {
+                    "Malin.e": 2
+                }
+                },
+                {
+                "reponse": "Vous appelez un spécialiste.",
+                "scores": {
+                    "Docile": 2
+                }
+                },
+                {
+                "reponse": "Vous pleurez.",
+                "scores": {
+                    "Timide": 2
+                }
+                }
+            ]
+        },
+        "q52": {
+            "texte": "Vous partez à la guerre, quelle arme prennez-vous ?",
+            "reponses": [
+                {
+                "reponse": "Une épée. (boring)",
+                "scores": {
+                    "Bizarre": 2
+                }
+                },
+                {
+                "reponse": "Un arc. (boring)",
+                "scores": {
+                    "Bizarre": 2
+                }
+                },
+                {
+                "reponse": "Je fais pas la guerre. (boring)",
+                "scores": {
+                    "Bizarre": 2,
+                    "Malpoli.e": 1
+                }
+                },
+                {
+                "reponse": "Un guandao. (UwU)",
+                "scores": {
+                    "Solo": 2
+                }
+                }
+            ]
+        },
+        "q53": {
+            "texte": "Quelle porte êtes-vous ?",
+            "reponses": [
+                {
+                "reponse": "Une jolie porte d'un petit pavillon à Limoges.",
+                "scores": {
+                    "Jovial.e": 2
+                }
+                },
+                {
+                "reponse": "La porte d'un bunker.",
+                "scores": {
+                    "Brave": 3
+                }
+                },
+                {
+                "reponse": "Une porte sans aucun mur autour.",
+                "scores": {
+                    "Bizarre": 1,
+                    "Solo": 2
+                }
+                },
+                {
+                "reponse": "Une porte de toilettes publiques à Gare du Nord.",
+                "scores": {
+                    "Bizarre": 5,
+                    "Brave": 3,
+                    "Naïf.ve": 1
+                }
+                }
+            ]
+        },
+        "q54": {
+            "texte": "Si vous étiez un type de starter, lequel seriez-vous ?",
+            "reponses": [
+                {
+                "reponse": "Feu",
+                "scores": {
+                    "Bizarre": 3,
+                    "Naïf.ve": 1
+                }
+                },
+                {
+                "reponse": "Eau",
+                "scores": {
+                    "Malin.e": 2
+                }
+                },
+                {
+                "reponse": "Plante",
+                "scores": {
+                    "Timide": 2
+                }
+                },
+                {
+                "reponse": "Fée",
+                "scores": {
+                    "Bizarre": 1,
+                    "Malpoli.e": 1
+                }
+                }
+            ]
+        },
+        "q55": {
+            "texte": "Si vous deviez être une fonction en C, laquelle seriez-vous ?",
+            "reponses": [
+                {
+                "reponse": "put_char()",
+                "scores": {
+                    "Naïf.ve": 2,
+                    "Timide": 2
+                }
+                },
+                {
+                "reponse": "split()",
+                "scores": {
+                    "Brave": 3
+                }
+                },
+                {
+                "reponse": "printf()",
+                "scores": {
+                    "Hardi.e": 2,
+                    "Malin.e": 1
+                }
+                },
+                {
+                "reponse": "ft_get_next_line()",
+                "scores": {
+                    "Bizarre": 2
+                }
+                }
+            ]
+        },
+        "q56": {
+            "texte": "Qui gagne entre bombe qui tousse et bébé à hydrogène ?",
+            "reponses": [
+                {
+                "reponse": "Bombe qui tousse.",
+                "scores": {
+                    "Naïf.ve": 2
+                }
+                },
+                {
+                "reponse": "Bébé à hydrogène",
+                "scores": {
+                    "Brave": 3,
+                    "Relax": 1
+                }
+                }
+            ]
+        },
+        "q57": {
+            "texte": "Quelle est ta configuration de clavier ?",
+            "reponses": [
+                {
+                "reponse": "Qwerty. (Bizarre l'ambiance)",
+                "scores": {
+                    "Malin.e": 2
+                }
+                },
+                {
+                "reponse": "Azerty. (Dis bien)",
+                "scores": {
+                    "Brave": 3,
+                    "Jovial.e": 1
+                }
+                },
+                {
+                "reponse": "Qwertz. (???)",
+                "scores": {
+                    "Bizarre": 3
+                }
+                }
+            ]
+        },
+        "q58": {
+            "texte": "Si vous étiez un périphérique d'ordinateur, lequel seriez-vous ?",
+            "reponses": [
+                {
+                "reponse": "Une caméra.",
+                "scores": {
+                    "Bizarre": 2,
+                    "Malin.e": 1
+                }
+                },
+                {
+                "reponse": "Une imprimante.",
+                "scores": {
+                    "Docile": 1
+                }
+                },
+                {
+                "reponse": "Un pad numérique.",
+                "scores": {
+                    "Timide": 2
+                }
+                }
+            ]
+        },
+        "q59": {
+            "texte": "Quelle est ta méthode de communication préférée ?",
+            "reponses": [
+                {
+                "reponse": "A l'oral.",
+                "scores": {
+                    "Brave": 2,
+                    "Timide": -1
+                }
+                },
+                {
+                "reponse": "Par message.",
+                "scores": {
+                    "Pressé.e": 1,
+                    "Docile": 2
+                }
+                },
+                {
+                "reponse": "Par fax.",
+                "scores": {
+                    "Bizarre": 2
+                }
+                },
+                {
+                "reponse": "Par signaux de fumée.",
+                "scores": {
+                    "Brave": 2,
+                    "Bizarre": 3
+                }
+                }
+            ]
+        },
+        "q60": {
+            "texte": "Quelle note allez-vous mettre au projet ?",
+            "reponses": [
+                {
+                "reponse": "100/100",
+                "scores": {
+                    "Docile": 1
+                }
+                },
+                {
+                "reponse": "100/100",
+                "scores": {
+                    "Bizarre": 1
+                }
+                },
+                {
+                "reponse": "100/100",
+                "scores": {
+                    "Malin.e": 1
+                }
+                }
+            ]
+        }
+    }
+}
