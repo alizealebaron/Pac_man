@@ -1,202 +1,198 @@
 [
     {
-        "lst_data_pokemon": [
-        {
-            "name": "Absol",
-            "width": 40,
-            "height": 48,
-            "nb_anim": 4,
-            "comportement": "Solo"
-        },
-        {
-            "name": "Axew",
-            "width": 24,
-            "height": 40,
-            "nb_anim": 4,
-            "comportement": "Hardi.e"
-        },
-        {
-            "name": "Beldum",
-            "width": 32,
-            "height": 48,
-            "nb_anim": 8,
-            "comportement": "Calme"
-        },
-        {
-            "name": "Bulbasaur",
-            "width": 40,
-            "height": 40,
-            "nb_anim": 6,
-            "comportement": "Jovial.e"
-        },
-        {
-            "name": "Charmander",
-            "width": 32,
-            "height": 32,
-            "nb_anim": 4,
-            "comportement": "Malpoli.e"
-        },
-        {
-            "name": "Chimchar",
-            "width": 32,
-            "height": 48,
-            "nb_anim": 7,
-            "comportement": "Naïf.ve"
-        },
-        {
-            "name": "Ditto",
-            "width": 32,
-            "height": 32,
-            "nb_anim": 5,
-            "comportement": "Bizarre"
-        },
-        {
-            "name": "Ducklett",
-            "width": 24,
-            "height": 40,
-            "nb_anim": 4,
-            "comportement": "Docile"
-        },
-        {
-            "name": "Eevee",
-            "width": 40,
-            "height": 48,
-            "nb_anim": 7,
-            "comportement": "Jovial.e"
-        },
-        {
-            "name": "Fidough",
-            "width": 32,
-            "height": 32,
-            "nb_anim": 6,
-            "comportement": "Brave"
-        },
-        {
-            "name": "Gible",
-            "width": 24,
-            "height": 40,
-            "nb_anim": 4,
-            "comportement": "Hardi.e"
-        },
-        {
-            "name": "Hisuian_Sneasel",
-            "width": 32,
-            "height": 48,
-            "nb_anim": 4,
-            "comportement": "Malin.e"
-        },
-        {
-            "name": "Hisuian_Zorua",
-            "width": 32,
-            "height": 48,
-            "nb_anim": 5,
-            "comportement": "Timide"
-        },
-        {
-            "name": "Larvesta",
-            "width": 32,
-            "height": 40,
-            "nb_anim": 3,
-            "comportement": "Malin.e"
-        },
-        {
-            "name": "Mawile",
-            "width": 40,
-            "height": 40,
-            "nb_anim": 4,
-            "comportement": "Solo"
-        },
-        {
-            "name": "Mimikyu",
-            "width": 40,
-            "height": 40,
-            "nb_anim": 4,
-            "comportement": "Bizarre"
-        },
-        {
-            "name": "Muchlex",
-            "width": 24,
-            "height": 40,
-            "nb_anim": 4,
-            "comportement": "Relax"
-        },
-        {
-            "name": "Pikachu",
-            "width": 32,
-            "height": 40,
-            "nb_anim": 4,
-            "comportement": "Docile"
-        },
-        {
-            "name": "Psyduck",
-            "width": 24,
-            "height": 40,
-            "nb_anim": 4,
-            "comportement": "Relax"
-        },
-        {
-            "name": "Ralts",
-            "width": 24,
-            "height": 32,
-            "nb_anim": 4,
-            "comportement": "Timide"
-        },
-        {
-            "name": "Riolu",
-            "width": 24,
-            "height": 40,
-            "nb_anim": 4,
-            "comportement": "Pressé.e"
-        },
-        {
-            "name": "Sableye",
-            "width": 24,
-            "height": 40,
-            "nb_anim": 4,
-            "comportement": "Malpoli.e"
-        },
-        {
-            "name": "Shuppet",
-            "width": 24,
-            "height": 48,
-            "nb_anim": 6,
-            "comportement": "Solo"
-        },
-        {
-            "name": "Spheal",
-            "width": 32,
-            "height": 32,
-            "nb_anim": 6,
-            "comportement": "Naïf.ve"
-        },
-        {
-            "name": "Squirtle",
-            "width": 32,
-            "height": 32,
-            "nb_anim": 4,
-            "comportement": "Brave"
-        },
-        {
-            "name": "Treeko",
-            "width": 32,
-            "height": 32,
-            "nb_anim": 4,
-            "comportement": "Malpoli.e"
-        },
-        {
-            "name": "Turtwig",
-            "width": 24,
-            "height": 32,
-            "nb_anim": 4,
-            "comportement": "Calme"
-        },
-        {
-            "name": "Wingull",
-            "width": 32,
-            "height": 40,
-            "nb_anim": 4,
-            "comportement": "Pressé.e"
-        }
-        ]
+        "name": "Absol",
+        "width": 40,
+        "height": 48,
+        "nb_anim": 4,
+        "comportement": "Solo"
+    },
+    {
+        "name": "Axew",
+        "width": 24,
+        "height": 40,
+        "nb_anim": 4,
+        "comportement": "Hardi.e"
+    },
+    {
+        "name": "Beldum",
+        "width": 32,
+        "height": 48,
+        "nb_anim": 8,
+        "comportement": "Calme"
+    },
+    {
+        "name": "Bulbasaur",
+        "width": 40,
+        "height": 40,
+        "nb_anim": 6,
+        "comportement": "Jovial.e"
+    },
+    {
+        "name": "Charmander",
+        "width": 32,
+        "height": 32,
+        "nb_anim": 4,
+        "comportement": "Malpoli.e"
+    },
+    {
+        "name": "Chimchar",
+        "width": 32,
+        "height": 48,
+        "nb_anim": 7,
+        "comportement": "Naïf.ve"
+    },
+    {
+        "name": "Ditto",
+        "width": 32,
+        "height": 32,
+        "nb_anim": 5,
+        "comportement": "Bizarre"
+    },
+    {
+        "name": "Ducklett",
+        "width": 24,
+        "height": 40,
+        "nb_anim": 4,
+        "comportement": "Docile"
+    },
+    {
+        "name": "Eevee",
+        "width": 40,
+        "height": 48,
+        "nb_anim": 7,
+        "comportement": "Jovial.e"
+    },
+    {
+        "name": "Fidough",
+        "width": 32,
+        "height": 32,
+        "nb_anim": 6,
+        "comportement": "Brave"
+    },
+    {
+        "name": "Gible",
+        "width": 24,
+        "height": 40,
+        "nb_anim": 4,
+        "comportement": "Hardi.e"
+    },
+    {
+        "name": "Hisuian_Sneasel",
+        "width": 32,
+        "height": 48,
+        "nb_anim": 4,
+        "comportement": "Malin.e"
+    },
+    {
+        "name": "Hisuian_Zorua",
+        "width": 32,
+        "height": 48,
+        "nb_anim": 5,
+        "comportement": "Timide"
+    },
+    {
+        "name": "Larvesta",
+        "width": 32,
+        "height": 40,
+        "nb_anim": 3,
+        "comportement": "Malin.e"
+    },
+    {
+        "name": "Mawile",
+        "width": 40,
+        "height": 40,
+        "nb_anim": 4,
+        "comportement": "Solo"
+    },
+    {
+        "name": "Mimikyu",
+        "width": 40,
+        "height": 40,
+        "nb_anim": 4,
+        "comportement": "Bizarre"
+    },
+    {
+        "name": "Muchlex",
+        "width": 24,
+        "height": 40,
+        "nb_anim": 4,
+        "comportement": "Relax"
+    },
+    {
+        "name": "Pikachu",
+        "width": 32,
+        "height": 40,
+        "nb_anim": 4,
+        "comportement": "Docile"
+    },
+    {
+        "name": "Psyduck",
+        "width": 24,
+        "height": 40,
+        "nb_anim": 4,
+        "comportement": "Relax"
+    },
+    {
+        "name": "Ralts",
+        "width": 24,
+        "height": 32,
+        "nb_anim": 4,
+        "comportement": "Timide"
+    },
+    {
+        "name": "Riolu",
+        "width": 24,
+        "height": 40,
+        "nb_anim": 4,
+        "comportement": "Pressé.e"
+    },
+    {
+        "name": "Sableye",
+        "width": 24,
+        "height": 40,
+        "nb_anim": 4,
+        "comportement": "Malpoli.e"
+    },
+    {
+        "name": "Shuppet",
+        "width": 24,
+        "height": 48,
+        "nb_anim": 6,
+        "comportement": "Solo"
+    },
+    {
+        "name": "Spheal",
+        "width": 32,
+        "height": 32,
+        "nb_anim": 6,
+        "comportement": "Naïf.ve"
+    },
+    {
+        "name": "Squirtle",
+        "width": 32,
+        "height": 32,
+        "nb_anim": 4,
+        "comportement": "Brave"
+    },
+    {
+        "name": "Treeko",
+        "width": 32,
+        "height": 32,
+        "nb_anim": 4,
+        "comportement": "Malpoli.e"
+    },
+    {
+        "name": "Turtwig",
+        "width": 24,
+        "height": 32,
+        "nb_anim": 4,
+        "comportement": "Calme"
+    },
+    {
+        "name": "Wingull",
+        "width": 32,
+        "height": 40,
+        "nb_anim": 4,
+        "comportement": "Pressé.e"
     }
 ]

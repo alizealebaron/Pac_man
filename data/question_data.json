@@ -8,7 +8,7 @@
             "texte": "Y a-t-il beaucoup de choses que vous rêvez de faire ?",
             "reponses": [
                 {
-                "texte": "Oui.",
+                "reponse": "Oui.",
                 "scores": {
                     "Hardi.e": 1,
                     "Malin.e": 2,
@@ -16,7 +16,7 @@
                 }
                 },
                 {
-                "texte": "Non.",
+                "reponse": "Non.",
                 "scores": {
                     "Bizarre": 2,
                     "Malpoli.e": 1
@@ -1143,7 +1143,7 @@
                 }
                 },
                 {
-                "reponse": "La porte d'un bunker.",
+                "reponse": "La porte d'un bunker dans la creuse.",
                 "scores": {
                     "Brave": 3
                 }

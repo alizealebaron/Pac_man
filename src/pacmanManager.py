@@ -6,7 +6,7 @@
 #  By: alebaron, rruiz                           +#+  +:+       +#+         #
 #                                              +#+#+#+#+#+   +#+            #
 #  Created: 2026/05/21 13:04:41 by alebaron        #+#    #+#               #
-#  Updated: 2026/05/25 20:57:03 by alebaron        ###   ########.fr        #
+#  Updated: 2026/05/26 01:32:31 by alebaron        ###   ########.fr        #
 #                                                                           #
 # ************************************************************************* #
 
@@ -21,6 +21,8 @@ from src.models.configmodel import ConfigModel, LevelConfig
 from src.models.scoreModel import Score
 from src.models.playerModel import PlayerModel
 from src.models.levelModel import Level
+from src.models.questionModel import DataQuestionsModel
+from src.models.pokemonModel import PokemonModel
 
 # +-------------------------------------------------------------------------+
 # |                                  CONST                                  |
@@ -28,6 +30,8 @@ from src.models.levelModel import Level
 
 
 SCORE_FILE = "data/score.json"
+QUESTIONS_FILE = "data/question_data.json"
+POKEMONS_FILE = "data/pokemon_data.json"
 
 
 # +-------------------------------------------------------------------------+
@@ -54,6 +58,11 @@ class PacmanManager():
         # Récupération du scoreboard
         self.scoreboard = self.retrieve_score_from_json()
 
+        # Récupération des questions
+        self.questions = self.retrieve_questions_from_json()
+
+        # Récupérations des datas de pokémons
+        self.pokemons = self.retrieve_pokemon_data_from_json()
 
     # +---------------------------------------------------------------------+
     # |                            JSON Methods                             |
@@ -81,9 +90,32 @@ class PacmanManager():
         with open(SCORE_FILE, "w") as f:
             json.dump(dict_data, f, indent=2)
 
-
     def create_maps(self, level: list[LevelConfig]) -> list[Level]:
         level_list: list[Level] = []
         for map in level:
             level_list.append(Level(map.id, map.width, map.height))
         return level_list
+
+    def retrieve_questions_from_json(self):
+
+        with open(QUESTIONS_FILE, "r") as file:
+            data_dict = json.load(file)
+
+        data = DataQuestionsModel.model_validate(data_dict)
+
+        return data
+
+    def retrieve_pokemon_data_from_json(self):
+
+        lst_pokemon = []
+
+        try:
+            with open(POKEMONS_FILE, "r") as file:
+                data = json.load(file)
+                lst_pokemon = [PokemonModel(**arg) for arg in data]
+        except json.JSONDecodeError as e:
+            raise (e)
+        except Exception as e:
+            raise (e)
+
+        return lst_pokemon
