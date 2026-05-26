@@ -6,7 +6,7 @@
 #  By: alebaron, rruiz                           +#+  +:+       +#+         #
 #                                              +#+#+#+#+#+   +#+            #
 #  Created: 2026/05/20 13:11:07 by alebaron        #+#    #+#               #
-#  Updated: 2026/05/25 20:38:31 by alebaron        ###   ########.fr        #
+#  Updated: 2026/05/26 03:38:03 by alebaron        ###   ########.fr        #
 #                                                                           #
 # ************************************************************************* #
 
@@ -49,7 +49,7 @@ class GameView(arcade.View):
         """ Initializer """
         # Call the parent class initializer
         super().__init__()
-        
+
         # Récupération de la hauteur et de la largeur
         self.largeur = self.window.width
         self.hauteur = self.window.height
