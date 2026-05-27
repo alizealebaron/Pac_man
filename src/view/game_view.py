@@ -6,7 +6,7 @@
 #  By: rruiz <rruiz@student.42.fr>               +#+  +:+       +#+         #
 #                                              +#+#+#+#+#+   +#+            #
 #  Created: 2026/05/20 13:11:07 by alebaron        #+#    #+#               #
-#  Updated: 2026/05/27 14:56:29 by rruiz           ###   ########.fr        #
+#  Updated: 2026/05/27 15:02:03 by rruiz           ###   ########.fr        #
 #                                                                           #
 # ************************************************************************* #
 
@@ -90,6 +90,7 @@ class GameView(arcade.View):
 
         self.maze_sprites.draw()
         self.pacgums_sprites.draw()
+        self.player_sprites.draw()
 
         pixel_x = self.manager.player.x * TILE_SIZE + 32 + self.manager.player.pixel_offset_x
         pixel_y = self.manager.player.y * TILE_SIZE + 32 + self.manager.player.pixel_offset_y

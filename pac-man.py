@@ -6,7 +6,7 @@
 #  By: rruiz <rruiz@student.42.fr>               +#+  +:+       +#+         #
 #                                              +#+#+#+#+#+   +#+            #
 #  Created: 2026/05/18 16:14:42 by alebaron        #+#    #+#               #
-#  Updated: 2026/05/27 14:51:08 by rruiz           ###   ########.fr        #
+#  Updated: 2026/05/27 15:01:07 by rruiz           ###   ########.fr        #
 #                                                                           #
 # ************************************************************************* #
 
@@ -48,7 +48,7 @@ def main() -> None:
 
         # Affichage de la fenêtre de début de jeu
 
-        _ = MainWindow(title=SCREEN_TITLE, fullscreen=True, manager=manager)
+        _ = MainWindow(title=SCREEN_TITLE, fullscreen=False, manager=manager)
         arcade.run()
 
     except KeyboardInterrupt:
