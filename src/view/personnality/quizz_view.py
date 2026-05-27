@@ -6,7 +6,7 @@
 #  By: alebaron, rruiz                           +#+  +:+       +#+         #
 #                                              +#+#+#+#+#+   +#+            #
 #  Created: 2026/05/26 04:44:09 by alebaron        #+#    #+#               #
-#  Updated: 2026/05/27 16:07:39 by alebaron        ###   ########.fr        #
+#  Updated: 2026/05/27 16:52:18 by alebaron        ###   ########.fr        #
 #                                                                           #
 # ************************************************************************* #
 
@@ -19,6 +19,7 @@ import arcade
 import random
 from typing import Any, List
 from src.models.questionModel import QuestionModel
+from src.view.personnality.quizz_result_view import ResultQuizzView
 
 # +-------------------------------------------------------------------------+
 # |                                 CONST                                   |
@@ -63,11 +64,6 @@ class QuizzView(arcade.View):
 
         # Initialisation du caractère
         self.dict_caracteres = self.get_dict_caracteres()
-        self.caractere = None
-        self.index_carac = 0
-
-        # Pokémon généré
-        self.random_pokemon = None
 
     # +---------------------------------------------------------------------+
     # |                            Init Methods                             |
@@ -131,9 +127,6 @@ class QuizzView(arcade.View):
         # Affichage de la question actuelle
         if self.index_question < len(self.lst_questions):
             self.draw_actual_question()
-        elif (self.index_question == len(self.lst_questions) and
-              self.index_carac != -2):
-            self.write_end_text()
 
     def on_mouse_press(self, x, y, _, __):
 
@@ -157,12 +150,11 @@ class QuizzView(arcade.View):
             if self.index_question < len(self.lst_questions):
                 self.update_score()
                 self.index_question += 1
-            elif self.index_carac == -2:
-                self.window.manager.player.pokemon = self.random_pokemon.name
-                self.music.stop(self.music_player)
-                self.window.show_view(self.window.start_view)
-            elif self.index_question == len(self.lst_questions):
-                self.index_carac += 1
+            elif self.index_question == len(self.lst_questions) and self:
+                self.window.show_view(ResultQuizzView(self.window,
+                                                      self.music_player,
+                                                      self.music,
+                                                      self.dict_caracteres))
 
     # +---------------------------------------------------------------------+
     # |                           Update Methods                            |
@@ -178,80 +170,6 @@ class QuizzView(arcade.View):
     # +---------------------------------------------------------------------+
     # |                            Draw Methods                             |
     # +---------------------------------------------------------------------+
-
-    def draw_pokemon(self):
-
-        possible_pokemon = [obj for obj in self.window.manager.pokemons
-                            if obj.comportement == self.caractere]
-
-        if self.random_pokemon is None:
-            self.random_pokemon = random.choice(possible_pokemon)
-
-        sprite = arcade.load_texture(f"assets/sprite/pokemon/"
-                                     f"{self.random_pokemon.name}"
-                                     "/portraits/Normal.png")
-        sprite_size = 150
-
-        arcade.draw_texture_rect(
-            texture=sprite,
-            rect=arcade.XYWH(self.width / 2,
-                             self.height / 2,
-                             sprite_size,
-                             sprite_size)
-        )
-
-        sprite_frame = arcade.load_texture("assets/sprite/face_frame.png")
-        arcade.draw_texture_rect(
-            texture=sprite_frame,
-            rect=arcade.XYWH(self.width / 2,
-                             self.height / 2,
-                             sprite_size + 15,
-                             sprite_size + 15)
-        )
-
-        center_x = self.width / 2
-        center_y = self.height / 2
-        texte = arcade.Text(self.random_pokemon.name,
-                            center_x,
-                            center_y - sprite_size / 2 - 40,
-                            align="center",
-                            color=arcade.color.WHITE,
-                            font_size=20,
-                            font_name="FOT-Humming Pro",
-                            anchor_x="center",
-                            anchor_y="center")
-
-        texte.draw()
-
-    def write_end_text(self):
-
-        self.caractere = max(self.dict_caracteres,
-                             key=lambda key: self.dict_caracteres[key])
-
-        if (self.index_carac > 0):
-
-            data_questions = self.window.manager.data_questions
-            lst_phrase = data_questions.caracteres[self.caractere].split("\n")
-
-            center_x = self.width / 2
-            center_y = self.height / 2
-            texte = arcade.Text(lst_phrase[self.index_carac],
-                                center_x,
-                                center_y,
-                                align="center",
-                                color=arcade.color.WHITE,
-                                font_size=20,
-                                font_name="FOT-Humming Pro",
-                                anchor_x="center",
-                                anchor_y="center")
-
-            texte.draw()
-
-            if ((len(lst_phrase) - 1) == self.index_carac):
-                self.index_carac = -1
-        else:
-            self.draw_pokemon()
-            self.index_carac = -2
 
     def draw_actual_question(self):
 

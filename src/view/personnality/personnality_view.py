@@ -6,7 +6,7 @@
 #  By: alebaron, rruiz                           +#+  +:+       +#+         #
 #                                              +#+#+#+#+#+   +#+            #
 #  Created: 2026/05/26 01:33:59 by alebaron        #+#    #+#               #
-#  Updated: 2026/05/27 08:33:04 by alebaron        ###   ########.fr        #
+#  Updated: 2026/05/27 17:03:21 by alebaron        ###   ########.fr        #
 #                                                                           #
 # ************************************************************************* #
 
@@ -15,7 +15,7 @@
 # +-------------------------------------------------------------------------+
 
 import arcade
-from src.view.quizz_view import QuizzView
+from src.view.personnality.quizz_view import QuizzView
 
 # +-------------------------------------------------------------------------+
 # |                                 CONST                                   |
@@ -147,7 +147,7 @@ class PersonnalityView(arcade.View):
             self.selected_reponse = ((self.selected_reponse + 1) %
                                      len(self.reponses))
 
-        if key == arcade.key.ENTER:
+        if key == arcade.key.ENTER or key == arcade.key.SPACE:
             if self.selected_reponse == 0:
                 self.window.show_view(QuizzView(self.window,
                                                 self.music_player,

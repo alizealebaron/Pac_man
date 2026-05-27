@@ -6,7 +6,7 @@
 #  By: alebaron, rruiz                           +#+  +:+       +#+         #
 #                                              +#+#+#+#+#+   +#+            #
 #  Created: 2026/05/20 10:28:01 by alebaron        #+#    #+#               #
-#  Updated: 2026/05/27 08:33:18 by alebaron        ###   ########.fr        #
+#  Updated: 2026/05/27 16:27:47 by alebaron        ###   ########.fr        #
 #                                                                           #
 # ************************************************************************* #
 
@@ -18,7 +18,7 @@ import arcade
 from src.view.game_view import GameView
 from src.view.scoreboard_view import ScoreboardView
 from src.view.settings_view import SettingsView
-from src.view.personnality_view import PersonnalityView
+from src.view.personnality.personnality_view import PersonnalityView
 
 # +-------------------------------------------------------------------------+
 # |                                 CONST                                   |
