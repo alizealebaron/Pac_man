@@ -6,7 +6,7 @@
 #  By: alebaron, rruiz                           +#+  +:+       +#+         #
 #                                              +#+#+#+#+#+   +#+            #
 #  Created: 2026/05/26 01:33:59 by alebaron        #+#    #+#               #
-#  Updated: 2026/05/26 04:13:42 by alebaron        ###   ########.fr        #
+#  Updated: 2026/05/27 17:03:21 by alebaron        ###   ########.fr        #
 #                                                                           #
 # ************************************************************************* #
 
@@ -15,6 +15,7 @@
 # +-------------------------------------------------------------------------+
 
 import arcade
+from src.view.personnality.quizz_view import QuizzView
 
 # +-------------------------------------------------------------------------+
 # |                                 CONST                                   |
@@ -48,6 +49,10 @@ class PersonnalityView(arcade.View):
         # Initialisation de la musique
         self.music_player = None
 
+        # Initalisation des questions
+        self.reponses = ["Oui", "Non"]
+        self.selected_reponse = 0
+
     # +---------------------------------------------------------------------+
     # |                            View Methods                             |
     # +---------------------------------------------------------------------+
@@ -55,8 +60,7 @@ class PersonnalityView(arcade.View):
     def on_show_view(self):
         """Appelé quand la vue change"""
         if not (self.music_player and self.music_player.playing):
-            self.music = arcade.Sound(MUSIC_PATH,
-                                      streaming=True)
+            self.music = arcade.Sound(MUSIC_PATH)
             self.music_player = self.music.play(volume=1, loop=True)
 
     def on_draw(self):
@@ -91,25 +95,40 @@ class PersonnalityView(arcade.View):
         self.draw_begin_text()
 
         # Affichage des deux premières réponses
-        reponses = ["Oui", "Non"]
-        selected_reponse = reponses[0]
 
-        start_y = self.window.height * 0.75
+        start_y = self.window.height * 0.5
         space_between = 150
 
-        for reponse in reponses:
+        for reponse in self.reponses:
 
-            if (reponse is selected_reponse):
+            if (reponse is self.reponses[self.selected_reponse]):
                 question_sprite = arcade.load_texture(SELECTED_PATH)
             else:
                 question_sprite = arcade.load_texture(UNSELECTED_PATH)
 
+            sprite_width = self.window.width * 0.5
+            sprite_height = self.window.height * 0.09
+            center_x = self.width / 2
+            center_y = start_y
+
             arcade.draw_texture_rect(
                 texture=question_sprite,
-                rect=arcade.XYWH(150, start_y,
-                                 self.window.width * 0.8,
-                                 self.window.height * 0.2)
+                rect=arcade.XYWH(center_x, center_y, sprite_width,
+                                 sprite_height)
             )
+
+            texte = arcade.Text(
+                text=reponse,
+                x=center_x,
+                y=center_y,
+                color=arcade.color.WHITE,
+                font_size=16,
+                anchor_x="center",
+                anchor_y="center"
+            )
+            texte.draw()
+
+            start_y += space_between
 
     def on_mouse_press(self, x, y, _, __):
 
@@ -118,12 +137,31 @@ class PersonnalityView(arcade.View):
             self.music.stop(self.music_player)
             self.window.show_view(self.window.start_view)
 
+    def on_key_press(self, key, modifiers):
+
+        if key == arcade.key.Z:
+            self.selected_reponse = ((self.selected_reponse - 1) %
+                                     len(self.reponses))
+
+        if key == arcade.key.S:
+            self.selected_reponse = ((self.selected_reponse + 1) %
+                                     len(self.reponses))
+
+        if key == arcade.key.ENTER or key == arcade.key.SPACE:
+            if self.selected_reponse == 0:
+                self.window.show_view(QuizzView(self.window,
+                                                self.music_player,
+                                                self.music))
+            elif self.selected_reponse == 1:
+                self.music.stop(self.music_player)
+                self.window.show_view(self.window.start_view)
+
     # +---------------------------------------------------------------------+
     # |                            Draw methods                             |
     # +---------------------------------------------------------------------+
 
     def draw_begin_text(self):
-        
+
         text_content = "Vous vous apprêtez à réaliser un test de personnalité"
         text_content += " pour déterminer votre Pokémon."
         texte = arcade.Text(text_content,
