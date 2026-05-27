@@ -6,7 +6,7 @@
 #  By: alebaron, rruiz                           +#+  +:+       +#+         #
 #                                              +#+#+#+#+#+   +#+            #
 #  Created: 2026/05/26 01:33:59 by alebaron        #+#    #+#               #
-#  Updated: 2026/05/27 17:03:21 by alebaron        ###   ########.fr        #
+#  Updated: 2026/05/27 17:07:15 by alebaron        ###   ########.fr        #
 #                                                                           #
 # ************************************************************************* #
 
@@ -165,30 +165,36 @@ class PersonnalityView(arcade.View):
         text_content = "Vous vous apprêtez à réaliser un test de personnalité"
         text_content += " pour déterminer votre Pokémon."
         texte = arcade.Text(text_content,
-                            420,
-                            200,
-                            align="center",
-                            color=arcade.color.WHITE,
-                            font_size=20,
-                            font_name="FOT-Humming Pro")
-        texte.draw()
-
-        text_content = "Cela prendra quelques minutes."
-        texte = arcade.Text(text_content,
-                            750,
+                            self.width / 2,
                             150,
                             align="center",
                             color=arcade.color.WHITE,
                             font_size=20,
-                            font_name="FOT-Humming Pro")
+                            font_name="FOT-Humming Pro",
+                            anchor_x="center",
+                            anchor_y="center")
+        texte.draw()
+
+        text_content = "Cela prendra quelques minutes."
+        texte = arcade.Text(text_content,
+                            self.width / 2,
+                            100,
+                            align="center",
+                            color=arcade.color.WHITE,
+                            font_size=20,
+                            font_name="FOT-Humming Pro",
+                            anchor_x="center",
+                            anchor_y="center")
         texte.draw()
 
         text_content = "Voulez-vous continuer ?"
         texte = arcade.Text(text_content,
-                            810,
-                            95,
+                            self.width / 2,
+                            50,
                             align="center",
                             color=arcade.color.WHITE,
                             font_size=20,
-                            font_name="FOT-Humming Pro")
+                            font_name="FOT-Humming Pro",
+                            anchor_x="center",
+                            anchor_y="center")
         texte.draw()
