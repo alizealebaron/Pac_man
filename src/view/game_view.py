@@ -6,11 +6,7 @@
 #  By: rruiz <rruiz@student.42.fr>               +#+  +:+       +#+         #
 #                                              +#+#+#+#+#+   +#+            #
 #  Created: 2026/05/20 13:11:07 by alebaron        #+#    #+#               #
-<<<<<<< HEAD
-#  Updated: 2026/05/27 14:49:51 by rruiz           ###   ########.fr        #
-=======
-#  Updated: 2026/05/26 05:23:07 by rruiz           ###   ########.fr        #
->>>>>>> 5a8f8c7 (400 a paufiner (actuellement il est en space glide le frerot))
+#  Updated: 2026/05/27 14:55:09 by rruiz           ###   ########.fr        #
 #                                                                           #
 # ************************************************************************* #
 
@@ -36,16 +32,14 @@ south_wall = 'assets/sprite/wall/S.png'
 pacgum = 'assets/sprite/collectible/pacgum.png'
 super_pacgum = 'assets/sprite/collectible/super_pacgum.png'
 
-<<<<<<< HEAD
 BACKGROUND_PATH = "assets/background/game_background.png"
 MUSIC_PATH = "assets/music/game_theme.mp3"
 
-# +-    ------------------------------------------------------------------------+
-=======
-SPEED = 2
+SPEED = 2.0
+TILE_SIZE = 64
+TRANSITION_DISTANCE = 64
 
 # +-------------------------------------------------------------------------+
->>>>>>> 5a8f8c7 (400 a paufiner (actuellement il est en space glide le frerot))
 # |                                 Classe                                  |
 # +-------------------------------------------------------------------------+
 
@@ -70,20 +64,15 @@ class GameView(arcade.View):
         arcade.set_background_color(arcade.color.BLACK)
 
         self.manager = manager
-        self.maze_sprites: arcade.SpriteList = self._maze_to_draw(self.manager.level[0].maze.maze) 
-        self.pacgums_sprites: arcade.SpriteList = self._put_pacgum(self.manager.level[0].maze.maze)
+        self.current_maze = self.manager.level[0].maze.maze
+        self.rev_maze = self._rev_maze(self.current_maze)
+        self.maze_sprites: arcade.SpriteList = self._maze_to_draw() 
+        self.pacgums_sprites: arcade.SpriteList = self._put_pacgum()
 
-        self._player_original_pos(self.manager.level[0].maze.maze)
-        self.player_sprite = arcade.Sprite('assets/sprite/petit_fantom.png', center_x=self.manager.player.x, center_y=self.manager.player.y, scale=self.scale)
+        self._player_original_pos()
+        self.player_sprite = arcade.Sprite('assets/sprite/rond_de_merde.png', scale=self.scale)
         self.player_sprites = arcade.SpriteList()
         self.player_sprites.append(self.player_sprite)
-
-        self.display_x = (self.manager.player.x - 0.5) * 64 * self.scale + self.offset_x
-        self.display_y = (self.manager.player.y - 0.5) * 64 * self.scale + self.offset_y
-
-        self.is_moving = False
-        self.move_progress = 0.0
-        self.is_start = True
 
         # Music
         self.music_player = None
@@ -101,6 +90,12 @@ class GameView(arcade.View):
 
         self.maze_sprites.draw()
         self.pacgums_sprites.draw()
+
+        pixel_x = self.manager.player.x * TILE_SIZE + 32 + self.manager.player.pixel_offset_x
+        pixel_y = self.manager.player.y * TILE_SIZE + 32 + self.manager.player.pixel_offset_y
+        
+        self.player_sprite.center_x = pixel_x * self.scale + self.offset_x
+        self.player_sprite.center_y = pixel_y * self.scale + self.offset_y
         self.player_sprites.draw()
 
         # Affichage de l'UHD
@@ -108,32 +103,24 @@ class GameView(arcade.View):
 
     def on_update(self, delta_time):
         """ Movement and game logic """
-        old_x = self.manager.player.x
-        old_y = self.manager.player.y
-        self._player_move()
+        vx, vy = self._player_move()
 
-        if self.is_start:
-            self.player_sprite.center_x = self.display_x
-            self.player_sprite.center_y = self.display_y
-            self.is_start = False
+        self.manager.player.pixel_offset_x += vx * SPEED
+        self.manager.player.pixel_offset_y += vy * SPEED
 
-        if old_x != self.manager.player.x or old_y != self.manager.player.y:
-            self.is_moving = True
-            self.current_x = self.player_sprite.center_x
-            self.current_y = self.player_sprite.center_y
-            self.target_x, self.target_y = self.grid_to_screen(self.manager.player.x, self.manager.player.y)
-            self.move_progress = 0
+        if self.manager.player.pixel_offset_x >= TRANSITION_DISTANCE:
+            self.manager.player.x += 1
+            self.manager.player.pixel_offset_x = 0
+        elif self.manager.player.pixel_offset_x <= -TRANSITION_DISTANCE:
+            self.manager.player.x -= 1
+            self.manager.player.pixel_offset_x = 0
         
-        if self.is_moving:
-            self.move_progress += delta_time * SPEED
-            if self.move_progress >= 1.0:
-                self.is_moving = False
-                self.player_sprite.center_x = self.target_x
-                self.player_sprite.center_y = self.target_y
-                self.move_progress = 1.0
-            else:
-                self.player_sprite.center_x = self.current_x + (self.target_x - self.current_x) * self.move_progress
-                self.player_sprite.center_y = self.current_y + (self.target_y - self.current_y) * self.move_progress
+        if self.manager.player.pixel_offset_y >= TRANSITION_DISTANCE:
+            self.manager.player.y += 1
+            self.manager.player.pixel_offset_y = 0
+        elif self.manager.player.pixel_offset_y <= -TRANSITION_DISTANCE:
+            self.manager.player.y -= 1
+            self.manager.player.pixel_offset_y = 0
 
 
     def on_show_view(self):
@@ -146,10 +133,9 @@ class GameView(arcade.View):
     def _maze_to_draw(self, maze: list[list[int]]) -> arcade.SpriteList:
         sprites = arcade.SpriteList()
 
-        rev_maze: list[list[int]] = self._rev_maze(maze)
         wall_maze = []
         y = 0
-        for line in rev_maze:
+        for line in self.rev_maze:
             y += 1
             x = 0
             line_maze = []
@@ -169,10 +155,10 @@ class GameView(arcade.View):
                 line_maze.append(wall)
             wall_maze.append(line_maze)
 
-        nb_columns = len(rev_maze[0])
-        maze_width_size = nb_columns * 64
-        nb_lines = len(rev_maze)
-        maze_height_size = nb_lines * 64
+        nb_columns = len(self.rev_maze[0])
+        maze_width_size = nb_columns * TILE_SIZE
+        nb_lines = len(self.rev_maze)
+        maze_height_size = nb_lines * TILE_SIZE
 
         if self.window.width / maze_width_size > self.window.height / maze_height_size:
             self.scale = self.window.height / maze_height_size * 0.95
@@ -184,8 +170,8 @@ class GameView(arcade.View):
         for line in wall_maze:
             for cell in line:
                 for wall_path, x, y in cell:
-                    center_x = (x - 0.5) * 64 * self.scale + self.offset_x
-                    center_y = (y - 0.5) * 64 * self.scale + self.offset_y
+                    center_x = (x - 0.5) * TILE_SIZE * self.scale + self.offset_x
+                    center_y = (y - 0.5) * TILE_SIZE * self.scale + self.offset_y
                     sprite = arcade.Sprite(wall_path, center_x=center_x, center_y=center_y, scale=self.scale)
                     sprites.append(sprite)
 
@@ -195,15 +181,14 @@ class GameView(arcade.View):
         rev_maze: list[list[int]] = []
         for i in range(len(maze) - 1, -1, -1):
             rev_maze.append(maze[i])
-        
+
         return rev_maze
 
-    def _put_pacgum(self, maze: list[list[int]]) -> arcade.sprite_list:
+    def _put_pacgum(self) -> arcade.sprite_list:
         sprites = arcade.SpriteList()
-        rev_maze = self._rev_maze(maze)
  
-        nb_columns = len(rev_maze[0])
-        nb_lines = len(rev_maze)
+        nb_columns = len(self.rev_maze[0])
+        nb_lines = len(self.rev_maze)
 
         spacgum_coords = [(1, 1), (1, nb_lines), (nb_columns, 1),
                          (nb_columns, nb_lines)]
@@ -214,10 +199,10 @@ class GameView(arcade.View):
 
         for y in range(1, nb_lines + 1):
             for x in range(1, nb_columns + 1):
-                center_x = (x - 0.5) * 64 * self.scale + self.offset_x
-                center_y = (y - 0.5) * 64 * self.scale + self.offset_y
+                center_x = (x - 0.5) * TILE_SIZE * self.scale + self.offset_x
+                center_y = (y - 0.5) * TILE_SIZE * self.scale + self.offset_y
                 curr_coord = (x, y)
-                if rev_maze[y - 1][x - 1] == 15 or (x, y) == center:
+                if self.rev_maze[y - 1][x - 1] == 15 or (x, y) == center:
                     continue
                 elif curr_coord in spacgum_coords:
                     sprite = arcade.Sprite(super_pacgum, center_x=center_x, center_y=center_y, scale=self.scale)
@@ -227,68 +212,88 @@ class GameView(arcade.View):
 
         return sprites
 
-    def _player_original_pos(self, maze: list[list[int]]):
-        rev_maze = self._rev_maze(maze)
+    def _player_original_pos(self):
+        nb_columns = len(self.rev_maze[0])
+        nb_lines = len(self.rev_maze)
 
-        nb_columns = len(rev_maze[0])
-        nb_lines = len(rev_maze)
+        grid_x = (nb_columns) // 2 if nb_columns % 2 == 0 else (nb_columns + 1) // 2
+        grid_y = (nb_lines) // 2 + 1 if nb_lines % 2 == 0 else (nb_lines + 1) // 2
 
-        self.manager.player.x = (nb_columns ) // 2 if nb_columns % 2 == 0 else (nb_columns + 1) // 2
-        self.manager.player.y = (nb_lines) // 2 + 1 if nb_lines % 2 == 0 else (nb_lines + 1) // 2
+        self.manager.player.x = grid_x - 1
+        self.manager.player.y = grid_y - 1
+
+        self.manager.player.pixel_offset_x = 0.0
+        self.manager.player.pixel_offset_y = 0.0
+
+    def _get_grid_pos(self) -> tuple[int, int]:
+        return self.manager.player.x, self.manager.player.y
 
     def on_key_press(self, symbol, modifiers):
         match symbol:
             case arcade.key.UP:
-                self.manager.player.direction = "up"
+                self.manager.player.next_direction = "up"
             case arcade.key.LEFT:
-                self.manager.player.direction = "left"
+                self.manager.player.next_direction = "left"
             case arcade.key.DOWN:
-                self.manager.player.direction = "down"
+                self.manager.player.next_direction = "down"
             case arcade.key.RIGHT:
-                self.manager.player.direction = "right"
+                self.manager.player.next_direction = "right"
 
         match symbol:
             case arcade.key.W:
-                self.manager.player.direction = "up"
+                self.manager.player.next_direction = "up"
             case arcade.key.A:
-                self.manager.player.direction = "left"
+                self.manager.player.next_direction = "left"
             case arcade.key.S:
-                self.manager.player.direction = "down"
+                self.manager.player.next_direction = "down"
             case arcade.key.D:
-                self.manager.player.direction = "right"
+                self.manager.player.next_direction = "right"
 
-    def _player_move(self):
-        maze = self.manager.level[0].maze.maze
-        rev_maze = self._rev_maze(maze)
+    def _player_move(self) -> tuple[float, float]:
         player = self.manager.player
 
-        new_x = player.x
-        new_y = player.y
+        if player.next_direction and self._is_opposite_direction(player.direction, player.next_direction):
 
-        match player.direction:
+            player.direction = player.next_direction
+            player.next_direction = None
+
+        elif player.pixel_offset_x == 0 and player.pixel_offset_y == 0:
+            if player.next_direction and self._can_move(player.next_direction):
+                player.direction = player.next_direction
+                player.next_direction = None
+
+        if player.direction and self._can_move(player.direction):
+            match player.direction:
+                case "up":
+                    return (0, 1)
+                case "right":
+                    return (1, 0)
+                case "down":
+                    return (0, -1)
+                case "left":
+                    return (-1, 0)
+                case _:
+                    return (0, 0)
+        else:
+            return (0, 0)
+    
+    def _can_move(self, direction: str) -> bool:
+        grid_x, grid_y = self._get_grid_pos()
+        if grid_y < 0 or grid_y >= len(self.rev_maze) or grid_x < 0 or grid_x >= len(self.rev_maze[0]):
+            return False
+
+        match direction:
             case "up":
-                if not (rev_maze[new_y - 1][new_x - 1] & 1):
-                    new_y += 1
+                return not (self.rev_maze[grid_y][grid_x] & 1)
             case "right":
-                if not (rev_maze[new_y - 1][new_x - 1] & 2):
-                    new_x += 1
+                return not (self.rev_maze[grid_y][grid_x] & 2)
             case "down":
-                if not (rev_maze[new_y - 1][new_x - 1] & 4):
-                    new_y -= 1
+                return not (self.rev_maze[grid_y][grid_x] & 4)
             case "left":
-                if not rev_maze[new_y - 1][new_x - 1] & 8:
-                    new_x -= 1
+                return not (self.rev_maze[grid_y][grid_x] & 8)
+            case _:
+                return False
 
-        nb_columns = len(rev_maze[0])
-        nb_lines = len(rev_maze)
-
-        if 1 <= new_x <= nb_columns:
-            player.x = new_x
-
-        if 1 <= new_y <= nb_lines:
-            player.y = new_y
-
-<<<<<<< HEAD
     # +---------------------------------------------------------------------+
     # |                            Draw Methods                             |
     # +---------------------------------------------------------------------+
@@ -346,9 +351,12 @@ class GameView(arcade.View):
                                   font_size=15,
                                   font_name="Comic Sans MS")
         player_life.draw()
-=======
-    def grid_to_screen(self, grid_x, grid_y):
-        screen_x = (grid_x - 0.5) * 64 * self.scale + self.offset_x
-        screen_y = (grid_y - 0.5) * 64 * self.scale + self.offset_y
-        return (screen_x, screen_y)
->>>>>>> 5a8f8c7 (400 a paufiner (actuellement il est en space glide le frerot))
+
+    def _is_opposite_direction(self, current: str, next_dir: str) -> bool:
+        opposites = {
+            "up": "down",
+            "down": "up",
+            "left": "right",
+            "right": "left"
+        }
+        return opposites.get(current) == next_dir
