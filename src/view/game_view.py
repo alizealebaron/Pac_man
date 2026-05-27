@@ -6,7 +6,7 @@
 #  By: rruiz <rruiz@student.42.fr>               +#+  +:+       +#+         #
 #                                              +#+#+#+#+#+   +#+            #
 #  Created: 2026/05/20 13:11:07 by alebaron        #+#    #+#               #
-#  Updated: 2026/05/27 14:55:09 by rruiz           ###   ########.fr        #
+#  Updated: 2026/05/27 14:56:29 by rruiz           ###   ########.fr        #
 #                                                                           #
 # ************************************************************************* #
 
@@ -35,7 +35,7 @@ super_pacgum = 'assets/sprite/collectible/super_pacgum.png'
 BACKGROUND_PATH = "assets/background/game_background.png"
 MUSIC_PATH = "assets/music/game_theme.mp3"
 
-SPEED = 2.0
+SPEED = 3.0
 TILE_SIZE = 64
 TRANSITION_DISTANCE = 64
 
@@ -130,7 +130,7 @@ class GameView(arcade.View):
                                       streaming=True)
             self.music_player = self.music.play(volume=1, loop=True)
 
-    def _maze_to_draw(self, maze: list[list[int]]) -> arcade.SpriteList:
+    def _maze_to_draw(self) -> arcade.SpriteList:
         sprites = arcade.SpriteList()
 
         wall_maze = []
