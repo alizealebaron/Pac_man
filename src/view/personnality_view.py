@@ -6,7 +6,7 @@
 #  By: alebaron, rruiz                           +#+  +:+       +#+         #
 #                                              +#+#+#+#+#+   +#+            #
 #  Created: 2026/05/26 01:33:59 by alebaron        #+#    #+#               #
-#  Updated: 2026/05/26 04:43:08 by alebaron        ###   ########.fr        #
+#  Updated: 2026/05/27 08:33:04 by alebaron        ###   ########.fr        #
 #                                                                           #
 # ************************************************************************* #
 
@@ -15,6 +15,7 @@
 # +-------------------------------------------------------------------------+
 
 import arcade
+from src.view.quizz_view import QuizzView
 
 # +-------------------------------------------------------------------------+
 # |                                 CONST                                   |
@@ -59,8 +60,7 @@ class PersonnalityView(arcade.View):
     def on_show_view(self):
         """Appelé quand la vue change"""
         if not (self.music_player and self.music_player.playing):
-            self.music = arcade.Sound(MUSIC_PATH,
-                                      streaming=True)
+            self.music = arcade.Sound(MUSIC_PATH)
             self.music_player = self.music.play(volume=1, loop=True)
 
     def on_draw(self):
@@ -148,9 +148,11 @@ class PersonnalityView(arcade.View):
                                      len(self.reponses))
 
         if key == arcade.key.ENTER:
-            if self.selected_reponse == "Oui":
-                print("Youpi !")
-            else:
+            if self.selected_reponse == 0:
+                self.window.show_view(QuizzView(self.window,
+                                                self.music_player,
+                                                self.music))
+            elif self.selected_reponse == 1:
                 self.music.stop(self.music_player)
                 self.window.show_view(self.window.start_view)
 

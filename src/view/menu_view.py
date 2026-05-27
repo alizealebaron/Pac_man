@@ -6,7 +6,7 @@
 #  By: alebaron, rruiz                           +#+  +:+       +#+         #
 #                                              +#+#+#+#+#+   +#+            #
 #  Created: 2026/05/20 10:28:01 by alebaron        #+#    #+#               #
-#  Updated: 2026/05/26 03:25:26 by alebaron        ###   ########.fr        #
+#  Updated: 2026/05/27 08:33:18 by alebaron        ###   ########.fr        #
 #                                                                           #
 # ************************************************************************* #
 
@@ -108,19 +108,15 @@ class MenuView(arcade.View):
     # +---------------------------------------------------------------------+
 
     def start_game(self):
-        print("Lancement du jeu...")
         self.window.show_view(GameView(self.window.manager))
 
     def open_quizz(self):
-        print("Ouverture du quizz...")
         self.window.show_view(PersonnalityView(self.window))
 
     def open_settings(self):
-        print("Ouverture des settings...")
         self.window.show_view(SettingsView(self.window))
 
     def open_score(self):
-        print("Ouverture du scoreboards...")
         self.window.show_view(ScoreboardView(self.window))
 
     def end_game(self):
@@ -180,7 +176,7 @@ class MenuView(arcade.View):
         self._draw_little_scoreboard()
 
         # Affichage de l'encadré en bas à droite
-        sprite = arcade.load_texture(f"assets/menu/keybinds.png")
+        sprite = arcade.load_texture("assets/menu/keybinds.png")
 
         arcade.draw_texture_rect(
             texture=sprite,
