@@ -6,7 +6,7 @@
 #  By: rruiz <rruiz@student.42.fr>               +#+  +:+       +#+         #
 #                                              +#+#+#+#+#+   +#+            #
 #  Created: 2026/05/20 13:11:07 by alebaron        #+#    #+#               #
-#  Updated: 2026/05/28 15:29:17 by rruiz           ###   ########.fr        #
+#  Updated: 2026/05/28 17:22:44 by rruiz           ###   ########.fr        #
 #                                                                           #
 # ************************************************************************* #
 
@@ -16,18 +16,13 @@
 
 
 import arcade
-from src.view.gameover_view import GameoverView
+from src.view.maze_renderer import MazeRenderer
+from src.managers.collectible_manager import CollectibleManager
 from src.pacmanManager import PacmanManager
 
 # +-------------------------------------------------------------------------+
 # |                                 Global                                  |
 # +-------------------------------------------------------------------------+
-
-wall_dir = 'assets/sprite/wall/'
-map = 'tiny_wood/'
-
-pacgum = 'assets/sprite/collectible/pacgum.png'
-super_pacgum = 'assets/sprite/collectible/super_pacgum.png'
 
 BACKGROUND_PATH = "assets/background/game_background.png"
 MUSIC_PATH = "assets/music/game_theme.mp3"
@@ -67,9 +62,13 @@ class GameView(arcade.View):
         # Récupération du labyrinthe à l'envers pour Arcade
         self.rev_maze = self._rev_maze(self.current_maze)
 
-        # Initialisation des SpriteList dessiner dans on_draw()
-        self.maze_sprites: arcade.SpriteList = self._maze_to_draw() 
-        self.pacgums_sprites: arcade.SpriteList = self._put_pacgum()
+        # Initialiser les renderers
+        self.maze_renderer = MazeRenderer(self.rev_maze, self.largeur, self.hauteur)
+        self.scale = self.maze_renderer.scale
+        self.offset_x, self.offset_y = self.maze_renderer.offset_x, self.maze_renderer.offset_y
+
+        # Initialisation du gestionnaire de collectibles
+        self.collectible_manager = CollectibleManager(self.rev_maze, self.scale, self.offset_x, self.offset_y)
 
         # Initialisation des coords du player et de ces sprites
         self._player_original_pos()
@@ -92,8 +91,8 @@ class GameView(arcade.View):
         self.draw_background()
 
         # Affichage du labyrinthe et des pacgums
-        self.maze_sprites.draw()
-        self.pacgums_sprites.draw()
+        self.maze_renderer.draw()
+        self.collectible_manager.draw()
 
         # Récupération des coordonnées du joueur en pixel
         pixel_x = self.manager.player.x * TILE_SIZE + 32 + self.manager.player.pixel_offset_x
@@ -136,81 +135,12 @@ class GameView(arcade.View):
                                       streaming=True)
             self.music_player = self.music.play(volume=1, loop=True)
 
-    def _maze_to_draw(self) -> arcade.SpriteList:
-        sprites = arcade.SpriteList()
-
-        wall_maze = []
-        y = 0
-        for line in self.rev_maze:
-            y += 1
-            x = 0
-            line_maze = []
-            for value in line:
-                x += 1
-                wall = [(f'{wall_dir}{map}wall_{value}.png', x, y)]
-                line_maze.append(wall)
-            wall_maze.append(line_maze)
-
-        nb_columns = len(self.rev_maze[0])
-        maze_width_size = nb_columns * TILE_SIZE
-        nb_lines = len(self.rev_maze)
-        maze_height_size = nb_lines * TILE_SIZE
-
-        hud_width_left = 200
-        hud_width_right = 200
-        available_width = self.window.width - hud_width_left - hud_width_right
-
-        if available_width / maze_width_size > self.window.height / maze_height_size:
-            self.scale = self.window.height / maze_height_size * 0.95
-        else:
-            self.scale = available_width / maze_width_size * 0.95
-        self.offset_x = hud_width_left + (available_width - maze_width_size * self.scale) / 2
-        self.offset_y = ((self.window.height) - maze_height_size * self.scale) / 2
-
-        for line in wall_maze:
-            for cell in line:
-                for wall_path, x, y in cell:
-                    center_x = (x - 0.5) * TILE_SIZE * self.scale + self.offset_x
-                    center_y = (y - 0.5) * TILE_SIZE * self.scale + self.offset_y
-                    sprite = arcade.Sprite(wall_path, center_x=center_x, center_y=center_y, scale=self.scale)
-                    sprites.append(sprite)
-
-        return sprites
-
     def _rev_maze(self, maze: list[list[int]]) -> list[list[int]]:
         rev_maze: list[list[int]] = []
         for i in range(len(maze) - 1, -1, -1):
             rev_maze.append(maze[i])
 
         return rev_maze
-
-    def _put_pacgum(self) -> arcade.sprite_list:
-        sprites = arcade.SpriteList()
- 
-        nb_columns = len(self.rev_maze[0])
-        nb_lines = len(self.rev_maze)
-
-        spacgum_coords = [(1, 1), (1, nb_lines), (nb_columns, 1),
-                         (nb_columns, nb_lines)]
-
-        x_center = (nb_columns ) // 2 if nb_columns % 2 == 0 else (nb_columns + 1) // 2
-        y_center = (nb_lines) // 2 + 1 if nb_lines % 2 == 0 else (nb_lines + 1) // 2
-        center = x_center, y_center
-
-        for y in range(1, nb_lines + 1):
-            for x in range(1, nb_columns + 1):
-                center_x = (x - 0.5) * TILE_SIZE * self.scale + self.offset_x
-                center_y = (y - 0.5) * TILE_SIZE * self.scale + self.offset_y
-                curr_coord = (x, y)
-                if self.rev_maze[y - 1][x - 1] == 15 or (x, y) == center:
-                    continue
-                elif curr_coord in spacgum_coords:
-                    sprite = arcade.Sprite(super_pacgum, center_x=center_x, center_y=center_y, scale=self.scale)
-                else:
-                    sprite = arcade.Sprite(pacgum, center_x=center_x, center_y=center_y, scale=self.scale)
-                sprites.append(sprite)
-
-        return sprites
 
     def _player_original_pos(self):
         nb_columns = len(self.rev_maze[0])
@@ -276,7 +206,7 @@ class GameView(arcade.View):
                     return (0, 0)
         else:
             return (0, 0)
-    
+
     def _can_move(self, direction: str) -> bool:
         grid_x, grid_y = self._get_grid_pos()
         if grid_y < 0 or grid_y >= len(self.rev_maze) or grid_x < 0 or grid_x >= len(self.rev_maze[0]):
@@ -335,7 +265,6 @@ class GameView(arcade.View):
                              sprite_size + 9)
         )
 
-        
         player_life = arcade.Text(f"Live(s): {self.manager.player.nb_life}",
                                   sprite_size + 25,
                                   (self.hauteur - (sprite_size / 2) - 5),
