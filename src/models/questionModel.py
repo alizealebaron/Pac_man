@@ -6,7 +6,7 @@
 #  By: alebaron, rruiz                           +#+  +:+       +#+         #
 #                                              +#+#+#+#+#+   +#+            #
 #  Created: 2026/05/26 00:33:59 by alebaron        #+#    #+#               #
-#  Updated: 2026/05/26 01:07:43 by alebaron        ###   ########.fr        #
+#  Updated: 2026/05/27 13:03:31 by alebaron        ###   ########.fr        #
 #                                                                           #
 # ************************************************************************* #
 
@@ -49,5 +49,5 @@ class DataQuestionsModel(BaseModel):
     # |                                Init                                 |
     # +---------------------------------------------------------------------+
 
-    caracteres: List[str]
+    caracteres: Dict[str, str]
     questions: Dict[str, QuestionModel]

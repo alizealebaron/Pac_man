@@ -6,7 +6,7 @@
 #  By: alebaron, rruiz                           +#+  +:+       +#+         #
 #                                              +#+#+#+#+#+   +#+            #
 #  Created: 2026/05/21 13:04:41 by alebaron        #+#    #+#               #
-#  Updated: 2026/05/26 04:14:28 by alebaron        ###   ########.fr        #
+#  Updated: 2026/05/27 09:44:48 by alebaron        ###   ########.fr        #
 #                                                                           #
 # ************************************************************************* #
 
@@ -59,7 +59,7 @@ class PacmanManager():
         self.scoreboard = self.retrieve_score_from_json()
 
         # Récupération des questions
-        self.questions = self.retrieve_questions_from_json()
+        self.data_questions = self.retrieve_questions_from_json()
 
         # Récupérations des datas de pokémons
         self.pokemons = self.retrieve_pokemon_data_from_json()

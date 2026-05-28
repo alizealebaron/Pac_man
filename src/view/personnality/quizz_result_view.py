@@ -1,12 +1,12 @@
 # ************************************************************************* #
 #                                                                           #
 #                                                      :::      ::::::::    #
-#  personnality_view.py                              :+:      :+:    :+:    #
+#  quizz_result_view.py                              :+:      :+:    :+:    #
 #                                                  +:+ +:+         +:+      #
 #  By: alebaron, rruiz                           +#+  +:+       +#+         #
 #                                              +#+#+#+#+#+   +#+            #
-#  Created: 2026/05/26 01:33:59 by alebaron        #+#    #+#               #
-#  Updated: 2026/05/26 04:13:42 by alebaron        ###   ########.fr        #
+#  Created: 2026/05/27 16:28:27 by alebaron        #+#    #+#               #
+#  Updated: 2026/05/27 16:54:29 by alebaron        ###   ########.fr        #
 #                                                                           #
 # ************************************************************************* #
 
@@ -15,6 +15,8 @@
 # +-------------------------------------------------------------------------+
 
 import arcade
+import random
+from typing import Any, Dict
 
 # +-------------------------------------------------------------------------+
 # |                                 CONST                                   |
@@ -32,32 +34,37 @@ UNSELECTED_PATH = "assets/quizz/question_unselected.png"
 # |                                 Classe                                  |
 # +-------------------------------------------------------------------------+
 
-class PersonnalityView(arcade.View):
+class ResultQuizzView(arcade.View):
 
     # +---------------------------------------------------------------------+
     # |                                Init                                 |
     # +---------------------------------------------------------------------+
 
-    def __init__(self, window: arcade.Window):
+    def __init__(self, window: arcade.Window, music_player: Any, music: Any,
+                 dict_caractere: Dict[str, int]):
         super().__init__()
 
         self.window = window
-
         self.background = arcade.load_texture(BACKGROUND_PATH)
 
         # Initialisation de la musique
-        self.music_player = None
+        self.music_player = music_player
+        self.music = music
+
+        self.dict_caracteres = dict_caractere
+        self.index_carac = 0
+
+        self.caractere = max(self.dict_caracteres,
+                             key=lambda key: self.dict_caracteres[key])
+        data_questions = self.window.manager.data_questions
+        self.lst_carac = data_questions.caracteres[self.caractere].split("\n")
+
+        # Pokémon généré
+        self.random_pokemon = None
 
     # +---------------------------------------------------------------------+
     # |                            View Methods                             |
     # +---------------------------------------------------------------------+
-
-    def on_show_view(self):
-        """Appelé quand la vue change"""
-        if not (self.music_player and self.music_player.playing):
-            self.music = arcade.Sound(MUSIC_PATH,
-                                      streaming=True)
-            self.music_player = self.music.play(volume=1, loop=True)
 
     def on_draw(self):
         """ Render the screen. """
@@ -87,29 +94,11 @@ class PersonnalityView(arcade.View):
                              height)
         )
 
-        # Affichage du premier message
-        self.draw_begin_text()
-
-        # Affichage des deux premières réponses
-        reponses = ["Oui", "Non"]
-        selected_reponse = reponses[0]
-
-        start_y = self.window.height * 0.75
-        space_between = 150
-
-        for reponse in reponses:
-
-            if (reponse is selected_reponse):
-                question_sprite = arcade.load_texture(SELECTED_PATH)
-            else:
-                question_sprite = arcade.load_texture(UNSELECTED_PATH)
-
-            arcade.draw_texture_rect(
-                texture=question_sprite,
-                rect=arcade.XYWH(150, start_y,
-                                 self.window.width * 0.8,
-                                 self.window.height * 0.2)
-            )
+        # Afficher le texte final
+        if ((len(self.lst_carac) > self.index_carac)):
+            self.write_end_text()
+        else:
+            self.draw_pokemon()
 
     def on_mouse_press(self, x, y, _, __):
 
@@ -118,39 +107,77 @@ class PersonnalityView(arcade.View):
             self.music.stop(self.music_player)
             self.window.show_view(self.window.start_view)
 
+    def on_key_press(self, key, modifiers):
+
+        if key == arcade.key.ENTER or key == arcade.key.SPACE:
+
+            if ((len(self.lst_carac) > self.index_carac)):
+                self.index_carac += 1
+            else:
+                self.window.manager.player.pokemon = self.random_pokemon.name
+                self.music.stop(self.music_player)
+                self.window.show_view(self.window.start_view)
+
     # +---------------------------------------------------------------------+
-    # |                            Draw methods                             |
+    # |                            Draw Methods                             |
     # +---------------------------------------------------------------------+
 
-    def draw_begin_text(self):
-        
-        text_content = "Vous vous apprêtez à réaliser un test de personnalité"
-        text_content += " pour déterminer votre Pokémon."
-        texte = arcade.Text(text_content,
-                            420,
-                            200,
+    def draw_pokemon(self):
+
+        possible_pokemon = [obj for obj in self.window.manager.pokemons
+                            if obj.comportement == self.caractere]
+
+        if self.random_pokemon is None:
+            self.random_pokemon = random.choice(possible_pokemon)
+
+        sprite = arcade.load_texture(f"assets/sprite/pokemon/"
+                                     f"{self.random_pokemon.name}"
+                                     "/portraits/Normal.png")
+        sprite_size = 150
+
+        arcade.draw_texture_rect(
+            texture=sprite,
+            rect=arcade.XYWH(self.width / 2,
+                             self.height / 2,
+                             sprite_size,
+                             sprite_size)
+        )
+
+        sprite_frame = arcade.load_texture("assets/sprite/face_frame.png")
+        arcade.draw_texture_rect(
+            texture=sprite_frame,
+            rect=arcade.XYWH(self.width / 2,
+                             self.height / 2,
+                             sprite_size + 15,
+                             sprite_size + 15)
+        )
+
+        center_x = self.width / 2
+        center_y = self.height / 2
+        texte = arcade.Text(self.random_pokemon.name,
+                            center_x,
+                            center_y - sprite_size / 2 - 40,
                             align="center",
                             color=arcade.color.WHITE,
                             font_size=20,
-                            font_name="FOT-Humming Pro")
+                            font_name="FOT-Humming Pro",
+                            anchor_x="center",
+                            anchor_y="center")
+
         texte.draw()
 
-        text_content = "Cela prendra quelques minutes."
-        texte = arcade.Text(text_content,
-                            750,
-                            150,
-                            align="center",
-                            color=arcade.color.WHITE,
-                            font_size=20,
-                            font_name="FOT-Humming Pro")
-        texte.draw()
+    def write_end_text(self):
 
-        text_content = "Voulez-vous continuer ?"
-        texte = arcade.Text(text_content,
-                            810,
-                            95,
+        center_x = self.width / 2
+        center_y = self.height / 2
+        texte = arcade.Text(self.lst_carac[self.index_carac],
+                            center_x,
+                            center_y,
                             align="center",
                             color=arcade.color.WHITE,
                             font_size=20,
-                            font_name="FOT-Humming Pro")
+                            font_name="FOT-Humming Pro",
+                            anchor_x="center",
+                            anchor_y="center")
+
         texte.draw()
