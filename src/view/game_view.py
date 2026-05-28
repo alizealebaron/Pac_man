@@ -6,7 +6,7 @@
 #  By: rruiz <rruiz@student.42.fr>               +#+  +:+       +#+         #
 #                                              +#+#+#+#+#+   +#+            #
 #  Created: 2026/05/20 13:11:07 by alebaron        #+#    #+#               #
-#  Updated: 2026/05/27 15:02:03 by rruiz           ###   ########.fr        #
+#  Updated: 2026/05/28 10:43:37 by rruiz           ###   ########.fr        #
 #                                                                           #
 # ************************************************************************* #
 
@@ -23,11 +23,7 @@ from src.pacmanManager import PacmanManager
 # |                                 Global                                  |
 # +-------------------------------------------------------------------------+
 
-square_wall = 'assets/sprite/wall/A.png'
-east_wall = 'assets/sprite/wall/E.png'
-north_wall = 'assets/sprite/wall/N.png'
-west_wall = 'assets/sprite/wall/O.png'
-south_wall = 'assets/sprite/wall/S.png'
+wall_dir = 'assets/sprite/wall/'
 
 pacgum = 'assets/sprite/collectible/pacgum.png'
 super_pacgum = 'assets/sprite/collectible/super_pacgum.png'
@@ -35,7 +31,7 @@ super_pacgum = 'assets/sprite/collectible/super_pacgum.png'
 BACKGROUND_PATH = "assets/background/game_background.png"
 MUSIC_PATH = "assets/music/game_theme.mp3"
 
-SPEED = 3.0
+SPEED = 10.0
 TILE_SIZE = 64
 TRANSITION_DISTANCE = 64
 
@@ -142,17 +138,7 @@ class GameView(arcade.View):
             line_maze = []
             for value in line:
                 x += 1
-                wall = []
-                if value & 1:
-                    wall.append((north_wall, x, y))
-                if value & 2:
-                    wall.append((east_wall, x, y))
-                if value & 4:
-                    wall.append((south_wall, x, y))
-                if value & 8:
-                    wall.append((west_wall, x, y))
-                if len(wall) == 4:
-                    wall = [(square_wall, x, y)]
+                wall = [(f'{wall_dir}wall_{value}.png', x, y)]
                 line_maze.append(wall)
             wall_maze.append(line_maze)
 
