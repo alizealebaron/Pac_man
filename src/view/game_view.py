@@ -6,7 +6,7 @@
 #  By: rruiz <rruiz@student.42.fr>               +#+  +:+       +#+         #
 #                                              +#+#+#+#+#+   +#+            #
 #  Created: 2026/05/20 13:11:07 by alebaron        #+#    #+#               #
-#  Updated: 2026/05/28 14:23:34 by rruiz           ###   ########.fr        #
+#  Updated: 2026/05/28 15:29:17 by rruiz           ###   ########.fr        #
 #                                                                           #
 # ************************************************************************* #
 
@@ -24,6 +24,7 @@ from src.pacmanManager import PacmanManager
 # +-------------------------------------------------------------------------+
 
 wall_dir = 'assets/sprite/wall/'
+map = 'tiny_wood/'
 
 pacgum = 'assets/sprite/collectible/pacgum.png'
 super_pacgum = 'assets/sprite/collectible/super_pacgum.png'
@@ -93,7 +94,6 @@ class GameView(arcade.View):
         # Affichage du labyrinthe et des pacgums
         self.maze_sprites.draw()
         self.pacgums_sprites.draw()
-        # self.player_sprites.draw()
 
         # Récupération des coordonnées du joueur en pixel
         pixel_x = self.manager.player.x * TILE_SIZE + 32 + self.manager.player.pixel_offset_x
@@ -147,7 +147,7 @@ class GameView(arcade.View):
             line_maze = []
             for value in line:
                 x += 1
-                wall = [(f'{wall_dir}wall_{value}.png', x, y)]
+                wall = [(f'{wall_dir}{map}wall_{value}.png', x, y)]
                 line_maze.append(wall)
             wall_maze.append(line_maze)
 
@@ -163,7 +163,7 @@ class GameView(arcade.View):
         if available_width / maze_width_size > self.window.height / maze_height_size:
             self.scale = self.window.height / maze_height_size * 0.95
         else:
-            self.scale = available_width / maze_width_size * 0.95  # ← espace disponible
+            self.scale = available_width / maze_width_size * 0.95
         self.offset_x = hud_width_left + (available_width - maze_width_size * self.scale) / 2
         self.offset_y = ((self.window.height) - maze_height_size * self.scale) / 2
 
