@@ -6,7 +6,7 @@
 #  By: alebaron, rruiz                           +#+  +:+       +#+         #
 #                                              +#+#+#+#+#+   +#+            #
 #  Created: 2026/05/26 01:33:59 by alebaron        #+#    #+#               #
-#  Updated: 2026/05/27 17:03:21 by alebaron        ###   ########.fr        #
+#  Updated: 2026/05/28 14:04:22 by alebaron        ###   ########.fr        #
 #                                                                           #
 # ************************************************************************* #
 
@@ -161,6 +161,14 @@ class PersonnalityView(arcade.View):
     # +---------------------------------------------------------------------+
 
     def draw_begin_text(self):
+
+        text_box_sprite = arcade.load_texture("assets/menu/text_box.png")
+        arcade.draw_texture_rect(texture=text_box_sprite,
+                                 rect=arcade.XYWH(self.window.width / 2,
+                                                  (self.window.height * 0.95 / 2),
+                                                  self.window.width,
+                                                  self.window.height)
+        )
 
         text_content = "Vous vous apprêtez à réaliser un test de personnalité"
         text_content += " pour déterminer votre Pokémon."

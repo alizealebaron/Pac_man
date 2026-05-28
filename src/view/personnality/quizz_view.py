@@ -6,7 +6,7 @@
 #  By: alebaron, rruiz                           +#+  +:+       +#+         #
 #                                              +#+#+#+#+#+   +#+            #
 #  Created: 2026/05/26 04:44:09 by alebaron        #+#    #+#               #
-#  Updated: 2026/05/27 16:52:18 by alebaron        ###   ########.fr        #
+#  Updated: 2026/05/28 14:05:07 by alebaron        ###   ########.fr        #
 #                                                                           #
 # ************************************************************************* #
 
@@ -220,6 +220,14 @@ class QuizzView(arcade.View):
             texte.draw()
 
             start_y += space_between
+
+        text_box_sprite = arcade.load_texture("assets/menu/text_box.png")
+        arcade.draw_texture_rect(texture=text_box_sprite,
+                                 rect=arcade.XYWH(self.window.width / 2,
+                                                  (self.window.height * 0.95 / 2),
+                                                  self.window.width,
+                                                  self.window.height)
+        )
 
         center_x = self.width / 2
         center_y = 200
