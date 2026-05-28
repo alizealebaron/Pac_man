@@ -6,7 +6,7 @@
 #  By: alebaron, rruiz                           +#+  +:+       +#+         #
 #                                              +#+#+#+#+#+   +#+            #
 #  Created: 2026/05/26 01:33:59 by alebaron        #+#    #+#               #
-#  Updated: 2026/05/28 14:04:22 by alebaron        ###   ########.fr        #
+#  Updated: 2026/05/28 16:46:01 by alebaron        ###   ########.fr        #
 #                                                                           #
 # ************************************************************************* #
 
@@ -139,7 +139,7 @@ class PersonnalityView(arcade.View):
 
     def on_key_press(self, key, modifiers):
 
-        if key == arcade.key.Z:
+        if key == arcade.key.W:
             self.selected_reponse = ((self.selected_reponse - 1) %
                                      len(self.reponses))
 

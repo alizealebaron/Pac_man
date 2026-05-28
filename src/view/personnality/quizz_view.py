@@ -6,7 +6,7 @@
 #  By: alebaron, rruiz                           +#+  +:+       +#+         #
 #                                              +#+#+#+#+#+   +#+            #
 #  Created: 2026/05/26 04:44:09 by alebaron        #+#    #+#               #
-#  Updated: 2026/05/28 14:05:07 by alebaron        ###   ########.fr        #
+#  Updated: 2026/05/28 16:46:17 by alebaron        ###   ########.fr        #
 #                                                                           #
 # ************************************************************************* #
 
@@ -137,7 +137,7 @@ class QuizzView(arcade.View):
 
     def on_key_press(self, key, modifiers):
 
-        if key == arcade.key.Z:
+        if key == arcade.key.Q:
             self.selected_reponse = ((self.selected_reponse + 1) %
                                      len(self.reponses))
 
