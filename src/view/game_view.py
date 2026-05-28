@@ -6,7 +6,7 @@
 #  By: rruiz <rruiz@student.42.fr>               +#+  +:+       +#+         #
 #                                              +#+#+#+#+#+   +#+            #
 #  Created: 2026/05/20 13:11:07 by alebaron        #+#    #+#               #
-#  Updated: 2026/05/28 10:43:37 by rruiz           ###   ########.fr        #
+#  Updated: 2026/05/28 14:23:34 by rruiz           ###   ########.fr        #
 #                                                                           #
 # ************************************************************************* #
 
@@ -59,12 +59,18 @@ class GameView(arcade.View):
 
         arcade.set_background_color(arcade.color.BLACK)
 
+        # Récupération du manager et du labyrinthe
         self.manager = manager
         self.current_maze = self.manager.level[0].maze.maze
+
+        # Récupération du labyrinthe à l'envers pour Arcade
         self.rev_maze = self._rev_maze(self.current_maze)
+
+        # Initialisation des SpriteList dessiner dans on_draw()
         self.maze_sprites: arcade.SpriteList = self._maze_to_draw() 
         self.pacgums_sprites: arcade.SpriteList = self._put_pacgum()
 
+        # Initialisation des coords du player et de ces sprites
         self._player_original_pos()
         self.player_sprite = arcade.Sprite('assets/sprite/rond_de_merde.png', scale=self.scale)
         self.player_sprites = arcade.SpriteList()
@@ -84,13 +90,16 @@ class GameView(arcade.View):
         # Affichage du background
         self.draw_background()
 
+        # Affichage du labyrinthe et des pacgums
         self.maze_sprites.draw()
         self.pacgums_sprites.draw()
-        self.player_sprites.draw()
+        # self.player_sprites.draw()
 
+        # Récupération des coordonnées du joueur en pixel
         pixel_x = self.manager.player.x * TILE_SIZE + 32 + self.manager.player.pixel_offset_x
         pixel_y = self.manager.player.y * TILE_SIZE + 32 + self.manager.player.pixel_offset_y
-        
+
+        # Affichage du joueur au centre du labyrinthe
         self.player_sprite.center_x = pixel_x * self.scale + self.offset_x
         self.player_sprite.center_y = pixel_y * self.scale + self.offset_y
         self.player_sprites.draw()
@@ -147,12 +156,16 @@ class GameView(arcade.View):
         nb_lines = len(self.rev_maze)
         maze_height_size = nb_lines * TILE_SIZE
 
-        if self.window.width / maze_width_size > self.window.height / maze_height_size:
+        hud_width_left = 200
+        hud_width_right = 200
+        available_width = self.window.width - hud_width_left - hud_width_right
+
+        if available_width / maze_width_size > self.window.height / maze_height_size:
             self.scale = self.window.height / maze_height_size * 0.95
         else:
-            self.scale = self.window.width / maze_width_size * 0.95
-        self.offset_x  = (self.window.width - maze_width_size * self.scale) / 2
-        self.offset_y = (self.window.height - maze_height_size * self.scale) / 2
+            self.scale = available_width / maze_width_size * 0.95  # ← espace disponible
+        self.offset_x = hud_width_left + (available_width - maze_width_size * self.scale) / 2
+        self.offset_y = ((self.window.height) - maze_height_size * self.scale) / 2
 
         for line in wall_maze:
             for cell in line:
