@@ -3,10 +3,10 @@
 #                                                      :::      ::::::::    #
 #  playerModel.py                                    :+:      :+:    :+:    #
 #                                                  +:+ +:+         +:+      #
-#  By: alebaron, rruiz                           +#+  +:+       +#+         #
+#  By: rruiz <rruiz@student.42.fr>               +#+  +:+       +#+         #
 #                                              +#+#+#+#+#+   +#+            #
 #  Created: 2026/05/21 12:46:42 by alebaron        #+#    #+#               #
-#  Updated: 2026/05/24 19:58:31 by alebaron        ###   ########.fr        #
+#  Updated: 2026/05/27 15:02:22 by rruiz           ###   ########.fr        #
 #                                                                           #
 # ************************************************************************* #
 
@@ -43,8 +43,11 @@ class PlayerModel():
         self.name = self._get_random_name()
         self.x = 0
         self.y = 0
+        self.pixel_offset_x = 0.0
+        self.pixel_offset_y = 0.0
         self.direction = None
-        self.sprite = arcade.Sprite('assets/sprite/petit_fantom.png')
+        self.next_direction = None
+        self.sprite = arcade.Sprite('assets/sprite/carre_de_merde.png')
         self.nb_life = config.lives
         self.score = 0
 
