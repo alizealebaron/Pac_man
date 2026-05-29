@@ -23,13 +23,14 @@
                 "scores": {
                     "Hardi.e": 1,
                     "Malin.e": 2,
-                    "Calme": -1
+                    "Calme": -1,
+                    "Jovial.e": 1
                 }
                 },
                 {
                 "reponse": "Non.",
                 "scores": {
-                    "Bizarre": 2,
+                    "Bizarre": 1,
                     "Malpoli.e": 1
                 }
                 }
@@ -68,7 +69,7 @@
                 "reponse": "Non.",
                 "scores": {
                     "Hardi.e": 2,
-                    "Pressé.e": 1
+                    "Pressé.e": 2
                 }
                 }
             ]
@@ -80,13 +81,15 @@
                 "reponse": "Oui.",
                 "scores": {
                     "Docile": 1,
-                    "Hardi.e": 2
+                    "Hardi.e": 2,
+                    "Jovial.e": 1
                 }
                 },
                 {
                 "reponse": "Non.",
                 "scores": {
-                    "Bizarre": 2
+                    "Bizarre": 1,
+                    "Relax": 2
                 }
                 }
             ]
@@ -105,8 +108,8 @@
                 {
                 "reponse": "Non.",
                 "scores": {
-                    "Bizarre": 1,
-                    "Malpoli.e": 2
+                    "Malpoli.e": 2,
+                    "Solo": 1
                 }
                 }
             ]
@@ -118,7 +121,7 @@
                 "reponse": "Oui.",
                 "scores": {
                     "Calme": 1,
-                    "Naïf.ve": 1
+                    "Naïf.ve": 2
                 }
                 },
                 {
@@ -136,7 +139,8 @@
                 "reponse": "Oui.",
                 "scores": {
                     "Calme": 1,
-                    "Relax": 2
+                    "Relax": 2,
+                    "Pressé.e": 1
                 }
                 },
                 {
@@ -154,7 +158,8 @@
                 "reponse": "Oui.",
                 "scores": {
                     "Solo": 2,
-                    "Timide": 1
+                    "Timide": 1,
+                    "Pressé.e": 1
                 }
                 },
                 {
@@ -172,7 +177,8 @@
                 {
                 "reponse": "Oui.",
                 "scores": {
-                    "Malin.e": 2
+                    "Malin.e": 2,
+                    "Jovial.e": 1
                 }
                 },
                 {
@@ -198,7 +204,7 @@
                 "reponse": "Non.",
                 "scores": {
                     "Docile": 2,
-                    "Solo": 1
+                    "Solo": 2
                 }
                 }
             ]
@@ -272,8 +278,7 @@
                 "reponse": "Non.",
                 "scores": {
                     "Solo": 2,
-                    "Brave": 1,
-                    "Timide": 1
+                    "Brave": 1
                 }
                 }
             ]
@@ -285,7 +290,8 @@
                 "reponse": "Oui.",
                 "scores": {
                     "Malin.e": 1,
-                    "Timide": 2
+                    "Timide": 2,
+                    "Pressé.e": 1
                 }
                 },
                 {
@@ -311,7 +317,9 @@
                 "reponse": "Non.",
                 "scores": {
                     "Hardi.e": 2,
-                    "Solo": 1
+                    "Solo": 1,
+                    "Pressé.e": 1,
+                    "Jovial.e": 1
                 }
                 }
             ]
@@ -340,14 +348,15 @@
                 "reponse": "Oui.",
                 "scores": {
                     "Docile": 2,
-                    "Naïf.ve": 1
+                    "Naïf.ve": 1,
+                    "Jovial.e": 2
                 }
                 },
                 {
                 "reponse": "Non.",
                 "scores": {
-                    "Bizarre": 2,
-                    "Timide": 1
+                    "Timide": 1,
+                    "Calme": 2
                 }
                 }
             ]
@@ -401,7 +410,7 @@
                 {
                 "reponse": "Non.",
                 "scores": {
-                    "Bizarre": 1,
+                    "Calme": 1,
                     "Malpoli.e": 1
                 }
                 }
@@ -432,8 +441,9 @@
                 {
                 "reponse": "Comme un compliment !",
                 "scores": {
-                    "Naïf.ve": 1,
-                    "Solo": 1
+                    "Naïf.ve": 2,
+                    "Solo": 1,
+                    "Jovial.e": 1
                 }
                 },
                 {
@@ -494,7 +504,7 @@
                 {
                 "reponse": "Faux.",
                 "scores": {
-                    "Bizarre": 2,
+                    "Relax": 1,
                     "Malpoli.e": 2
                 }
                 }
@@ -514,7 +524,7 @@
                 "reponse": "Le petit. (victime va)",
                 "scores": {
                     "Calme": 1,
-                    "Timide": 2
+                    "Timide": 1
                 }
                 }
             ]
@@ -539,14 +549,13 @@
             ]
         },
         "q29": {
-            "texte": "Vous décidez de faire du saut à l'élastique pour la première fois. Par précaution, vous faites d'abord un test avec une poupée… Mais l'élastique lâche ! Sautez-vous malgré tout ?",
+            "texte": "Aimeriez-vous faire un saut à l'élastique ?",
             "reponses": [
                 {
-                "reponse": "Oui. (Bizarre)",
+                "reponse": "Oui.",
                 "scores": {
-                    "Brave": 3,
-                    "Malin.e": 1,
-                    "Bizarre": 3
+                    "Brave": 2,
+                    "Malin.e": 1
                 }
                 },
                 {
@@ -576,8 +585,13 @@
                 {
                 "reponse": "Vous partez en courant, vite et loin.",
                 "scores": {
-                    "Timide": 3,
-                    "Brave": -1
+                    "Timide": 2
+                }
+                },
+                {
+                "reponse": "Vous n'avez pas le temps pour ça et vous partez.",
+                "scores": {
+                    "Pressé.e": 2
                 }
                 }
             ]
@@ -620,8 +634,9 @@
                 {
                 "reponse": "En blaguant.",
                 "scores": {
-                    "Naïf.ve": 1,
-                    "Solo": 1
+                    "Naïf.ve": 2,
+                    "Solo": 1,
+                    "Jovial.e": 1
                 }
                 },
                 {
@@ -639,7 +654,8 @@
                 "reponse": "Je révise à fond.",
                 "scores": {
                     "Calme": 2,
-                    "Docile": 1
+                    "Docile": 1,
+                    "Pressé.e": 1
                 }
                 },
                 {
@@ -662,7 +678,7 @@
                 {
                 "reponse": "Sans aucun problème !",
                 "scores": {
-                    "Brave": 3
+                    "Brave": 2
                 }
                 },
                 {
@@ -710,7 +726,7 @@
                 "reponse": "Je réponds immédiatement.",
                 "scores": {
                     "Hardi.e": 2,
-                    "Pressé.e": 1
+                    "Pressé.e": 2
                 }
                 },
                 {
@@ -743,10 +759,10 @@
                 }
                 },
                 {
-                "reponse": "J'ai envie de rentré",
+                "reponse": "J'ai envie de rentrer.",
                 "scores": {
                     "Pressé.e": 2,
-                    "Timide": 1
+                    "Solo": 1
                 }
                 }
             ]
@@ -789,7 +805,7 @@
                 {
                 "reponse": "A la montagne",
                 "scores": {
-                    "Solo": 2
+                    "Solo": 3
                 }
                 },
                 {
@@ -808,7 +824,7 @@
                 "reponse": "Celui de droite, sans hésiter ! ",
                 "scores": {
                     "Docile": 2,
-                    "Naïf.ve": 1
+                    "Naïf.ve": 2
                 }
                 },
                 {
@@ -820,17 +836,17 @@
                 {
                 "reponse": "Je suis mon instinct.",
                 "scores": {
-                    "Solo": 1,
+                    "Solo": 2,
                     "Bizarre": 2
                 }
                 }
             ]
         },
         "q41": {
-            "texte": "Je le dépose au commissariat.",
+            "texte": "Vous trouvez un portefeuille dans la rue. Que faites-vous ?",
             "reponses": [
                 {
-                "reponse": "Celui de droite, sans hésiter !",
+                "reponse": "Je le dépose au commissariat.",
                 "scores": {
                     "Docile": 2
                 }
@@ -856,13 +872,14 @@
                 {
                 "reponse": "J'enfonce la porte.",
                 "scores": {
-                    "Brave": 2
+                    "Brave": 2,
+                    "Pressé.e": 1
                 }
                 },
                 {
                 "reponse": "Je pleure.",
                 "scores": {
-                    "Timide": 2
+                    "Timide": 1
                 }
                 },
                 {
@@ -881,13 +898,13 @@
                 "reponse": "Je l'ouvre immédiatement !",
                 "scores": {
                     "Brave": 1,
-                    "Pressé.e": 1
+                    "Pressé.e": 2
                 }
                 },
                 {
                 "reponse": "Rien... c'est un piège.",
                 "scores": {
-                    "Timide": 2
+                    "Timide": 1
                 }
                 },
                 {
@@ -927,7 +944,7 @@
                 {
                 "reponse": "Je le dépense.",
                 "scores": {
-                    "Pressé.e": 1,
+                    "Pressé.e": 2,
                     "Jovial.e": 2
                 }
                 },
@@ -941,7 +958,7 @@
                 "reponse": "J'en fais don.",
                 "scores": {
                     "Bizarre": 1,
-                    "Brave": 3
+                    "Brave": 2
                 }
                 },
                 {
@@ -958,7 +975,8 @@
                 {
                 "reponse": "Calmement.",
                 "scores": {
-                    "Hardi.e": 2
+                    "Hardi.e": 2,
+                    "Naïf.ve": 1
                 }
                 },
                 {
@@ -1043,8 +1061,7 @@
                 "reponse": "J'appelle la police.",
                 "scores": {
                     "Docile": 1,
-                    "Relax": 1,
-                    "Timide": 1
+                    "Relax": 1
                 }
                 },
                 {
@@ -1061,8 +1078,9 @@
                 {
                 "reponse": "Je lui déclare ma flamme.",
                 "scores": {
-                    "Brave": 3,
-                    "Hardi.e": 1
+                    "Brave": 2,
+                    "Hardi.e": 1,
+                    "Pressé.e": 1
                 }
                 },
                 {
@@ -1080,7 +1098,8 @@
                 {
                 "reponse": "Je l'admire de loin.",
                 "scores": {
-                    "Timide": 2
+                    "Timide": 2,
+                    "Naïf.ve": 1
                 }
                 }
             ]
@@ -1097,7 +1116,8 @@
                 {
                 "reponse": "Vous débranchez rebranchez le câble d'alimentation",
                 "scores": {
-                    "Malin.e": 2
+                    "Malin.e": 2,
+                    "Pressé.e": 1
                 }
                 },
                 {
@@ -1109,7 +1129,7 @@
                 {
                 "reponse": "Vous pleurez.",
                 "scores": {
-                    "Timide": 2
+                    "Timide": 1
                 }
                 }
             ]
@@ -1117,6 +1137,13 @@
         "q52": {
             "texte": "Vous partez à la guerre, quelle arme prennez-vous ?",
             "reponses": [
+                {
+                "reponse": "Je fais pas la guerre. (boring)",
+                "scores": {
+                    "Bizarre": 2,
+                    "Malpoli.e": 1
+                }
+                },
                 {
                 "reponse": "Une épée. (boring)",
                 "scores": {
@@ -1130,14 +1157,7 @@
                 }
                 },
                 {
-                "reponse": "Je fais pas la guerre. (boring)",
-                "scores": {
-                    "Bizarre": 2,
-                    "Malpoli.e": 1
-                }
-                },
-                {
-                "reponse": "Un guandao. (UwU)",
+                "reponse": "Une guandao. (UwU)",
                 "scores": {
                     "Solo": 2
                 }
@@ -1156,11 +1176,11 @@
                 {
                 "reponse": "La porte d'un bunker dans la creuse.",
                 "scores": {
-                    "Brave": 3
+                    "Brave": 2
                 }
                 },
                 {
-                "reponse": "Une porte sans aucun mur autour.",
+                "reponse": "Une porte sans aucun mur autour dans la campagne près de Perpignan.",
                 "scores": {
                     "Bizarre": 1,
                     "Solo": 2
@@ -1170,7 +1190,7 @@
                 "reponse": "Une porte de toilettes publiques à Gare du Nord.",
                 "scores": {
                     "Bizarre": 5,
-                    "Brave": 3,
+                    "Brave": 2,
                     "Naïf.ve": 1
                 }
                 }
@@ -1182,7 +1202,7 @@
                 {
                 "reponse": "Feu",
                 "scores": {
-                    "Bizarre": 3,
+                    "Bizarre": 2,
                     "Naïf.ve": 1
                 }
                 },
@@ -1262,7 +1282,8 @@
                 {
                 "reponse": "Qwerty. (Bizarre l'ambiance)",
                 "scores": {
-                    "Malin.e": 2
+                    "Malin.e": 2,
+                    "Pressé.e": 1
                 }
                 },
                 {
@@ -1337,6 +1358,265 @@
             ]
         },
         "q60": {
+            "texte": "Quel est ton élément préféré ?",
+            "reponses": [
+                {
+                "reponse": "L'hydrogène (H)",
+                "scores": {
+                    "Calme": 2
+                }
+                },
+                {
+                "reponse": "L'oxygène (O)",
+                "scores": {
+                    "Pressé.e": 2
+                }
+                },
+                {
+                "reponse": "Le carbone (C)",
+                "scores": {
+                    "Solo": 3
+                }
+                },
+                {
+                "reponse": "Le fer (Fe)",
+                "scores": {
+                    "Hardi.e": 2
+                }
+                },
+                {
+                "reponse": "L'uranium 235",
+                "scores": {
+                    "Bizarre": 2
+                }
+                }
+            ]
+        },
+        "q61": {
+            "texte": "Pensez-vous que la fin justifie les moyens ?",
+            "reponses": [
+                {
+                "reponse": "Bien sûr !",
+                "scores": {
+                    "Solo": 2,
+                    "Hardi.e": 1
+                }
+                },
+                {
+                "reponse": "Certainement pas.",
+                "scores": {
+                    "Docile": 2,
+                    "Calme": 2
+                }
+                }
+            ]
+        },
+        "q62": {
+            "texte": "Avez-vous déjà voulu communiquer avec des extraterrestres ?",
+            "reponses": [
+                {
+                "reponse": "Oui !",
+                "scores": {
+                    "Naïf.ve": 3
+                }
+                },
+                {
+                "reponse": "Nop !",
+                "scores": {
+                    "Solo": 2
+                }
+                }
+            ]
+        },
+        "q63": {
+            "texte": "Vous vous promenez quand une équipe de télévision vous aborde pour vous interviewer. Que faites-vous ?",
+            "reponses": [
+                {
+                "reponse": "Je m'enfuis ! C'est trop gênant !",
+                "scores": {
+                    "Timide": 1
+                }
+                },
+                {
+                "reponse": "Je réponds sérieusement.",
+                "scores": {
+                    "Relax": 1,
+                    "Docile": 1
+                }
+                },
+                {
+                "reponse": "Yahou ! Je passe à la télé !",
+                "scores": {
+                    "Naïf.ve": 2,
+                    "Jovial.e": 2
+                }
+                }
+            ]
+        },
+        "q64": {
+            "texte": "Un ami vous raconte une blague absolument nulle ! Quelle est votre réaction ?",
+            "reponses": [
+                {
+                "reponse": "J'éclate de rire.",
+                "scores": {
+                    "Jovial.e": 2,
+                    "Naïf.ve": 2
+                }
+                },
+                {
+                "reponse": "On va dire que je n'ai rien entendu...",
+                "scores": {
+                    "Malin.e": 1,
+                    "Malpoli.e": 1
+                }
+                }
+            ]
+        },
+        "q65": {
+            "texte": "On vous a dit d'attendre dans une grande pièce vide. Comment réagissez-vous ?",
+            "reponses": [
+                {
+                "reponse": "J'attends tranquillement.",
+                "scores": {
+                    "Relax": 3
+                }
+                },
+                {
+                "reponse": "Je cherche quelque chose à faire.",
+                "scores": {
+                    "Naïf.ve": 2,
+                    "Jovial.e": 1
+                }
+                },
+                {
+                "reponse": "Je vais faire un tour dehors.",
+                "scores": {
+                    "Hardi.e": 2,
+                    "Bizarre": 1
+                }
+                },
+                {
+                "reponse": "Je m'assieds dans un coin !",
+                "scores": {
+                    "Solo": 2
+                }
+                }
+            ]
+        },
+        "q66": {
+            "texte": "Etes-vous plutôt citadin ou campagnard ?",
+            "reponses": [
+                {
+                "reponse": "J'adore la ville !",
+                "scores": {
+                    "Docile": 2,
+                    "Pressé.e": 1
+                }
+                },
+                {
+                "reponse": "J'adore la campagne !",
+                "scores": {
+                    "Calme": 2,
+                    "Solo": 2
+                }
+                }
+            ]
+        },
+        "q67": {
+            "texte": "Le téléphone sonne ! Que faites-vous ?",
+            "reponses": [
+                {
+                "reponse": "Je réponds immédiatement.",
+                "scores": {
+                    "Pressé.e": 2,
+                    "Hardi.e": 2
+                }
+                },
+                {
+                "reponse": "J'attends un peu avant de répondre.",
+                "scores": {
+                    "Calme": 2,
+                    "Relax": 2
+                }
+                },
+                {
+                "reponse": "Je laisse sonner.",
+                "scores": {
+                    "Timide": 2,
+                    "Malpoli.e": 2
+                }
+                }
+            ]
+        },
+        "q68": {
+            "texte": "Si vous deviez choisir un univers fictif dans lequel vivre, où iriez-vous ?",
+            "reponses": [
+                {
+                "reponse": "Dans un monde peuplé de créature magique où le braconnage est légal.",
+                "scores": {
+                    "Malin.e": 2,
+                    "Jovial.e": 2
+                }
+                },
+                {
+                "reponse": "Dans un univers où des ninjas de l'espace affronte un mec dans un mur.",
+                "scores": {
+                    "Hardi.e": 2,
+                    "Brave": 2
+                }
+                },
+                {
+                "reponse": "Dans une faille avec des invocateurs.",
+                "scores": {
+                    "Malpoli.e": 2,
+                    "Bizarre": 1
+                }
+                },
+                {
+                "reponse": "Dans un monde d'arthropodes qui sont corrompus par Dieu.",
+                "scores": {
+                    "Hardi.e": 2,
+                    "Bizarre": 1,
+                    "Solo": 2
+                }
+                }
+            ]
+        },
+        "q69": {
+            "texte": "Quel est votre dinosaure préféré ?",
+            "reponses": [
+                {
+                "reponse": "Le Tricéraptops.",
+                "scores": {
+                    "Docile": 2,
+                    "Relax": 2
+                }
+                },
+                {
+                "reponse": "Le Parasaurolophus, bien évidemment.",
+                "scores": {
+                    "Solo": 1,
+                    "Jovial.e": 2,
+                    "Bizarre": 1
+                }
+                },
+                {
+                "reponse": "Le Tyrannosaure !",
+                "scores": {
+                    "Malpoli.e": 2,
+                    "Hardi.e": 1
+                }
+                },
+                {
+                "reponse": "Le Deinonychus.",
+                "scores": {
+                    "Brave": 2,
+                    "Pressé.e": 1
+                }
+                }
+            ]
+        },
+        "q70": {
             "texte": "Quelle note allez-vous mettre au projet ?",
             "reponses": [
                 {
