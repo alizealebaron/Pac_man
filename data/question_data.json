@@ -1620,19 +1620,19 @@
             "texte": "Quelle note allez-vous mettre au projet ?",
             "reponses": [
                 {
-                "reponse": "100/100",
+                "reponse": "100/100 + outstanding project",
                 "scores": {
                     "Docile": 1
                 }
                 },
                 {
-                "reponse": "100/100",
+                "reponse": "100/100 + outstanding project + 10€",
                 "scores": {
                     "Bizarre": 1
                 }
                 },
                 {
-                "reponse": "100/100",
+                "reponse": "100/100 + outstanding project",
                 "scores": {
                     "Malin.e": 1
                 }

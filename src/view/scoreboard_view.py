@@ -6,7 +6,7 @@
 #  By: alebaron, rruiz                           +#+  +:+       +#+         #
 #                                              +#+#+#+#+#+   +#+            #
 #  Created: 2026/05/23 10:58:55 by alebaron        #+#    #+#               #
-#  Updated: 2026/05/29 14:14:53 by alebaron        ###   ########.fr        #
+#  Updated: 2026/05/29 14:30:00 by alebaron        ###   ########.fr        #
 #                                                                           #
 # ************************************************************************* #
 
@@ -88,11 +88,10 @@ class ScoreboardView(arcade.View):
         width = 1400
         arcade.draw_texture_rect(texture=score_sprite,
                                  rect=arcade.XYWH(
-                                 x=self.window.width / 2 + 20,
-                                 y=self.window.height / 2,
-                                 width=width,
-                                 height=height
-                                ))
+                                                x=self.window.width / 2 + 20,
+                                                y=self.window.height / 2,
+                                                width=width,
+                                                height=height))
 
         # Affichage des scores
         self.draw_big_scoreboard()

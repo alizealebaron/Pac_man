@@ -50,158 +50,18 @@
     "pokemon": "Ducklett"
   },
   {
-    "name": "Test",
-    "score": 1500,
-    "pokemon": "Axew"
+    "name": "Overtekk",
+    "score": 6514,
+    "pokemon": "Charmander"
   },
   {
-    "name": "Heretikk",
-    "score": 6400,
-    "pokemon": "Wingull"
+    "name": "Enzo",
+    "score": 653,
+    "pokemon": "Bulbasaur"
   },
   {
-    "name": "LadyGuilty",
-    "score": 7812,
-    "pokemon": "Eevee"
-  },
-  {
-    "name": "Ana",
-    "score": 4578,
-    "pokemon": "Chimchar"
-  },
-  {
-    "name": "Alizéa",
-    "score": 1,
-    "pokemon": "Ducklett"
-  },
-  {
-    "name": "Test",
-    "score": 1500,
-    "pokemon": "Axew"
-  },
-  {
-    "name": "Heretikk",
-    "score": 6400,
-    "pokemon": "Wingull"
-  },
-  {
-    "name": "LadyGuilty",
-    "score": 7812,
-    "pokemon": "Eevee"
-  },
-  {
-    "name": "Ana",
-    "score": 4578,
-    "pokemon": "Chimchar"
-  },
-  {
-    "name": "Alizéa",
-    "score": 1,
-    "pokemon": "Ducklett"
-  },
-  {
-    "name": "Test",
-    "score": 1500,
-    "pokemon": "Axew"
-  },
-  {
-    "name": "Heretikk",
-    "score": 6400,
-    "pokemon": "Wingull"
-  },
-  {
-    "name": "LadyGuilty",
-    "score": 7812,
-    "pokemon": "Eevee"
-  },
-  {
-    "name": "Ana",
-    "score": 4578,
-    "pokemon": "Chimchar"
-  },
-  {
-    "name": "Alizéa",
-    "score": 1,
-    "pokemon": "Ducklett"
-  },
-  {
-    "name": "Heretikk",
-    "score": 6400,
-    "pokemon": "Wingull"
-  },
-  {
-    "name": "LadyGuilty",
-    "score": 7812,
-    "pokemon": "Eevee"
-  },
-  {
-    "name": "Ana",
-    "score": 4578,
-    "pokemon": "Chimchar"
-  },
-  {
-    "name": "Alizéa",
-    "score": 1,
-    "pokemon": "Ducklett"
-  },
-  {
-    "name": "Heretikk",
-    "score": 6400,
-    "pokemon": "Wingull"
-  },
-  {
-    "name": "LadyGuilty",
-    "score": 7812,
-    "pokemon": "Eevee"
-  },
-  {
-    "name": "Ana",
-    "score": 4578,
-    "pokemon": "Chimchar"
-  },
-  {
-    "name": "Alizéa",
-    "score": 1,
-    "pokemon": "Ducklett"
-  },
-  {
-    "name": "Heretikk",
-    "score": 6400,
-    "pokemon": "Wingull"
-  },
-  {
-    "name": "LadyGuilty",
-    "score": 7812,
-    "pokemon": "Eevee"
-  },
-  {
-    "name": "Ana",
-    "score": 4578,
-    "pokemon": "Chimchar"
-  },
-  {
-    "name": "Alizéa",
-    "score": 1,
-    "pokemon": "Ducklett"
-  },
-  {
-    "name": "Heretikk",
-    "score": 6400,
-    "pokemon": "Wingull"
-  },
-  {
-    "name": "LadyGuilty",
-    "score": 7812,
-    "pokemon": "Eevee"
-  },
-  {
-    "name": "Ana",
-    "score": 4578,
-    "pokemon": "Chimchar"
-  },
-  {
-    "name": "Alizéa",
-    "score": 1,
-    "pokemon": "Ducklett"
+    "name": "Chaotic_Ditto",
+    "score": 1478,
+    "pokemon": "Squirtle"
   }
 ]

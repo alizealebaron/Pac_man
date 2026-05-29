@@ -3,10 +3,10 @@
 #                                                      :::      ::::::::    #
 #  game_view.py                                      :+:      :+:    :+:    #
 #                                                  +:+ +:+         +:+      #
-#  By: rruiz <rruiz@student.42.fr>               +#+  +:+       +#+         #
+#  By: alebaron, rruiz                           +#+  +:+       +#+         #
 #                                              +#+#+#+#+#+   +#+            #
 #  Created: 2026/05/20 13:11:07 by alebaron        #+#    #+#               #
-#  Updated: 2026/05/28 17:22:44 by rruiz           ###   ########.fr        #
+#  Updated: 2026/05/29 14:40:41 by alebaron        ###   ########.fr        #
 #                                                                           #
 # ************************************************************************* #
 
@@ -244,7 +244,7 @@ class GameView(arcade.View):
     def draw_UHD(self):
 
         pokemon = self.manager.player.pokemon
-        sprite = arcade.load_texture(f"assets/sprite/pokemon/{pokemon}"
+        sprite = arcade.load_texture(f"assets/sprite/pokemon/{pokemon.name}"
                                      "/portraits/Normal.png")
         sprite_size = 75
 
