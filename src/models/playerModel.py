@@ -3,10 +3,10 @@
 #                                                      :::      ::::::::    #
 #  playerModel.py                                    :+:      :+:    :+:    #
 #                                                  +:+ +:+         +:+      #
-#  By: rruiz <rruiz@student.42.fr>               +#+  +:+       +#+         #
+#  By: alebaron, rruiz                           +#+  +:+       +#+         #
 #                                              +#+#+#+#+#+   +#+            #
 #  Created: 2026/05/21 12:46:42 by alebaron        #+#    #+#               #
-#  Updated: 2026/05/27 15:02:22 by rruiz           ###   ########.fr        #
+#  Updated: 2026/05/29 14:27:19 by alebaron        ###   ########.fr        #
 #                                                                           #
 # ************************************************************************* #
 
@@ -15,17 +15,12 @@
 # +-------------------------------------------------------------------------+
 
 
-import os
 import random
 import arcade
+from typing import List
 from src.models.configmodel import ConfigModel
+from src.models.pokemonModel import PokemonModel
 
-
-# +-------------------------------------------------------------------------+
-# |                                  CONST                                  |
-# +-------------------------------------------------------------------------+
-
-POKEMON_PATH = "assets/sprite/pokemon"
 
 # +-------------------------------------------------------------------------+
 # |                                 Classe                                  |
@@ -37,9 +32,9 @@ class PlayerModel():
     # |                                Init                                 |
     # +---------------------------------------------------------------------+
 
-    def __init__(self, config: ConfigModel):
+    def __init__(self, config: ConfigModel, lst_pokemon: List[PokemonModel]):
 
-        self.pokemon = self._get_random_pokemon()
+        self.pokemon = self._get_random_pokemon(lst_pokemon)
         self.name = self._get_random_name()
         self.x = 0
         self.y = 0
@@ -55,9 +50,10 @@ class PlayerModel():
     # |                              Methods                                |
     # +---------------------------------------------------------------------+
 
-    def _get_random_pokemon(self):
+    def _get_random_pokemon(self,
+                            lst_pokemons: List[PokemonModel]) -> PokemonModel:
 
-        return (random.choice(os.listdir(POKEMON_PATH)))
+        return (random.choice(lst_pokemons))
 
     def _get_random_name(self):
 
@@ -67,4 +63,4 @@ class PlayerModel():
                    "Careful", "Bashful", "Relaxed", "Adamant", "Serious",
                    "Lonely", "Timid", "Chaotic"]
 
-        return random.choice(prefixe) + "_" + self.pokemon
+        return random.choice(prefixe) + "_" + self.pokemon.name

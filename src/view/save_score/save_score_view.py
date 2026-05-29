@@ -6,7 +6,7 @@
 #  By: alebaron, rruiz                           +#+  +:+       +#+         #
 #                                              +#+#+#+#+#+   +#+            #
 #  Created: 2026/05/28 14:12:22 by alebaron        #+#    #+#               #
-#  Updated: 2026/05/28 14:21:38 by alebaron        ###   ########.fr        #
+#  Updated: 2026/05/29 14:17:40 by alebaron        ###   ########.fr        #
 #                                                                           #
 # ************************************************************************* #
 
@@ -47,7 +47,7 @@ class SaveScoreView(arcade.View):
     # +---------------------------------------------------------------------+
     # |                            View Methods                             |
     # +---------------------------------------------------------------------+
-        
+
     def on_show_view(self):
         """Appelé quand la vue change"""
         if not (self.music_player and self.music_player.playing):
@@ -66,5 +66,28 @@ class SaveScoreView(arcade.View):
                 self.window.height / 2,
                 self.window.width,
                 self.window.height
+            )
+        )
+
+        # Affichage du petit leaderboard
+        self.draw_mid_leaderboard()
+
+    # +---------------------------------------------------------------------+
+    # |                            Draw Methods                             |
+    # +---------------------------------------------------------------------+
+
+    def draw_mid_leaderboard(self):
+
+        leader_sprite = arcade.load_texture("assets/menu/"
+                                            "small_leaderboard.png")
+        w = self.window.width * 0.3
+        h = self.window.height * 0.7
+        arcade.draw_texture_rect(
+            texture=leader_sprite,
+            rect=arcade.XYWH(
+                x=self.window.width / 2 + self.window.width / 2 * 0.5,
+                y=self.window.height / 2,
+                width=w,
+                height=h
             )
         )

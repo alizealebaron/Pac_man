@@ -6,7 +6,7 @@
 #  By: alebaron, rruiz                           +#+  +:+       +#+         #
 #                                              +#+#+#+#+#+   +#+            #
 #  Created: 2026/05/23 10:58:55 by alebaron        #+#    #+#               #
-#  Updated: 2026/05/24 23:53:24 by alebaron        ###   ########.fr        #
+#  Updated: 2026/05/29 14:14:53 by alebaron        ###   ########.fr        #
 #                                                                           #
 # ************************************************************************* #
 
@@ -92,8 +92,7 @@ class ScoreboardView(arcade.View):
                                  y=self.window.height / 2,
                                  width=width,
                                  height=height
-                                )
-                            )  
+                                ))
 
         # Affichage des scores
         self.draw_big_scoreboard()

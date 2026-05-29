@@ -6,7 +6,7 @@
 #  By: alebaron, rruiz                           +#+  +:+       +#+         #
 #                                              +#+#+#+#+#+   +#+            #
 #  Created: 2026/05/20 10:28:01 by alebaron        #+#    #+#               #
-#  Updated: 2026/05/28 16:44:57 by alebaron        ###   ########.fr        #
+#  Updated: 2026/05/29 14:26:31 by alebaron        ###   ########.fr        #
 #                                                                           #
 # ************************************************************************* #
 
@@ -212,7 +212,7 @@ class MenuView(arcade.View):
     def _draw_player(self):
 
         pokemon = self.window.manager.player.pokemon
-        sprite = arcade.load_texture(f"assets/sprite/pokemon/{pokemon}"
+        sprite = arcade.load_texture(f"assets/sprite/pokemon/{pokemon.name}"
                                      "/portraits/Normal.png")
         sprite_size = 75
 
