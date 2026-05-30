@@ -3,10 +3,10 @@
 #                                                      :::      ::::::::    #
 #  game_view.py                                      :+:      :+:    :+:    #
 #                                                  +:+ +:+         +:+      #
-#  By: rruiz <rruiz@student.42.fr>               +#+  +:+       +#+         #
+#  By: alebaron, rruiz                           +#+  +:+       +#+         #
 #                                              +#+#+#+#+#+   +#+            #
 #  Created: 2026/05/20 13:11:07 by alebaron        #+#    #+#               #
-#  Updated: 2026/05/28 17:22:44 by rruiz           ###   ########.fr        #
+#  Updated: 2026/05/29 18:02:40 by rruiz           ###   ########.fr        #
 #                                                                           #
 # ************************************************************************* #
 
@@ -103,7 +103,7 @@ class GameView(arcade.View):
         self.player_sprite.center_y = pixel_y * self.scale + self.offset_y
         self.player_sprites.draw()
 
-        # Affichage de l'UHD
+        # Affichage de l'HUD
         self.draw_UHD()
 
     def on_update(self, delta_time):
@@ -126,7 +126,6 @@ class GameView(arcade.View):
         elif self.manager.player.pixel_offset_y <= -TRANSITION_DISTANCE:
             self.manager.player.y -= 1
             self.manager.player.pixel_offset_y = 0
-
 
     def on_show_view(self):
         """Appelé quand la vue change"""
@@ -155,9 +154,6 @@ class GameView(arcade.View):
         self.manager.player.pixel_offset_x = 0.0
         self.manager.player.pixel_offset_y = 0.0
 
-    def _get_grid_pos(self) -> tuple[int, int]:
-        return self.manager.player.x, self.manager.player.y
-
     def on_key_press(self, symbol, modifiers):
         match symbol:
             case arcade.key.UP:
@@ -183,7 +179,6 @@ class GameView(arcade.View):
         player = self.manager.player
 
         if player.next_direction and self._is_opposite_direction(player.direction, player.next_direction):
-
             player.direction = player.next_direction
             player.next_direction = None
 
@@ -208,21 +203,38 @@ class GameView(arcade.View):
             return (0, 0)
 
     def _can_move(self, direction: str) -> bool:
-        grid_x, grid_y = self._get_grid_pos()
+        grid_x = self.manager.player.x
+        grid_y = self.manager.player.y
         if grid_y < 0 or grid_y >= len(self.rev_maze) or grid_x < 0 or grid_x >= len(self.rev_maze[0]):
             return False
 
         match direction:
             case "up":
-                return not (self.rev_maze[grid_y][grid_x] & 1)
+                if not (self.rev_maze[grid_y][grid_x] & 1):
+                    return True
             case "right":
-                return not (self.rev_maze[grid_y][grid_x] & 2)
+                if not (self.rev_maze[grid_y][grid_x] & 2):
+                    return True
             case "down":
-                return not (self.rev_maze[grid_y][grid_x] & 4)
+                if not (self.rev_maze[grid_y][grid_x] & 4):
+                    return True
             case "left":
-                return not (self.rev_maze[grid_y][grid_x] & 8)
+                if not (self.rev_maze[grid_y][grid_x] & 8):
+                    if self.offset_x != 0:
+                        return True
+                    return True
             case _:
                 return False
+
+    def _is_opposite_direction(self, current: str, next_dir: str) -> bool:
+        opposites = {
+            "up": "down",
+            "down": "up",
+            "left": "right",
+            "right": "left"
+        }
+        return opposites.get(current) == next_dir
+
 
     # +---------------------------------------------------------------------+
     # |                            Draw Methods                             |
@@ -280,12 +292,3 @@ class GameView(arcade.View):
                                   font_size=15,
                                   font_name="Comic Sans MS")
         player_life.draw()
-
-    def _is_opposite_direction(self, current: str, next_dir: str) -> bool:
-        opposites = {
-            "up": "down",
-            "down": "up",
-            "left": "right",
-            "right": "left"
-        }
-        return opposites.get(current) == next_dir
