@@ -6,7 +6,7 @@
 #  By: alebaron, rruiz                           +#+  +:+       +#+         #
 #                                              +#+#+#+#+#+   +#+            #
 #  Created: 2026/05/20 13:11:07 by alebaron        #+#    #+#               #
-#  Updated: 2026/05/29 18:02:40 by rruiz           ###   ########.fr        #
+#  Updated: 2026/05/30 12:30:27 by rruiz           ###   ########.fr        #
 #                                                                           #
 # ************************************************************************* #
 
@@ -187,20 +187,33 @@ class GameView(arcade.View):
                 player.direction = player.next_direction
                 player.next_direction = None
 
-        if player.direction and self._can_move(player.direction):
-            match player.direction:
-                case "up":
-                    return (0, 1)
-                case "right":
-                    return (1, 0)
-                case "down":
-                    return (0, -1)
-                case "left":
-                    return (-1, 0)
-                case _:
-                    return (0, 0)
-        else:
-            return (0, 0)
+        if player.direction:
+            if player.pixel_offset_x != 0 or player.pixel_offset_y != 0:
+                match player.direction:
+                    case "up":
+                        return (0, 1)
+                    case "right":
+                        return (1, 0)
+                    case "down":
+                        return (0, -1)
+                    case "left":
+                        return (-1, 0)
+                    case _:
+                        return (0, 0)
+            elif self._can_move(player.direction):
+                match player.direction:
+                    case "up":
+                        return (0, 1)
+                    case "right":
+                        return (1, 0)
+                    case "down":
+                        return (0, -1)
+                    case "left":
+                        return (-1, 0)
+                    case _:
+                        return (0, 0)
+        
+        return (0, 0)
 
     def _can_move(self, direction: str) -> bool:
         grid_x = self.manager.player.x
