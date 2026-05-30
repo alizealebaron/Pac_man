@@ -6,7 +6,7 @@
 #  By: alebaron, rruiz                           +#+  +:+       +#+         #
 #                                              +#+#+#+#+#+   +#+            #
 #  Created: 2026/05/20 13:11:07 by alebaron        #+#    #+#               #
-#  Updated: 2026/05/30 12:30:27 by rruiz           ###   ########.fr        #
+#  Updated: 2026/05/30 16:10:08 by rruiz           ###   ########.fr        #
 #                                                                           #
 # ************************************************************************* #
 
@@ -27,7 +27,7 @@ from src.pacmanManager import PacmanManager
 BACKGROUND_PATH = "assets/background/game_background.png"
 MUSIC_PATH = "assets/music/game_theme.mp3"
 
-SPEED = 10.0
+SPEED = 5.0
 TILE_SIZE = 64
 TRANSITION_DISTANCE = 64
 
@@ -78,6 +78,28 @@ class GameView(arcade.View):
 
         # Music
         self.music_player = None
+
+        self.background = arcade.load_texture(BACKGROUND_PATH)
+
+        pokemon = self.manager.player.pokemon
+        self.pokemon_sprite = arcade.load_texture(f"assets/sprite/pokemon/{pokemon}"
+                                     "/portraits/Normal.png")
+        self.sprite_frame = arcade.load_texture("assets/sprite/face_frame.png")
+        sprite_size = 75
+
+        self.player_life = arcade.Text(f"Live(s): {self.manager.player.nb_life}",
+                                  sprite_size + 25,
+                                  (self.hauteur - (sprite_size / 2) - 5),
+                                  color=arcade.color.BLACK,
+                                  font_size=15,
+                                  font_name="Comic Sans MS")
+
+        self.player_score = arcade.Text(f"Score: {self.manager.player.score}",
+                                  sprite_size + 25,
+                                  (self.hauteur - (sprite_size / 2) - 35),
+                                  color=arcade.color.BLACK,
+                                  font_size=15,
+                                  font_name="Comic Sans MS")
 
     # +---------------------------------------------------------------------+
     # |                               Methods                               |
@@ -200,6 +222,7 @@ class GameView(arcade.View):
                         return (-1, 0)
                     case _:
                         return (0, 0)
+
             elif self._can_move(player.direction):
                 match player.direction:
                     case "up":
@@ -255,9 +278,8 @@ class GameView(arcade.View):
 
     def draw_background(self):
 
-        background = arcade.load_texture(BACKGROUND_PATH)
         arcade.draw_texture_rect(
-            texture=background,
+            texture=self.background,
             rect=arcade.XYWH(
                 self.window.width / 2,
                 self.window.height / 2,
@@ -267,41 +289,26 @@ class GameView(arcade.View):
         )
 
     def draw_UHD(self):
-
-        pokemon = self.manager.player.pokemon
-        sprite = arcade.load_texture(f"assets/sprite/pokemon/{pokemon}"
-                                     "/portraits/Normal.png")
         sprite_size = 75
 
         arcade.draw_texture_rect(
-            texture=sprite,
+            texture=self.pokemon_sprite,
             rect=arcade.XYWH((sprite_size / 2) + 10,
                              (self.hauteur - (sprite_size / 2) - 10),
                              sprite_size,
                              sprite_size)
         )
 
-        sprite_frame = arcade.load_texture("assets/sprite/face_frame.png")
         arcade.draw_texture_rect(
-            texture=sprite_frame,
+            texture=self.sprite_frame,
             rect=arcade.XYWH((sprite_size / 2) + 10,
                              (self.hauteur - (sprite_size / 2) - 10),
                              sprite_size + 9,
                              sprite_size + 9)
         )
 
-        player_life = arcade.Text(f"Live(s): {self.manager.player.nb_life}",
-                                  sprite_size + 25,
-                                  (self.hauteur - (sprite_size / 2) - 5),
-                                  color=arcade.color.BLACK,
-                                  font_size=15,
-                                  font_name="Comic Sans MS")
-        player_life.draw()
+        self.player_life.text = f'Live(s): {self.manager.player.nb_life}'
+        self.player_life.draw()
 
-        player_life = arcade.Text(f"Score: {self.manager.player.score}",
-                                  sprite_size + 25,
-                                  (self.hauteur - (sprite_size / 2) - 35),
-                                  color=arcade.color.BLACK,
-                                  font_size=15,
-                                  font_name="Comic Sans MS")
-        player_life.draw()
+        self.player_score.text = f'Score: {self.manager.player.score}'
+        self.player_score.draw()
