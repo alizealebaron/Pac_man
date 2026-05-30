@@ -3,17 +3,17 @@
 #                                                      :::      ::::::::    #
 #  maze_renderer.py                                  :+:      :+:    :+:    #
 #                                                  +:+ +:+         +:+      #
-#  By: rruiz <rruiz@student.42.fr>               +#+  +:+       +#+         #
+#  By: alebaron, rruiz                           +#+  +:+       +#+         #
 #                                              +#+#+#+#+#+   +#+            #
 #  Created: 2026/05/28 16:53:13 by rruiz           #+#    #+#               #
-#  Updated: 2026/05/28 17:26:15 by rruiz           ###   ########.fr        #
+#  Updated: 2026/05/29 09:50:49 by rruiz           ###   ########.fr        #
 #                                                                           #
 # ************************************************************************* #
 
 import arcade
 
 WALL_DIR = 'assets/sprite/wall/'
-MAP_NAME = 'tiny_wood/'
+MAP_NAME = 'tiny_wood_test/'
 TILE_SIZE = 64
 
 class MazeRenderer:
