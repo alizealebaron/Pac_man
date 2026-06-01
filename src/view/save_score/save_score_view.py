@@ -6,7 +6,7 @@
 #  By: alebaron, rruiz                           +#+  +:+       +#+         #
 #                                              +#+#+#+#+#+   +#+            #
 #  Created: 2026/05/28 14:12:22 by alebaron        #+#    #+#               #
-#  Updated: 2026/06/01 11:06:59 by alebaron        ###   ########.fr        #
+#  Updated: 2026/06/01 11:13:53 by alebaron        ###   ########.fr        #
 #                                                                           #
 # ************************************************************************* #
 
@@ -144,31 +144,25 @@ class SaveScoreView(arcade.View):
         """Crée et affiche les éléments de saisie du pseudo"""
         self.show_input_ui = True
 
-        # 1. On crée le gestionnaire d'ancrage principal qui prend tout l'écran
-
         anchor_layout = arcade.gui.UIAnchorLayout(
             width=self.window.width,
             height=self.window.height
         )
 
-        # 2. On crée notre boîte verticale pour empiler le texte et le bouton
         v_box = arcade.gui.UIBoxLayout()
 
-        # Le champ de saisie de texte
         self.input_field = arcade.gui.UIInputText(
-            text=self.window.manager.player.name,  # Nom actuel par défaut
+            text=self.window.manager.player.name,
             width=300,
             height=40,
             text_color=arcade.color.BLACK
         )
 
-        # Le bouton de validation
         submit_button = arcade.gui.UIFlatButton(
             text="Valider et Enregistrer",
             width=200
         )
 
-        # L'événement du clic
         @submit_button.event("on_click")
         def on_click_submit(event):
             new_name = self.input_field.text.strip()
@@ -176,18 +170,15 @@ class SaveScoreView(arcade.View):
                 self.window.manager.player.name = new_name
                 self.save_without_name()
 
-        # On ajoute les composants dans la boîte verticale (avec la marge en bas pour le texte)
         v_box.add(self.input_field, space_around=(0, 0, 20, 0))
         v_box.add(submit_button)
 
-        # 3. On ajoute la boîte verticale au centre de l'AnchorLayout
         anchor_layout.add(
             anchor_x="center_x",
             anchor_y="center_y",
             child=v_box
         )
 
-        # 4. On ajoute le layout principal à l'UI Manager
         self.ui_manager.add(anchor_layout)
 
     # +---------------------------------------------------------------------+
