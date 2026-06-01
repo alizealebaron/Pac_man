@@ -6,7 +6,7 @@
 #  By: alebaron, rruiz                           +#+  +:+       +#+         #
 #                                              +#+#+#+#+#+   +#+            #
 #  Created: 2026/05/21 13:04:41 by alebaron        #+#    #+#               #
-#  Updated: 2026/05/29 14:23:51 by alebaron        ###   ########.fr        #
+#  Updated: 2026/06/01 10:10:24 by alebaron        ###   ########.fr        #
 #                                                                           #
 # ************************************************************************* #
 
@@ -16,6 +16,7 @@
 
 import argparse
 import json
+from typing import List
 from src.parsing.config_loader import ConfigLoader
 from src.models.configmodel import ConfigModel, LevelConfig
 from src.models.scoreModel import Score
@@ -68,7 +69,7 @@ class PacmanManager():
     # |                            JSON Methods                             |
     # +---------------------------------------------------------------------+
 
-    def retrieve_score_from_json(self):
+    def retrieve_score_from_json(self) -> List[Score]:
 
         lst_score = []
 

@@ -6,7 +6,7 @@
 #  By: alebaron, rruiz                           +#+  +:+       +#+         #
 #                                              +#+#+#+#+#+   +#+            #
 #  Created: 2026/05/26 01:07:26 by alebaron        #+#    #+#               #
-#  Updated: 2026/05/26 01:25:05 by alebaron        ###   ########.fr        #
+#  Updated: 2026/06/01 09:19:10 by alebaron        ###   ########.fr        #
 #                                                                           #
 # ************************************************************************* #
 
@@ -27,6 +27,5 @@ class PokemonModel(BaseModel):
     name: str = Field(min_length=1)
     width: int = Field(ge=1)
     height: int = Field(ge=1)
-    nb_anim: int = Field(ge=1)
     nb_anim: int = Field(ge=1)
     comportement: str

@@ -6,7 +6,7 @@
 #  By: alebaron, rruiz                           +#+  +:+       +#+         #
 #                                              +#+#+#+#+#+   +#+            #
 #  Created: 2026/05/28 14:12:22 by alebaron        #+#    #+#               #
-#  Updated: 2026/05/29 14:42:08 by alebaron        ###   ########.fr        #
+#  Updated: 2026/06/01 10:18:49 by alebaron        ###   ########.fr        #
 #                                                                           #
 # ************************************************************************* #
 
@@ -15,6 +15,7 @@
 # +-------------------------------------------------------------------------+
 
 import arcade
+from src.models.scoreModel import Score
 
 # +-------------------------------------------------------------------------+
 # |                                 CONST                                   |
@@ -23,6 +24,9 @@ import arcade
 
 BACKGROUND_PATH = "assets/background/save_score_background.png"
 MUSIC_PATH = "assets/music/save_score_theme.mp3"
+
+SELECTED_PATH = "assets/quizz/question_selected.png"
+UNSELECTED_PATH = "assets/quizz/question_unselected.png"
 
 
 # +-------------------------------------------------------------------------+
@@ -43,6 +47,12 @@ class SaveScoreView(arcade.View):
 
         # Initialisation de la musique
         self.music_player = None
+
+        # Initalisation des questions
+        self.reponses = ["Retour à l'écran titre",
+                         "Enregistrer sous un nouveau nom",
+                         "Enregistrer le score"]
+        self.selected_reponse = 2
 
     # +---------------------------------------------------------------------+
     # |                            View Methods                             |
@@ -72,9 +82,139 @@ class SaveScoreView(arcade.View):
         # Affichage du petit leaderboard
         self.draw_mid_leaderboard()
 
+        # Affichage du pokemon de l'utilisateur
+        self.draw_profile_icone()
+
+        # Affichage des boutons de choix
+        self.draw_choice()
+
+    def on_key_press(self, key, modifiers):
+
+        if key == arcade.key.W:
+            self.selected_reponse = ((self.selected_reponse + 1) %
+                                     len(self.reponses))
+
+        if key == arcade.key.S:
+            self.selected_reponse = ((self.selected_reponse - 1) %
+                                     len(self.reponses))
+
+        if key == arcade.key.ENTER or key == arcade.key.SPACE:
+
+            if self.selected_reponse == 2:
+                self.save_without_name()
+            elif self.selected_reponse == 1:
+                (print("Yepee !"))
+            elif self.selected_reponse == 0:
+                self.music.stop(self.music_player)
+                self.window.show_view(self.window.start_view)
+
+    # +---------------------------------------------------------------------+
+    # |                           Choice Methods                            |
+    # +---------------------------------------------------------------------+
+
+    def save_without_name(self):
+
+        score = {
+            "name": self.window.manager.player.name,
+            "score": self.window.manager.player.score,
+            "pokemon": self.window.manager.player.pokemon.name
+        }
+
+        score = Score(**score)
+        self.window.manager.scoreboard.append(score)
+        self.window.manager.update_json_score()
+
+        self.music.stop(self.music_player)
+        self.window.show_view(self.window.start_view)
+
     # +---------------------------------------------------------------------+
     # |                            Draw Methods                             |
     # +---------------------------------------------------------------------+
+
+    def draw_choice(self):
+        start_y = self.window.height * 0.25
+        space_between = 150
+
+        # L'axe X central pour tout le bloc de gauche
+        align_x = self.window.width * 0.30
+
+        for reponse in self.reponses:
+            if (reponse is self.reponses[self.selected_reponse]):
+                question_sprite = arcade.load_texture(SELECTED_PATH)
+            else:
+                question_sprite = arcade.load_texture(UNSELECTED_PATH)
+
+            sprite_width = self.window.width * 0.5
+            sprite_height = self.window.height * 0.09
+
+            # On utilise l'axe aligné
+            center_x = align_x
+            center_y = start_y
+
+            arcade.draw_texture_rect(
+                texture=question_sprite,
+                rect=arcade.XYWH(center_x, center_y, sprite_width,
+                                 sprite_height)
+            )
+
+            texte = arcade.Text(
+                text=reponse,
+                x=center_x,
+                y=center_y,
+                color=arcade.color.WHITE,
+                font_size=16,
+                anchor_x="center",
+                anchor_y="center"
+            )
+            texte.draw()
+
+            start_y += space_between
+
+    def draw_profile_icone(self):
+
+        icon_size = 100
+        align_x = self.window.width * 0.30
+
+        player_name = arcade.Text(self.window.manager.player.name,
+                                  align_x,
+                                  self.window.height * 0.72 + icon_size,
+                                  color=arcade.color.BLACK,
+                                  font_size=22,
+                                  font_name="FOT-UDKakugoC80 Pro",
+                                  anchor_x="center",
+                                  anchor_y="center",
+                                  bold=True)
+        player_name.draw()
+
+        pokemon = self.window.manager.player.pokemon.name
+        profile_tex = arcade.load_texture(f"assets/sprite/pokemon/{pokemon}/portraits/Happy.png") 
+        arcade.draw_texture_rect(
+            texture=profile_tex,
+            rect=arcade.XYWH(align_x,
+                             self.window.height * 0.72,
+                             icon_size,
+                             icon_size)
+        )
+
+        sprite_frame = arcade.load_texture("assets/sprite/face_frame.png")
+        arcade.draw_texture_rect(
+            texture=sprite_frame,
+            rect=arcade.XYWH(align_x,
+                             self.window.height * 0.72,
+                             icon_size + 10,
+                             icon_size + 10)
+        )
+
+        score = f"Score: {self.window.manager.player.score}"
+        player_score = arcade.Text(score,
+                                   align_x,
+                                   self.window.height * 0.63,
+                                   color=arcade.color.BLACK,
+                                   font_size=18,
+                                   font_name="FOT-UDKakugoC80 Pro",
+                                   anchor_x="center",
+                                   anchor_y="center")
+        player_score.draw()
 
     def draw_mid_leaderboard(self):
 
@@ -85,14 +225,14 @@ class SaveScoreView(arcade.View):
         arcade.draw_texture_rect(
             texture=leader_sprite,
             rect=arcade.XYWH(
-                x=self.window.width / 2 + self.window.width / 2 * 0.5,
+                x=self.window.width / 2 + self.window.width / 2 * 0.6,
                 y=self.window.height / 2,
                 width=w,
                 height=h
             )
         )
 
-        # Tri des 3 meilleurs
+        # Tri des 9 meilleurs
         scores = sorted(self.window.manager.scoreboard,
                         key=lambda p: p.score,
                         reverse=True)[:9]

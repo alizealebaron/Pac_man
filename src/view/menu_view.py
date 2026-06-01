@@ -6,7 +6,7 @@
 #  By: alebaron, rruiz                           +#+  +:+       +#+         #
 #                                              +#+#+#+#+#+   +#+            #
 #  Created: 2026/05/20 10:28:01 by alebaron        #+#    #+#               #
-#  Updated: 2026/05/29 14:51:05 by alebaron        ###   ########.fr        #
+#  Updated: 2026/06/01 09:52:05 by alebaron        ###   ########.fr        #
 #                                                                           #
 # ************************************************************************* #
 
@@ -238,7 +238,8 @@ class MenuView(arcade.View):
                                   (self.hauteur - (sprite_size / 2) - 20),
                                   color=arcade.color.BLACK,
                                   font_size=20,
-                                  font_name="FOT-UDKakugoC80 Pro")
+                                  font_name="FOT-UDKakugoC80 Pro",
+                                  bold=True)
         player_name.draw()
 
     def _draw_little_scoreboard(self):
@@ -304,10 +305,16 @@ class MenuView(arcade.View):
             )
 
             # Image du pokémon
-            profile_tex = arcade.load_texture(f"assets/sprite/undefined/Normal.png") 
+            profile_tex = arcade.load_texture(f"assets/sprite/undefined/Normal.png")
             arcade.draw_texture_rect(
                 texture=profile_tex,
                 rect=arcade.XYWH(start_x + icon_size + 25, current_y, icon_size, icon_size)
+            )
+
+            sprite_frame = arcade.load_texture("assets/sprite/face_frame.png")
+            arcade.draw_texture_rect(
+                texture=sprite_frame,
+                rect=arcade.XYWH(start_x + icon_size + 25, current_y, icon_size + 5, icon_size + 5)
             )
 
             # Nom + Score
