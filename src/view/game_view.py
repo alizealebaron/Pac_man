@@ -6,7 +6,7 @@
 #  By: alebaron, rruiz                           +#+  +:+       +#+         #
 #                                              +#+#+#+#+#+   +#+            #
 #  Created: 2026/05/20 13:11:07 by alebaron        #+#    #+#               #
-#  Updated: 2026/06/01 11:19:18 by alebaron        ###   ########.fr        #
+#  Updated: 2026/06/01 16:06:57 by rruiz           ###   ########.fr        #
 #                                                                           #
 # ************************************************************************* #
 
@@ -72,9 +72,9 @@ class GameView(arcade.View):
 
         # Initialisation des coords du player et de ces sprites
         self._player_original_pos()
-        self.player_sprite = arcade.Sprite('assets/sprite/rond_de_merde.png', scale=self.scale)
+        self.manager.player.sprite.scale=self.scale
         self.player_sprites = arcade.SpriteList()
-        self.player_sprites.append(self.player_sprite)
+        self.player_sprites.append(self.manager.player.sprite)
 
         # Music
         self.music_player = None
@@ -121,8 +121,8 @@ class GameView(arcade.View):
         pixel_y = self.manager.player.y * TILE_SIZE + 32 + self.manager.player.pixel_offset_y
 
         # Affichage du joueur au centre du labyrinthe
-        self.player_sprite.center_x = pixel_x * self.scale + self.offset_x
-        self.player_sprite.center_y = pixel_y * self.scale + self.offset_y
+        self.manager.player.sprite.center_x = pixel_x * self.scale + self.offset_x
+        self.manager.player.sprite.center_y = pixel_y * self.scale + self.offset_y
         self.player_sprites.draw()
 
         # Affichage de l'HUD
@@ -148,6 +148,8 @@ class GameView(arcade.View):
         elif self.manager.player.pixel_offset_y <= -TRANSITION_DISTANCE:
             self.manager.player.y -= 1
             self.manager.player.pixel_offset_y = 0
+
+        self.manager.player.sprite.on_update(delta_time)
 
     def on_show_view(self):
         """Appelé quand la vue change"""
@@ -226,12 +228,16 @@ class GameView(arcade.View):
             elif self._can_move(player.direction):
                 match player.direction:
                     case "up":
+                        self.manager.player.sprite.current_direction = 'up'
                         return (0, 1)
                     case "right":
+                        self.manager.player.sprite.current_direction = 'right'
                         return (1, 0)
                     case "down":
+                        self.manager.player.sprite.current_direction = 'down'
                         return (0, -1)
                     case "left":
+                        self.manager.player.sprite.current_direction = 'left'
                         return (-1, 0)
                     case _:
                         return (0, 0)

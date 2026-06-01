@@ -6,7 +6,7 @@
 #  By: alebaron, rruiz                           +#+  +:+       +#+         #
 #                                              +#+#+#+#+#+   +#+            #
 #  Created: 2026/05/21 12:46:42 by alebaron        #+#    #+#               #
-#  Updated: 2026/06/01 11:14:36 by alebaron        ###   ########.fr        #
+#  Updated: 2026/06/01 15:59:05 by rruiz           ###   ########.fr        #
 #                                                                           #
 # ************************************************************************* #
 
@@ -20,6 +20,7 @@ import arcade
 from typing import List
 from src.models.configmodel import ConfigModel
 from src.models.pokemonModel import PokemonModel
+from src.models.animated_sprite import AnimatedSprite
 
 
 # +-------------------------------------------------------------------------+
@@ -42,9 +43,9 @@ class PlayerModel():
         self.pixel_offset_y = 0.0
         self.direction = None
         self.next_direction = None
-        self.sprite = arcade.Sprite('assets/sprite/carre_de_merde.png')
         self.nb_life = config.lives
         self.score = 0
+        self.sprite = AnimatedSprite(self.pokemon.name, self.pokemon.width, self.pokemon.height, self.pokemon.nb_anim)
 
     # +---------------------------------------------------------------------+
     # |                              Methods                                |
@@ -53,7 +54,8 @@ class PlayerModel():
     def _get_random_pokemon(self,
                             lst_pokemons: List[PokemonModel]) -> PokemonModel:
 
-        return (random.choice(lst_pokemons))
+        # return (random.choice(lst_pokemons))
+        return lst_pokemons[24]
 
     def _get_random_name(self):
 
