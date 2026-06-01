@@ -6,7 +6,7 @@
 #  By: alebaron, rruiz                           +#+  +:+       +#+         #
 #                                              +#+#+#+#+#+   +#+            #
 #  Created: 2026/05/20 10:28:01 by alebaron        #+#    #+#               #
-#  Updated: 2026/05/28 16:44:57 by alebaron        ###   ########.fr        #
+#  Updated: 2026/06/01 11:13:01 by alebaron        ###   ########.fr        #
 #                                                                           #
 # ************************************************************************* #
 
@@ -19,7 +19,6 @@ from src.view.game_view import GameView
 from src.view.scoreboard_view import ScoreboardView
 from src.view.settings_view import SettingsView
 from src.view.personnality.personnality_view import PersonnalityView
-from src.view.save_score.save_score_view import SaveScoreView  # TODO: DELETE
 
 # +-------------------------------------------------------------------------+
 # |                                 CONST                                   |
@@ -118,8 +117,7 @@ class MenuView(arcade.View):
         self.window.show_view(SettingsView(self.window))
 
     def open_score(self):
-        # TODO: Remettre ScoreBoardView
-        self.window.show_view(SaveScoreView(self.window))
+        self.window.show_view(ScoreboardView(self.window))
 
     def end_game(self):
         arcade.exit()
@@ -212,7 +210,7 @@ class MenuView(arcade.View):
     def _draw_player(self):
 
         pokemon = self.window.manager.player.pokemon
-        sprite = arcade.load_texture(f"assets/sprite/pokemon/{pokemon}"
+        sprite = arcade.load_texture(f"assets/sprite/pokemon/{pokemon.name}"
                                      "/portraits/Normal.png")
         sprite_size = 75
 
@@ -238,7 +236,8 @@ class MenuView(arcade.View):
                                   (self.hauteur - (sprite_size / 2) - 20),
                                   color=arcade.color.BLACK,
                                   font_size=20,
-                                  font_name="FOT-UDKakugoC80 Pro")
+                                  font_name="FOT-UDKakugoC80 Pro",
+                                  bold=True)
         player_name.draw()
 
     def _draw_little_scoreboard(self):
@@ -304,10 +303,16 @@ class MenuView(arcade.View):
             )
 
             # Image du pokémon
-            profile_tex = arcade.load_texture(f"assets/sprite/undefined/Normal.png") 
+            profile_tex = arcade.load_texture(f"assets/sprite/undefined/Normal.png")
             arcade.draw_texture_rect(
                 texture=profile_tex,
                 rect=arcade.XYWH(start_x + icon_size + 25, current_y, icon_size, icon_size)
+            )
+
+            sprite_frame = arcade.load_texture("assets/sprite/face_frame.png")
+            arcade.draw_texture_rect(
+                texture=sprite_frame,
+                rect=arcade.XYWH(start_x + icon_size + 25, current_y, icon_size + 5, icon_size + 5)
             )
 
             # Nom + Score

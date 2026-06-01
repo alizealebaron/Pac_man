@@ -6,7 +6,7 @@
 #  By: alebaron, rruiz                           +#+  +:+       +#+         #
 #                                              +#+#+#+#+#+   +#+            #
 #  Created: 2026/05/27 16:28:27 by alebaron        #+#    #+#               #
-#  Updated: 2026/05/27 16:54:29 by alebaron        ###   ########.fr        #
+#  Updated: 2026/05/29 14:26:13 by alebaron        ###   ########.fr        #
 #                                                                           #
 # ************************************************************************* #
 
@@ -114,7 +114,7 @@ class ResultQuizzView(arcade.View):
             if ((len(self.lst_carac) > self.index_carac)):
                 self.index_carac += 1
             else:
-                self.window.manager.player.pokemon = self.random_pokemon.name
+                self.window.manager.player.pokemon = self.random_pokemon
                 self.music.stop(self.music_player)
                 self.window.show_view(self.window.start_view)
 
