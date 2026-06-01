@@ -6,7 +6,7 @@
 #  By: alebaron, rruiz                           +#+  +:+       +#+         #
 #                                              +#+#+#+#+#+   +#+            #
 #  Created: 2026/05/20 13:11:07 by alebaron        #+#    #+#               #
-#  Updated: 2026/06/01 11:15:00 by alebaron        ###   ########.fr        #
+#  Updated: 2026/06/01 11:19:18 by alebaron        ###   ########.fr        #
 #                                                                           #
 # ************************************************************************* #
 
@@ -81,7 +81,7 @@ class GameView(arcade.View):
 
         self.background = arcade.load_texture(BACKGROUND_PATH)
 
-        pokemon = self.manager.player.pokemon
+        pokemon = self.manager.player.pokemon.name
         self.pokemon_sprite = arcade.load_texture(f"assets/sprite/pokemon/{pokemon}"
                                      "/portraits/Normal.png")
         self.sprite_frame = arcade.load_texture("assets/sprite/face_frame.png")
