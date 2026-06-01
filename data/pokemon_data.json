@@ -113,8 +113,8 @@
     },
     {
         "name": "Mimikyu",
-        "width": 40,
-        "height": 40,
+        "width": 32,
+        "height": 48,
         "nb_anim": 4,
         "comportement": "Bizarre"
     },
