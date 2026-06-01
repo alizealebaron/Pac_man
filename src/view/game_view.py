@@ -6,7 +6,7 @@
 #  By: alebaron, rruiz                           +#+  +:+       +#+         #
 #                                              +#+#+#+#+#+   +#+            #
 #  Created: 2026/05/20 13:11:07 by alebaron        #+#    #+#               #
-#  Updated: 2026/06/01 16:06:57 by rruiz           ###   ########.fr        #
+#  Updated: 2026/06/01 16:49:20 by rruiz           ###   ########.fr        #
 #                                                                           #
 # ************************************************************************* #
 
@@ -215,12 +215,16 @@ class GameView(arcade.View):
             if player.pixel_offset_x != 0 or player.pixel_offset_y != 0:
                 match player.direction:
                     case "up":
+                        self.manager.player.sprite.current_direction = 'up'
                         return (0, 1)
                     case "right":
+                        self.manager.player.sprite.current_direction = 'right'
                         return (1, 0)
                     case "down":
+                        self.manager.player.sprite.current_direction = 'down'
                         return (0, -1)
                     case "left":
+                        self.manager.player.sprite.current_direction = 'left'
                         return (-1, 0)
                     case _:
                         return (0, 0)

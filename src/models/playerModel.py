@@ -6,7 +6,7 @@
 #  By: alebaron, rruiz                           +#+  +:+       +#+         #
 #                                              +#+#+#+#+#+   +#+            #
 #  Created: 2026/05/21 12:46:42 by alebaron        #+#    #+#               #
-#  Updated: 2026/06/01 15:59:05 by rruiz           ###   ########.fr        #
+#  Updated: 2026/06/01 16:59:00 by rruiz           ###   ########.fr        #
 #                                                                           #
 # ************************************************************************* #
 
@@ -54,8 +54,7 @@ class PlayerModel():
     def _get_random_pokemon(self,
                             lst_pokemons: List[PokemonModel]) -> PokemonModel:
 
-        # return (random.choice(lst_pokemons))
-        return lst_pokemons[24]
+        return (random.choice(lst_pokemons))
 
     def _get_random_name(self):
 

@@ -6,7 +6,7 @@
 #  By: alebaron, rruiz                           +#+  +:+       +#+         #
 #                                              +#+#+#+#+#+   +#+            #
 #  Created: 2026/06/01 14:38:04 by rruiz           #+#    #+#               #
-#  Updated: 2026/06/01 15:34:10 by rruiz           ###   ########.fr        #
+#  Updated: 2026/06/01 16:44:52 by rruiz           ###   ########.fr        #
 #                                                                           #
 # ************************************************************************* #
 
@@ -27,7 +27,7 @@ class AnimatedSprite(arcade.Sprite):
         self.update_texture()
 
     def _load_walk_anim(self):
-        columns = 4
+        columns = self.pokemon_nb_anim
         all_textures = self.sprite_sheet.get_texture_grid(
             size = (self.pokemon_width, self.pokemon_height),
             columns = self.pokemon_nb_anim,
