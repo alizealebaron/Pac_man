@@ -6,7 +6,7 @@
 #  By: alebaron, rruiz                           +#+  +:+       +#+         #
 #                                              +#+#+#+#+#+   +#+            #
 #  Created: 2026/05/20 10:28:01 by alebaron        #+#    #+#               #
-#  Updated: 2026/06/01 09:52:05 by alebaron        ###   ########.fr        #
+#  Updated: 2026/06/01 11:13:01 by alebaron        ###   ########.fr        #
 #                                                                           #
 # ************************************************************************* #
 
@@ -19,7 +19,6 @@ from src.view.game_view import GameView
 from src.view.scoreboard_view import ScoreboardView
 from src.view.settings_view import SettingsView
 from src.view.personnality.personnality_view import PersonnalityView
-from src.view.save_score.save_score_view import SaveScoreView  # TODO: DELETE
 
 # +-------------------------------------------------------------------------+
 # |                                 CONST                                   |
@@ -118,8 +117,7 @@ class MenuView(arcade.View):
         self.window.show_view(SettingsView(self.window))
 
     def open_score(self):
-        # TODO: Remettre ScoreBoardView
-        self.window.show_view(SaveScoreView(self.window))
+        self.window.show_view(ScoreboardView(self.window))
 
     def end_game(self):
         arcade.exit()
