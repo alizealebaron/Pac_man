@@ -6,7 +6,7 @@
 #  By: alebaron, rruiz                           +#+  +:+       +#+         #
 #                                              +#+#+#+#+#+   +#+            #
 #  Created: 2026/05/20 13:11:07 by alebaron        #+#    #+#               #
-#  Updated: 2026/05/30 16:10:08 by rruiz           ###   ########.fr        #
+#  Updated: 2026/06/01 11:15:00 by alebaron        ###   ########.fr        #
 #                                                                           #
 # ************************************************************************* #
 
@@ -289,6 +289,10 @@ class GameView(arcade.View):
         )
 
     def draw_UHD(self):
+
+        pokemon = self.manager.player.pokemon
+        sprite = arcade.load_texture(f"assets/sprite/pokemon/{pokemon.name}"
+                                     "/portraits/Normal.png")
         sprite_size = 75
 
         arcade.draw_texture_rect(

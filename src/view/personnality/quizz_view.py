@@ -6,7 +6,7 @@
 #  By: alebaron, rruiz                           +#+  +:+       +#+         #
 #                                              +#+#+#+#+#+   +#+            #
 #  Created: 2026/05/26 04:44:09 by alebaron        #+#    #+#               #
-#  Updated: 2026/05/28 16:46:17 by alebaron        ###   ########.fr        #
+#  Updated: 2026/05/29 14:58:15 by alebaron        ###   ########.fr        #
 #                                                                           #
 # ************************************************************************* #
 
@@ -182,7 +182,7 @@ class QuizzView(arcade.View):
         center_height = self.height * 0.7
         space_between = 150
 
-        sprite_width = self.window.width * 0.5
+        sprite_width = self.window.width * 0.6
         sprite_height = self.window.height * 0.09
 
         # Formule pour la hauteur totale du bloc de réponses
@@ -224,10 +224,10 @@ class QuizzView(arcade.View):
         text_box_sprite = arcade.load_texture("assets/menu/text_box.png")
         arcade.draw_texture_rect(texture=text_box_sprite,
                                  rect=arcade.XYWH(self.window.width / 2,
-                                                  (self.window.height * 0.95 / 2),
+                                                  (self.window.height * 0.95
+                                                   / 2),
                                                   self.window.width,
-                                                  self.window.height)
-        )
+                                                  self.window.height))
 
         center_x = self.width / 2
         center_y = 200

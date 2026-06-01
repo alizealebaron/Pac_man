@@ -6,7 +6,7 @@
 #  By: alebaron, rruiz                           +#+  +:+       +#+         #
 #                                              +#+#+#+#+#+   +#+            #
 #  Created: 2026/05/21 13:04:41 by alebaron        #+#    #+#               #
-#  Updated: 2026/05/27 09:44:48 by alebaron        ###   ########.fr        #
+#  Updated: 2026/06/01 10:10:24 by alebaron        ###   ########.fr        #
 #                                                                           #
 # ************************************************************************* #
 
@@ -16,6 +16,7 @@
 
 import argparse
 import json
+from typing import List
 from src.parsing.config_loader import ConfigLoader
 from src.models.configmodel import ConfigModel, LevelConfig
 from src.models.scoreModel import Score
@@ -49,8 +50,11 @@ class PacmanManager():
         # Récupération de la config
         self.config: ConfigModel = ConfigLoader.load_config(arg.config_file)
 
+        # Récupérations des datas de pokémons
+        self.pokemons = self.retrieve_pokemon_data_from_json()
+
         # Génération aléatoire du joueur
-        self.player = PlayerModel(self.config)
+        self.player = PlayerModel(self.config, self.pokemons)
 
         # Generation des maps et stockage dans une liste
         self.level: list[Level] = self.create_maps(self.config.level)
@@ -61,14 +65,11 @@ class PacmanManager():
         # Récupération des questions
         self.data_questions = self.retrieve_questions_from_json()
 
-        # Récupérations des datas de pokémons
-        self.pokemons = self.retrieve_pokemon_data_from_json()
-
     # +---------------------------------------------------------------------+
     # |                            JSON Methods                             |
     # +---------------------------------------------------------------------+
 
-    def retrieve_score_from_json(self):
+    def retrieve_score_from_json(self) -> List[Score]:
 
         lst_score = []
 
