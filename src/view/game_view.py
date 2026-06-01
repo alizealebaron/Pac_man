@@ -6,7 +6,7 @@
 #  By: alebaron, rruiz                           +#+  +:+       +#+         #
 #                                              +#+#+#+#+#+   +#+            #
 #  Created: 2026/05/20 13:11:07 by alebaron        #+#    #+#               #
-#  Updated: 2026/06/01 15:19:17 by rruiz           ###   ########.fr        #
+#  Updated: 2026/06/01 16:06:57 by rruiz           ###   ########.fr        #
 #                                                                           #
 # ************************************************************************* #
 
@@ -72,6 +72,7 @@ class GameView(arcade.View):
 
         # Initialisation des coords du player et de ces sprites
         self._player_original_pos()
+        self.manager.player.sprite.scale=self.scale
         self.player_sprites = arcade.SpriteList()
         self.player_sprites.append(self.manager.player.sprite)
 

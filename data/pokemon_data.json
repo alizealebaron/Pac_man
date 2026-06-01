@@ -8,7 +8,7 @@
     },
     {
         "name": "Axew",
-        "width": 24,
+        "width": 32,
         "height": 40,
         "nb_anim": 4,
         "comportement": "Hardi.e"
@@ -68,6 +68,13 @@
         "height": 32,
         "nb_anim": 6,
         "comportement": "Jovial.e"
+    },
+    {
+        "name": "Froakie",
+        "width": 32,
+        "height": 40,
+        "nb_anim": 6,
+        "comportement": "Solo"
     },
     {
         "name": "Gible",
