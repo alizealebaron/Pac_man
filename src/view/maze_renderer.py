@@ -6,14 +6,16 @@
 #  By: alebaron, rruiz                           +#+  +:+       +#+         #
 #                                              +#+#+#+#+#+   +#+            #
 #  Created: 2026/05/28 16:53:13 by rruiz           #+#    #+#               #
-#  Updated: 2026/05/29 09:50:49 by rruiz           ###   ########.fr        #
+#  Updated: 2026/06/01 11:12:29 by rruiz           ###   ########.fr        #
 #                                                                           #
 # ************************************************************************* #
 
 import arcade
+from PIL import Image
 
 WALL_DIR = 'assets/sprite/wall/'
-MAP_NAME = 'tiny_wood_test/'
+MAP_NAME = 'tiny_wood.png'
+MAP_FILE = f'{WALL_DIR}' + f'{MAP_NAME}'
 TILE_SIZE = 64
 
 class MazeRenderer:
@@ -31,6 +33,7 @@ class MazeRenderer:
         self.offset_y = 0.0
 
         self.sprites = arcade.SpriteList()
+        self.sprite_sheet = self._load_sprites(MAP_FILE)
         self._build_maze_sprites()
 
     def _build_maze_sprites(self):
@@ -52,13 +55,24 @@ class MazeRenderer:
         for y in range(1, nb_lines + 1):
             for x in range(1, nb_columns + 1):
                 wall_value = self.maze[y - 1][x - 1]
-                wall_path = f'{WALL_DIR}{MAP_NAME}wall_{wall_value}.png'
+                wall = self.sprite_sheet[wall_value]
+                wall_texture = arcade.Texture(wall)
 
                 center_x = (x - 0.5) * TILE_SIZE * self.scale + self.offset_x
                 center_y = (y - 0.5) * TILE_SIZE * self.scale + self.offset_y
 
-                sprite = arcade.Sprite(wall_path, center_x=center_x, center_y=center_y, scale=self.scale)
+                sprite = arcade.Sprite(wall_texture, center_x=center_x, center_y=center_y, scale=self.scale)
                 self.sprites.append(sprite)
+
+    def _load_sprites(self, path: str) -> list:
+        img = Image.open(path)
+        frames = []
+
+        for x in range(0, img.width, TILE_SIZE):
+            frame = img.crop((x, 0, x + TILE_SIZE, TILE_SIZE))
+            frames.append(frame)
+
+        return frames
 
     def draw(self):
         """ Draw everything """
