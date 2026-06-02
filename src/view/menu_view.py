@@ -6,7 +6,7 @@
 #  By: alebaron, rruiz                           +#+  +:+       +#+         #
 #                                              +#+#+#+#+#+   +#+            #
 #  Created: 2026/05/20 10:28:01 by alebaron        #+#    #+#               #
-#  Updated: 2026/06/02 08:22:59 by alebaron        ###   ########.fr        #
+#  Updated: 2026/06/02 08:54:10 by alebaron        ###   ########.fr        #
 #                                                                           #
 # ************************************************************************* #
 
@@ -19,8 +19,6 @@ from src.view.game_view import GameView
 from src.view.scoreboard_view import ScoreboardView
 from src.view.settings_view import SettingsView
 from src.view.personnality.personnality_view import PersonnalityView
-from src.view.save_score.gameover_view import GameoverView
-from src.view.save_score.win_view import WinView
 
 # +-------------------------------------------------------------------------+
 # |                                 CONST                                   |
@@ -113,10 +111,10 @@ class MenuView(arcade.View):
         self.window.show_view(GameView(self.window.manager))
 
     def open_quizz(self):
-        self.window.show_view(WinView(self.window))
+        self.window.show_view(PersonnalityView(self.window))
 
     def open_settings(self):
-        self.window.show_view(GameoverView(self.window))
+        self.window.show_view(SettingsView(self.window))
 
     def open_score(self):
         self.window.show_view(ScoreboardView(self.window))
