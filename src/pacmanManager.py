@@ -6,7 +6,7 @@
 #  By: alebaron, rruiz                           +#+  +:+       +#+         #
 #                                              +#+#+#+#+#+   +#+            #
 #  Created: 2026/05/21 13:04:41 by alebaron        #+#    #+#               #
-#  Updated: 2026/06/01 10:10:24 by alebaron        ###   ########.fr        #
+#  Updated: 2026/06/02 13:02:37 by rruiz           ###   ########.fr        #
 #                                                                           #
 # ************************************************************************* #
 
@@ -24,6 +24,7 @@ from src.models.playerModel import PlayerModel
 from src.models.levelModel import Level
 from src.models.questionModel import DataQuestionsModel
 from src.models.pokemonModel import PokemonModel
+from src.managers.enemy_manager import EnemyManager
 
 # +-------------------------------------------------------------------------+
 # |                                  CONST                                  |
@@ -56,8 +57,14 @@ class PacmanManager():
         # Génération aléatoire du joueur
         self.player = PlayerModel(self.config, self.pokemons)
 
+
         # Generation des maps et stockage dans une liste
         self.level: list[Level] = self.create_maps(self.config.level)
+
+        self.current_level = self.level[0]
+
+        # Génération des ennemies
+        # self.enemy_manager = EnemyManager(self.config, self.current_level)
 
         # Récupération du scoreboard
         self.scoreboard = self.retrieve_score_from_json()
