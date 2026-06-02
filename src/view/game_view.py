@@ -6,7 +6,7 @@
 #  By: alebaron, rruiz                           +#+  +:+       +#+         #
 #                                              +#+#+#+#+#+   +#+            #
 #  Created: 2026/05/20 13:11:07 by alebaron        #+#    #+#               #
-#  Updated: 2026/06/02 11:24:31 by alebaron        ###   ########.fr        #
+#  Updated: 2026/06/02 11:36:16 by alebaron        ###   ########.fr        #
 #                                                                           #
 # ************************************************************************* #
 
@@ -84,21 +84,6 @@ class GameView(arcade.View):
         self.pokemon_sprite = arcade.load_texture(f"assets/sprite/pokemon/{pokemon}"
                                      "/portraits/Normal.png")
         self.sprite_frame = arcade.load_texture("assets/sprite/face_frame.png")
-        sprite_size = 75
-
-        self.player_life = arcade.Text(f"Live(s): {self.manager.player.nb_life}",
-                                  sprite_size + 25,
-                                  (self.hauteur - (sprite_size / 2) - 5),
-                                  color=arcade.color.BLACK,
-                                  font_size=15,
-                                  font_name="Comic Sans MS")
-
-        self.player_score = arcade.Text(f"Score: {self.manager.player.score}",
-                                  sprite_size + 25,
-                                  (self.hauteur - (sprite_size / 2) - 35),
-                                  color=arcade.color.BLACK,
-                                  font_size=15,
-                                  font_name="Comic Sans MS")
 
     # +---------------------------------------------------------------------+
     # |                               Methods                               |
@@ -344,8 +329,21 @@ class GameView(arcade.View):
                              sprite_size + 9)
         )
 
-        self.player_life.text = f'Live(s): {self.manager.player.nb_life}'
-        self.player_life.draw()
+        sprite_size = 75
 
-        self.player_score.text = f'Score: {self.manager.player.score}'
-        self.player_score.draw()
+        player_life = arcade.Text(f"Live(s): {self.manager.player.nb_life}",
+                                  sprite_size + 25,
+                                  (self.hauteur - (sprite_size / 2) - 5),
+                                  color=arcade.color.WHITE,
+                                  font_size=15,
+                                  font_name="Comic Sans MS")
+
+        player_score = arcade.Text(f"Score: {self.manager.player.score}",
+                                   sprite_size + 25,
+                                   (self.hauteur - (sprite_size / 2) - 35),
+                                   color=arcade.color.WHITE,
+                                   font_size=15,
+                                   font_name="Comic Sans MS")
+
+        player_life.draw()
+        player_score.draw()
