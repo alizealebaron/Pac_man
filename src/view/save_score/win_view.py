@@ -1,12 +1,12 @@
 # ************************************************************************* #
 #                                                                           #
 #                                                      :::      ::::::::    #
-#  save_score_view.py                                :+:      :+:    :+:    #
+#  win_view.py                                       :+:      :+:    :+:    #
 #                                                  +:+ +:+         +:+      #
 #  By: alebaron, rruiz                           +#+  +:+       +#+         #
 #                                              +#+#+#+#+#+   +#+            #
 #  Created: 2026/05/28 14:12:22 by alebaron        #+#    #+#               #
-#  Updated: 2026/06/01 16:53:40 by alebaron        ###   ########.fr        #
+#  Updated: 2026/06/02 08:48:45 by alebaron        ###   ########.fr        #
 #                                                                           #
 # ************************************************************************* #
 
@@ -34,7 +34,7 @@ UNSELECTED_PATH = "assets/quizz/question_unselected.png"
 # |                                 Classe                                  |
 # +-------------------------------------------------------------------------+
 
-class SaveScoreView(arcade.View):
+class WinView(arcade.View):
 
     # +---------------------------------------------------------------------+
     # |                                Init                                 |
@@ -54,6 +54,10 @@ class SaveScoreView(arcade.View):
                          "Enregistrer sous un nouveau nom",
                          "Enregistrer le score"]
         self.selected_reponse = 2
+
+        # Initialisation des infos de la view
+        self.title = "Thanks you for playing !"
+        self.emotion = "Happy"
 
         # Gestion de l'input du pseudo
 
@@ -188,8 +192,7 @@ class SaveScoreView(arcade.View):
 
     def draw_title(self):
 
-        texte = "Thanks you for playing !"
-        titre = arcade.Text(text=texte,
+        titre = arcade.Text(text=self.title,
                             x=self.window.width / 2,
                             y=self.window.height * 0.9,
                             color=arcade.color.BLACK,
@@ -256,7 +259,8 @@ class SaveScoreView(arcade.View):
         player_name.draw()
 
         pokemon = self.window.manager.player.pokemon.name
-        profile_tex = arcade.load_texture(f"assets/sprite/pokemon/{pokemon}/portraits/Happy.png") 
+        profile_tex = arcade.load_texture(f"assets/sprite/pokemon/{pokemon}"
+                                          f"/portraits/{self.emotion}.png")
         arcade.draw_texture_rect(
             texture=profile_tex,
             rect=arcade.XYWH(align_x,
@@ -370,7 +374,7 @@ class SaveScoreView(arcade.View):
             )
 
             # Image du pokémon
-            profile_tex = arcade.load_texture(f"assets/sprite/undefined/Normal.png") 
+            profile_tex = arcade.load_texture(f"assets/sprite/undefined/Normal.png")
             arcade.draw_texture_rect(
                 texture=profile_tex,
                 rect=arcade.XYWH(start_x + icon_size + 25, current_y, icon_size, icon_size)
