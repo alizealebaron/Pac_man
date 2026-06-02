@@ -6,7 +6,7 @@
 #  By: alebaron, rruiz                           +#+  +:+       +#+         #
 #                                              +#+#+#+#+#+   +#+            #
 #  Created: 2026/05/20 13:11:07 by alebaron        #+#    #+#               #
-#  Updated: 2026/06/01 16:49:20 by rruiz           ###   ########.fr        #
+#  Updated: 2026/06/02 09:09:42 by rruiz           ###   ########.fr        #
 #                                                                           #
 # ************************************************************************* #
 
@@ -72,10 +72,9 @@ class GameView(arcade.View):
 
         # Initialisation des coords du player et de ces sprites
         self._player_original_pos()
-        self.manager.player.sprite.scale=self.scale
+        self.manager.player.sprite.scale = self.manager.player.pokemon.scale * self.scale
         self.player_sprites = arcade.SpriteList()
         self.player_sprites.append(self.manager.player.sprite)
-
         # Music
         self.music_player = None
 
@@ -122,7 +121,7 @@ class GameView(arcade.View):
 
         # Affichage du joueur au centre du labyrinthe
         self.manager.player.sprite.center_x = pixel_x * self.scale + self.offset_x
-        self.manager.player.sprite.center_y = pixel_y * self.scale + self.offset_y
+        self.manager.player.sprite.center_y = pixel_y * self.scale + self.offset_y - 10
         self.player_sprites.draw()
 
         # Affichage de l'HUD
