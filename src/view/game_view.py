@@ -1,23 +1,24 @@
-# ************************************************************************* #
-#                                                                           #
-#                                                      :::      ::::::::    #
-#  game_view.py                                      :+:      :+:    :+:    #
-#                                                  +:+ +:+         +:+      #
-#  By: alebaron, rruiz                           +#+  +:+       +#+         #
-#                                              +#+#+#+#+#+   +#+            #
-#  Created: 2026/05/20 13:11:07 by alebaron        #+#    #+#               #
-#  Updated: 2026/06/02 14:26:21 by alebaron        ###   ########.fr        #
-#                                                                           #
-# ************************************************************************* #
+# ************************************************************************** #
+#       _  _     ____                     ,~~.                               #
+#      | || |   |___  \             ,   (  ^ )>                              #
+#      | || |_    __) |             )\~~'   (       _      _      _          #
+#      |__   _|  / __/             (  .__)   )    >(.)__ <(^)__ =(o)__       #
+#         |_|   |_____| .fr         \_.____,*      (___/  (___/  (___/       #
+#                                                                            #
+# ************************************************************************** #
+# @name   : game_view.py                                                     #
+# @author : alebaron <alebaron@student.42lehavre.fr>                         #
+#                                                                            #
+# @creation : Invalid date        by -----------                             #
+# @update   : 2026/06/02 15:20:23 by alebaron                                #
+# ************************************************************************** #
 
-# +-------------------------------------------------------------------------+
-# |                               Importation                               |
-# +-------------------------------------------------------------------------+
 
 
 import arcade
 from src.view.maze_renderer import MazeRenderer
 from src.managers.collectible_manager import CollectibleManager
+from src.view.save_score.win_view import WinView
 from src.pacmanManager import PacmanManager
 
 # +-------------------------------------------------------------------------+
@@ -130,9 +131,15 @@ class GameView(arcade.View):
 
         # Vérification que le jeu est toujours en cours
         if (self.is_finished == 1):
-            self.manager.actual_level += 1
-            self.window.show_view(GameView(self.manager, self.music_player,
-                                           self.music))
+            if (self.manager.actual_level == (len(self.manager.level) - 1)):
+                self.music.stop(self.music_player)
+                self.window.set_mouse_visible(True)
+                self.window.show_view(WinView(self.window))
+            else:
+                self.manager.actual_level += 1
+                self.window.show_view(GameView(self.manager, self.music_player,
+                                               self.music))
+
 
         vx, vy = self._player_move()
 

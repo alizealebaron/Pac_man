@@ -1,18 +1,18 @@
-# ************************************************************************* #
-#                                                                           #
-#                                                      :::      ::::::::    #
-#  collectible_manager.py                            :+:      :+:    :+:    #
-#                                                  +:+ +:+         +:+      #
-#  By: alebaron, rruiz                           +#+  +:+       +#+         #
-#                                              +#+#+#+#+#+   +#+            #
-#  Created: 2026/05/28 16:43:54 by rruiz           #+#    #+#               #
-#  Updated: 2026/06/02 14:16:00 by alebaron        ###   ########.fr        #
-#                                                                           #
-# ************************************************************************* #
+# ************************************************************************** #
+#       _  _     ____                     ,~~.                               #
+#      | || |   |___  \             ,   (  ^ )>                              #
+#      | || |_    __) |             )\~~'   (       _      _      _          #
+#      |__   _|  / __/             (  .__)   )    >(.)__ <(^)__ =(o)__       #
+#         |_|   |_____| .fr         \_.____,*      (___/  (___/  (___/       #
+#                                                                            #
+# ************************************************************************** #
+# @name   : collectible_manager.py                                           #
+# @author : alebaron <alebaron@student.42lehavre.fr>                         #
+#                                                                            #
+# @creation : Invalid date        by -----------                             #
+# @update   : 2026/06/02 15:08:59 by alebaron                                #
+# ************************************************************************** #
 
-# +-------------------------------------------------------------------------+
-# |                               Importation                               |
-# +-------------------------------------------------------------------------+
 
 import arcade
 from src.models.configmodel import ConfigModel
@@ -111,7 +111,8 @@ class CollectibleManager:
             self.spg_sprites.remove(collectible)
             total_points += config.points_per_super_pacgum
 
-        is_all_collected = len(self.spg_sprites) == 0 and len(self.pg_sprites)
+        is_all_collected = (len(self.spg_sprites) == 0 and
+                            len(self.pg_sprites) == 0)
 
         return (total_points, is_all_collected)
 

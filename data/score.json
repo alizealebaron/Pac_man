@@ -78,5 +78,15 @@
     "name": "Super_Beldum78",
     "score": 0,
     "pokemon": "Beldum"
+  },
+  {
+    "name": "Impish_Ditto",
+    "score": 910,
+    "pokemon": "Ditto"
+  },
+  {
+    "name": "Super_Trico",
+    "score": 910,
+    "pokemon": "Treecko"
   }
 ]
