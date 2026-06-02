@@ -6,7 +6,7 @@
 #  By: alebaron, rruiz                           +#+  +:+       +#+         #
 #                                              +#+#+#+#+#+   +#+            #
 #  Created: 2026/05/21 13:04:41 by alebaron        #+#    #+#               #
-#  Updated: 2026/06/01 10:10:24 by alebaron        ###   ########.fr        #
+#  Updated: 2026/06/02 14:19:34 by alebaron        ###   ########.fr        #
 #                                                                           #
 # ************************************************************************* #
 
@@ -58,6 +58,7 @@ class PacmanManager():
 
         # Generation des maps et stockage dans une liste
         self.level: list[Level] = self.create_maps(self.config.level)
+        self.actual_level = 0
 
         # Récupération du scoreboard
         self.scoreboard = self.retrieve_score_from_json()

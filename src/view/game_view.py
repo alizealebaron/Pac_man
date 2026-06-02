@@ -6,7 +6,7 @@
 #  By: alebaron, rruiz                           +#+  +:+       +#+         #
 #                                              +#+#+#+#+#+   +#+            #
 #  Created: 2026/05/20 13:11:07 by alebaron        #+#    #+#               #
-#  Updated: 2026/06/02 13:52:10 by alebaron        ###   ########.fr        #
+#  Updated: 2026/06/02 14:26:21 by alebaron        ###   ########.fr        #
 #                                                                           #
 # ************************************************************************* #
 
@@ -41,7 +41,7 @@ class GameView(arcade.View):
     # |                                Init                                 |
     # +---------------------------------------------------------------------+
 
-    def __init__(self, manager: PacmanManager):
+    def __init__(self, manager: PacmanManager, music_player=None, music=None):
         """ Initializer """
         # Call the parent class initializer
         super().__init__()
@@ -57,33 +57,46 @@ class GameView(arcade.View):
 
         # Récupération du manager et du labyrinthe
         self.manager = manager
-        self.current_maze = self.manager.level[0].maze.maze
+        num_level = self.manager.actual_level
+        self.current_maze = self.manager.level[num_level].maze.maze
 
         # Récupération du labyrinthe à l'envers pour Arcade
         self.rev_maze = self._rev_maze(self.current_maze)
 
         # Initialiser les renderers
-        self.maze_renderer = MazeRenderer(self.rev_maze, self.largeur, self.hauteur)
+        self.maze_renderer = MazeRenderer(self.rev_maze, self.largeur,
+                                          self.hauteur)
         self.scale = self.maze_renderer.scale
-        self.offset_x, self.offset_y = self.maze_renderer.offset_x, self.maze_renderer.offset_y
+        self.offset_x, self.offset_y = (self.maze_renderer.offset_x,
+                                        self.maze_renderer.offset_y)
 
         # Initialisation du gestionnaire de collectibles
-        self.collectible_manager = CollectibleManager(self.rev_maze, self.scale, self.offset_x, self.offset_y)
+        self.collectible_manager = CollectibleManager(self.rev_maze,
+                                                      self.scale,
+                                                      self.offset_x,
+                                                      self.offset_y)
 
         # Initialisation des coords du player et de ses sprites
         self._player_original_pos()
-        self.manager.player.sprite.scale = self.manager.player.pokemon.scale * self.scale
+        self.manager.player.sprite.scale = (self.manager.player.pokemon.scale *
+                                            self.scale)
         self.player_sprites = arcade.SpriteList()
         self.player_sprites.append(self.manager.player.sprite)
+
         # Music
-        self.music_player = None
+        self.music_player = music_player
+        self.music = music
 
         self.background = arcade.load_texture(BACKGROUND_PATH)
 
         pokemon = self.manager.player.pokemon.name
-        self.pokemon_sprite = arcade.load_texture(f"assets/sprite/pokemon/{pokemon}"
-                                     "/portraits/Normal.png")
+        self.pokemon_sprite = arcade.load_texture(f"assets/sprite/pokemon/"
+                                                  f"{pokemon}/portraits/"
+                                                  "Normal.png")
         self.sprite_frame = arcade.load_texture("assets/sprite/face_frame.png")
+
+        # Détection de la fin d'un level
+        self.is_finished = 0  # 0: Play, 1: Win, 2: GameOver
 
     # +---------------------------------------------------------------------+
     # |                               Methods                               |
@@ -114,6 +127,13 @@ class GameView(arcade.View):
 
     def on_update(self, delta_time):
         """ Movement and game logic """
+
+        # Vérification que le jeu est toujours en cours
+        if (self.is_finished == 1):
+            self.manager.actual_level += 1
+            self.window.show_view(GameView(self.manager, self.music_player,
+                                           self.music))
+
         vx, vy = self._player_move()
 
         self.manager.player.pixel_offset_x += vx * SPEED
@@ -160,7 +180,8 @@ class GameView(arcade.View):
                                                    x,
                                                    y)
 
-        self.manager.player.score += p
+        points, self.is_finished = p
+        self.manager.player.score += points
 
     # +---------------------------------------------------------------------+
     # |                            Game Methods                             |

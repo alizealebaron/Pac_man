@@ -6,7 +6,7 @@
 #  By: alebaron, rruiz                           +#+  +:+       +#+         #
 #                                              +#+#+#+#+#+   +#+            #
 #  Created: 2026/05/28 16:43:54 by rruiz           #+#    #+#               #
-#  Updated: 2026/06/02 11:30:27 by alebaron        ###   ########.fr        #
+#  Updated: 2026/06/02 14:16:00 by alebaron        ###   ########.fr        #
 #                                                                           #
 # ************************************************************************* #
 
@@ -111,7 +111,9 @@ class CollectibleManager:
             self.spg_sprites.remove(collectible)
             total_points += config.points_per_super_pacgum
 
-        return total_points
+        is_all_collected = len(self.spg_sprites) == 0 and len(self.pg_sprites)
+
+        return (total_points, is_all_collected)
 
     # +---------------------------------------------------------------------+
     # |                                 Draw                                |
