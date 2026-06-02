@@ -4,6 +4,7 @@
         "width": 40,
         "height": 48,
         "nb_anim": 4,
+        "scale": 1.5,
         "comportement": "Solo"
     },
     {
@@ -11,6 +12,7 @@
         "width": 32,
         "height": 40,
         "nb_anim": 4,
+        "scale": 1.6,
         "comportement": "Hardi.e"
     },
     {
@@ -18,6 +20,7 @@
         "width": 32,
         "height": 48,
         "nb_anim": 8,
+        "scale": 1.5,
         "comportement": "Calme"
     },
     {
@@ -25,6 +28,7 @@
         "width": 40,
         "height": 40,
         "nb_anim": 6,
+        "scale": 1.5,
         "comportement": "Jovial.e"
     },
     {
@@ -32,6 +36,7 @@
         "width": 32,
         "height": 32,
         "nb_anim": 4,
+        "scale": 1.5,
         "comportement": "Malpoli.e"
     },
     {
@@ -39,6 +44,7 @@
         "width": 32,
         "height": 48,
         "nb_anim": 7,
+        "scale": 1.5,
         "comportement": "Naïf.ve"
     },
     {
@@ -46,6 +52,7 @@
         "width": 32,
         "height": 32,
         "nb_anim": 5,
+        "scale": 1.5,
         "comportement": "Bizarre"
     },
     {
@@ -53,6 +60,7 @@
         "width": 24,
         "height": 40,
         "nb_anim": 4,
+        "scale": 1.5,
         "comportement": "Docile"
     },
     {
@@ -60,6 +68,7 @@
         "width": 40,
         "height": 48,
         "nb_anim": 7,
+        "scale": 1.5,
         "comportement": "Jovial.e"
     },
     {
@@ -67,6 +76,7 @@
         "width": 32,
         "height": 32,
         "nb_anim": 6,
+        "scale": 1.5,
         "comportement": "Jovial.e"
     },
     {
@@ -74,6 +84,7 @@
         "width": 32,
         "height": 40,
         "nb_anim": 6,
+        "scale": 1.5,
         "comportement": "Solo"
     },
     {
@@ -81,6 +92,7 @@
         "width": 24,
         "height": 40,
         "nb_anim": 4,
+        "scale": 1.5,
         "comportement": "Hardi.e"
     },
     {
@@ -88,6 +100,7 @@
         "width": 32,
         "height": 48,
         "nb_anim": 4,
+        "scale": 1.5,
         "comportement": "Malin.e"
     },
     {
@@ -95,6 +108,7 @@
         "width": 32,
         "height": 48,
         "nb_anim": 5,
+        "scale": 1.5,
         "comportement": "Timide"
     },
     {
@@ -102,6 +116,7 @@
         "width": 32,
         "height": 40,
         "nb_anim": 3,
+        "scale": 1.5,
         "comportement": "Malin.e"
     },
     {
@@ -109,6 +124,7 @@
         "width": 40,
         "height": 40,
         "nb_anim": 4,
+        "scale": 1.5,
         "comportement": "Solo"
     },
     {
@@ -116,6 +132,7 @@
         "width": 32,
         "height": 48,
         "nb_anim": 4,
+        "scale": 1.5,
         "comportement": "Bizarre"
     },
     {
@@ -123,6 +140,7 @@
         "width": 24,
         "height": 40,
         "nb_anim": 4,
+        "scale": 1.5,
         "comportement": "Relax"
     },
     {
@@ -130,6 +148,7 @@
         "width": 32,
         "height": 40,
         "nb_anim": 4,
+        "scale": 1.5,
         "comportement": "Docile"
     },
     {
@@ -137,6 +156,7 @@
         "width": 24,
         "height": 40,
         "nb_anim": 4,
+        "scale": 1.5,
         "comportement": "Relax"
     },
     {
@@ -144,6 +164,7 @@
         "width": 24,
         "height": 32,
         "nb_anim": 4,
+        "scale": 1.5,
         "comportement": "Timide"
     },
     {
@@ -151,6 +172,7 @@
         "width": 24,
         "height": 40,
         "nb_anim": 4,
+        "scale": 1.5,
         "comportement": "Pressé.e"
     },
     {
@@ -158,6 +180,7 @@
         "width": 24,
         "height": 40,
         "nb_anim": 4,
+        "scale": 1.5,
         "comportement": "Malpoli.e"
     },
     {
@@ -165,6 +188,7 @@
         "width": 24,
         "height": 40,
         "nb_anim": 8,
+        "scale": 1.5,
         "comportement": "Brave"
     },
     {
@@ -172,6 +196,7 @@
         "width": 24,
         "height": 48,
         "nb_anim": 6,
+        "scale": 1.5,
         "comportement": "Solo"
     },
     {
@@ -179,6 +204,7 @@
         "width": 32,
         "height": 32,
         "nb_anim": 6,
+        "scale": 1.5,
         "comportement": "Naïf.ve"
     },
     {
@@ -186,6 +212,7 @@
         "width": 32,
         "height": 32,
         "nb_anim": 4,
+        "scale": 1.5,
         "comportement": "Brave"
     },
     {
@@ -193,6 +220,7 @@
         "width": 32,
         "height": 32,
         "nb_anim": 4,
+        "scale": 1.5,
         "comportement": "Malpoli.e"
     },
     {
@@ -200,6 +228,7 @@
         "width": 24,
         "height": 32,
         "nb_anim": 4,
+        "scale": 1.5,
         "comportement": "Calme"
     },
     {
@@ -207,6 +236,7 @@
         "width": 32,
         "height": 40,
         "nb_anim": 4,
+        "scale": 1.5,
         "comportement": "Pressé.e"
     }
 ]
