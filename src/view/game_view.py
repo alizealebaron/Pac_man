@@ -6,7 +6,7 @@
 #  By: alebaron, rruiz                           +#+  +:+       +#+         #
 #                                              +#+#+#+#+#+   +#+            #
 #  Created: 2026/05/20 13:11:07 by alebaron        #+#    #+#               #
-#  Updated: 2026/06/02 09:09:42 by rruiz           ###   ########.fr        #
+#  Updated: 2026/06/02 11:24:31 by alebaron        ###   ########.fr        #
 #                                                                           #
 # ************************************************************************* #
 
@@ -137,16 +137,20 @@ class GameView(arcade.View):
         if self.manager.player.pixel_offset_x >= TRANSITION_DISTANCE:
             self.manager.player.x += 1
             self.manager.player.pixel_offset_x = 0
+            self.get_collectibles()
         elif self.manager.player.pixel_offset_x <= -TRANSITION_DISTANCE:
             self.manager.player.x -= 1
             self.manager.player.pixel_offset_x = 0
-        
+            self.get_collectibles()
+
         if self.manager.player.pixel_offset_y >= TRANSITION_DISTANCE:
             self.manager.player.y += 1
             self.manager.player.pixel_offset_y = 0
+            self.get_collectibles()
         elif self.manager.player.pixel_offset_y <= -TRANSITION_DISTANCE:
             self.manager.player.y -= 1
             self.manager.player.pixel_offset_y = 0
+            self.get_collectibles()
 
         self.manager.player.sprite.on_update(delta_time)
 
@@ -156,6 +160,26 @@ class GameView(arcade.View):
             self.music = arcade.Sound(MUSIC_PATH,
                                       streaming=True)
             self.music_player = self.music.play(volume=1, loop=True)
+
+    # +---------------------------------------------------------------------+
+    # |                 Methods for recovering collectibles                 |
+    # +---------------------------------------------------------------------+
+
+    def get_collectibles(self):
+
+        x = self.manager.player.x
+        y = self.manager.player.y
+
+        p = self.collectible_manager.remove_pacgum(self.player_sprites,
+                                                   self.manager.config,
+                                                   x,
+                                                   y)
+
+        self.manager.player.score += p
+
+    # +---------------------------------------------------------------------+
+    # |                            Game Methods                             |
+    # +---------------------------------------------------------------------+
 
     def _rev_maze(self, maze: list[list[int]]) -> list[list[int]]:
         rev_maze: list[list[int]] = []
@@ -244,7 +268,7 @@ class GameView(arcade.View):
                         return (-1, 0)
                     case _:
                         return (0, 0)
-        
+
         return (0, 0)
 
     def _can_move(self, direction: str) -> bool:
