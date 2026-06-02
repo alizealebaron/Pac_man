@@ -6,7 +6,7 @@
 #  By: alebaron, rruiz                           +#+  +:+       +#+         #
 #                                              +#+#+#+#+#+   +#+            #
 #  Created: 2026/05/26 04:44:09 by alebaron        #+#    #+#               #
-#  Updated: 2026/05/29 14:58:15 by alebaron        ###   ########.fr        #
+#  Updated: 2026/06/01 15:45:15 by alebaron        ###   ########.fr        #
 #                                                                           #
 # ************************************************************************* #
 
@@ -175,7 +175,7 @@ class QuizzView(arcade.View):
 
         # Récupération des données
         act_q = self.lst_questions[self.index_question]
-        self.reponses = act_q.reponses
+        self.reponses = act_q.reponses[::-1]
         nb_reponses = len(self.reponses)
 
         # Initialisation des positions initiales

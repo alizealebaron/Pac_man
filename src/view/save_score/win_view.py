@@ -1,12 +1,12 @@
 # ************************************************************************* #
 #                                                                           #
 #                                                      :::      ::::::::    #
-#  save_score_view.py                                :+:      :+:    :+:    #
+#  win_view.py                                       :+:      :+:    :+:    #
 #                                                  +:+ +:+         +:+      #
 #  By: alebaron, rruiz                           +#+  +:+       +#+         #
 #                                              +#+#+#+#+#+   +#+            #
 #  Created: 2026/05/28 14:12:22 by alebaron        #+#    #+#               #
-#  Updated: 2026/06/01 11:13:53 by alebaron        ###   ########.fr        #
+#  Updated: 2026/06/02 08:48:45 by alebaron        ###   ########.fr        #
 #                                                                           #
 # ************************************************************************* #
 
@@ -34,7 +34,7 @@ UNSELECTED_PATH = "assets/quizz/question_unselected.png"
 # |                                 Classe                                  |
 # +-------------------------------------------------------------------------+
 
-class SaveScoreView(arcade.View):
+class WinView(arcade.View):
 
     # +---------------------------------------------------------------------+
     # |                                Init                                 |
@@ -54,6 +54,10 @@ class SaveScoreView(arcade.View):
                          "Enregistrer sous un nouveau nom",
                          "Enregistrer le score"]
         self.selected_reponse = 2
+
+        # Initialisation des infos de la view
+        self.title = "Thanks you for playing !"
+        self.emotion = "Happy"
 
         # Gestion de l'input du pseudo
 
@@ -97,6 +101,7 @@ class SaveScoreView(arcade.View):
             self.ui_manager.draw()
         else:
             # Sinon, on dessine le menu normal
+            self.draw_title()
             self.draw_mid_leaderboard()
             self.draw_profile_icone()
             self.draw_choice()
@@ -185,8 +190,21 @@ class SaveScoreView(arcade.View):
     # |                            Draw Methods                             |
     # +---------------------------------------------------------------------+
 
+    def draw_title(self):
+
+        titre = arcade.Text(text=self.title,
+                            x=self.window.width / 2,
+                            y=self.window.height * 0.9,
+                            color=arcade.color.BLACK,
+                            bold=True,
+                            font_size=30,
+                            anchor_x="center",
+                            anchor_y="center")
+
+        titre.draw()
+
     def draw_choice(self):
-        start_y = self.window.height * 0.25
+        start_y = self.window.height * 0.20
         space_between = 150
 
         # L'axe X central pour tout le bloc de gauche
@@ -231,7 +249,7 @@ class SaveScoreView(arcade.View):
 
         player_name = arcade.Text(self.window.manager.player.name,
                                   align_x,
-                                  self.window.height * 0.72 + icon_size,
+                                  self.window.height * 0.67 + icon_size,
                                   color=arcade.color.BLACK,
                                   font_size=22,
                                   font_name="FOT-UDKakugoC80 Pro",
@@ -241,11 +259,12 @@ class SaveScoreView(arcade.View):
         player_name.draw()
 
         pokemon = self.window.manager.player.pokemon.name
-        profile_tex = arcade.load_texture(f"assets/sprite/pokemon/{pokemon}/portraits/Happy.png") 
+        profile_tex = arcade.load_texture(f"assets/sprite/pokemon/{pokemon}"
+                                          f"/portraits/{self.emotion}.png")
         arcade.draw_texture_rect(
             texture=profile_tex,
             rect=arcade.XYWH(align_x,
-                             self.window.height * 0.72,
+                             self.window.height * 0.67,
                              icon_size,
                              icon_size)
         )
@@ -254,7 +273,7 @@ class SaveScoreView(arcade.View):
         arcade.draw_texture_rect(
             texture=sprite_frame,
             rect=arcade.XYWH(align_x,
-                             self.window.height * 0.72,
+                             self.window.height * 0.67,
                              icon_size + 10,
                              icon_size + 10)
         )
@@ -262,7 +281,7 @@ class SaveScoreView(arcade.View):
         score = f"Score: {self.window.manager.player.score}"
         player_score = arcade.Text(score,
                                    align_x,
-                                   self.window.height * 0.63,
+                                   self.window.height * 0.58,
                                    color=arcade.color.BLACK,
                                    font_size=18,
                                    font_name="FOT-UDKakugoC80 Pro",
@@ -280,7 +299,7 @@ class SaveScoreView(arcade.View):
             texture=leader_sprite,
             rect=arcade.XYWH(
                 x=self.window.width / 2 + self.window.width / 2 * 0.6,
-                y=self.window.height / 2,
+                y=self.window.height * 0.45,
                 width=w,
                 height=h
             )
@@ -293,7 +312,7 @@ class SaveScoreView(arcade.View):
 
         # Configuration des positions
         start_x = self.window.height + 225
-        start_y = (self.window.width / 2) - 175
+        start_y = (self.window.width * 0.45) - 135
         line_height = 70
         icon_size = 50
 
@@ -355,7 +374,7 @@ class SaveScoreView(arcade.View):
             )
 
             # Image du pokémon
-            profile_tex = arcade.load_texture(f"assets/sprite/undefined/Normal.png") 
+            profile_tex = arcade.load_texture(f"assets/sprite/undefined/Normal.png")
             arcade.draw_texture_rect(
                 texture=profile_tex,
                 rect=arcade.XYWH(start_x + icon_size + 25, current_y, icon_size, icon_size)
