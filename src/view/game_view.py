@@ -6,7 +6,7 @@
 #  By: alebaron, rruiz                           +#+  +:+       +#+         #
 #                                              +#+#+#+#+#+   +#+            #
 #  Created: 2026/05/20 13:11:07 by alebaron        #+#    #+#               #
-#  Updated: 2026/06/02 11:36:16 by alebaron        ###   ########.fr        #
+#  Updated: 2026/06/02 13:52:10 by alebaron        ###   ########.fr        #
 #                                                                           #
 # ************************************************************************* #
 
@@ -70,7 +70,7 @@ class GameView(arcade.View):
         # Initialisation du gestionnaire de collectibles
         self.collectible_manager = CollectibleManager(self.rev_maze, self.scale, self.offset_x, self.offset_y)
 
-        # Initialisation des coords du player et de ces sprites
+        # Initialisation des coords du player et de ses sprites
         self._player_original_pos()
         self.manager.player.sprite.scale = self.manager.player.pokemon.scale * self.scale
         self.player_sprites = arcade.SpriteList()
